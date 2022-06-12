@@ -1,0 +1,262 @@
+#
+# CUSTOM hotkeys
+#
+
+# --------- SXHKD (SHORTCUTS MANAGER) ---------
+
+# sxhkd reload keybindings:
+super + Escape
+	pkill -USR1 -x sxhkd
+
+
+# --------- GENERAL APPS ---------
+
+# terminal emulator
+super + Return
+	kitty -e zsh -c "~/.config/neofetch/launch-neofetch.sh ; zsh"
+
+# filemanager
+super + e
+    nautilus 
+
+# launch/restart polybar
+ctrl + alt + p
+    ~/.config/polybar/scripts/launch-polybar.sh
+
+# rofi 
+super + d
+	rofi -modi drun -show drun -width 5
+
+
+# --------- FUNCTIONALITIES ---------
+
+# pacman update
+super + u
+    bspc rule -a \* -o state=floating && kitty -e $SHELL -c "figlet update... && sudo pacman -Syu"
+
+# get window's class name
+super + alt + c
+    notify-send "$(xprop | grep 'CLASS')"
+
+
+# --------- RANGER (TERMINAL FILE MANAGER) ---------
+
+# ranger screenshots
+shift + super + i
+    kitty -e ranger /home/lenovo/Pictures/Screenshots 
+
+# ranger downloads
+shift + super + d
+    kitty -e ranger /home/lenovo/Downloads
+
+# ranger wallpapers
+shift + super + w
+    kitty -e ranger /home/lenovo/.wallpapers
+
+# ranger programming
+shift + super + p
+    kitty -e ranger /home/lenovo/Dropbox/Programming
+
+# nitrogen
+ctrl + alt + w
+    bspc rule -a \* -o state=floating && nitrogen
+
+# ranger
+shift + super + r
+    kitty -e ranger
+
+# browser
+ctrl + alt + f
+    firefox file:///home/$USER/.config/startpage/index.html
+
+# idea
+ctrl + alt + i
+    /home/lenovo/software/idea-IC-201.7846.76/bin/idea.sh
+
+# code
+ctrl + alt + c
+    code
+   
+# spotify
+#ctrl + alt + s
+#    bspc desktop -f '^8' --follow ; spotify
+
+
+# --------- SCREENSHOTS ---------
+
+# screenshot (entire screen)
+Print
+    scrot $HOME/Pictures/Screenshots/screenshot-$(date +%F_%T).png -e 'xclip -selection c -t image/png < $f'
+
+# screenshot (window)
+super + Print
+    scrot -u $HOME/Pictures/Screenshots/screenshot-$(date +%F_%T).png -e 'xclip -selection c -t image/png < $f'
+
+# screenshot (region)
+super + shift + S
+    import /tmp/screenshot.png && cat /tmp/screenshot.png | xclip -sel clip -t image/png
+
+# system shutdown
+super + alt + t
+    ~/.config/polybar/scripts/theme-swap.sh
+
+
+# --------- PULSEMIXER (AUDIO MANAGER) ---------
+
+# open pulsemixer
+ctrl + alt + v
+    bspc rule -a \* -o state=floating ; pavucontrol # kitty -e /bin/zsh -c pulsemixer
+
+# pulsemixer volume UP (+5)
+super + F8
+	pulsemixer --change-volume +5
+
+# pulsemixer volume DOWN (-5)
+super + F7
+	pulsemixer --change-volume -5
+
+# pulsemixer volume MUTE (0)
+super + F5
+	pulsemixer --toggle-mute
+
+
+# --------- DUNST (NOTIFICATION MANAGER) ---------
+
+# close all notifications
+super + space
+    dunstctl close-all
+
+# notifications history
+super + shift + Escape
+    dunstctl history-pop
+
+
+# ----------------------- BSPWM HOTKEYS -----------------------
+
+# system shutdown
+super + alt + s
+    systemctl poweroff
+
+# system restart
+super + alt + r
+    reboot
+
+# quit/restart bspwm
+super + alt + {q,r}
+	bspc {quit,wm -r}
+
+# close and kill
+super + q
+	bspc node -c
+
+# alternate between the tiled and monocle layout
+super + m
+	bspc desktop -l next
+
+# send the newest marked node to the newest preselected node
+super + y
+	bspc node newest.marked.local -n newest.!automatic.local
+
+# swap the current node and the biggest node
+#super + g
+	#bspc node -s biggest
+
+#
+# state/flags
+#
+
+# set the window state
+super + {t,shift + t,s,f}
+	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
+
+# set the node flags
+super + ctrl + {m,x,y,z}
+bspc node -g {marked,locked,sticky,private}
+
+#
+# focus/swap
+#
+
+# focus the node in the given direction
+super + {_,shift + }{Left,Down,Up,Right}
+	bspc node -{f,s} {west,south,north,east}
+
+super + {_,shift + }{h,j,k,l}
+	bspc node -{f,s} {west,south,north,east}
+
+# focus the node for the given path jump
+super + {p,b,comma,period}
+	bspc node -f @{parent,brother,first,second}
+
+# focus the next/previous node in the current desktop
+super + {_,shift + }c
+	bspc node -f {next,prev}.local
+
+# focus the next/previous desktop in the current monitor
+super + bracket{left,right}
+	bspc desktop -f {prev,next}.local
+
+# focus the last node/desktop
+super + {grave,Tab}
+	bspc {node,desktop} -f last || zsh -c "last-workspace.sh"
+
+# focus the older or newer node in the focus history
+super + {o,i}
+	bspc wm -h off; \
+	bspc node {older,newer} -f; \
+	bspc wm -h on
+
+# focus or send to the given desktop
+super + {_,shift + }{1-9,0}
+	bspc {desktop -f,node -d} '^{1-9,10}' --follow
+
+
+ctrl + alt + {Left,Right}
+    bspc node -d {prev,next} -f
+
+ctrl + alt + {h,l}
+    bspc node -d {prev,next} -f
+#
+#
+# preselect
+#
+
+# preselect the direction
+#super + ctrl + {Left,Down,Up,Right}
+	#bspc node -p {west,south,north,east}
+
+#super + ctrl + {h,j,k,l}
+	#bspc node -p {west,south,north,east}
+
+# preselect the ratio
+#super + ctrl + {1-9}
+	#bspc node -o 0.{1-9}
+
+# cancel the preselection for the focused node
+#super + ctrl + space
+	#bspc node -p cancel
+
+# cancel the preselection for the focused desktop
+#super + ctrl + shift + space
+	#bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
+
+#
+# move/resize
+#
+
+# expand a window by moving one of its side outward
+super + alt + {Left,Down,Up,Right}
+	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
+
+# contract a window by moving one of its side inward
+super + alt + shift + {Left,Down,Up,Right}
+	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
+
+# move a floating window
+super + {Left,Down,Up,Right}
+	bspc node -v {-20 0,0 20,0 -20,20 0}
+
+#super + shift + g : {plus,minus}
+    #bspc config window_gap $(( $(bspc config window_gap) {+,-} 5 ))
+
+
