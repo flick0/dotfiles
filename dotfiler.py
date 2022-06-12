@@ -1,7 +1,7 @@
 #!/usr/bin/python
-from pathlib import Path
 import datetime
 import subprocess
+from pathlib import Path
 
 CONFIG = Path(Path.home(), ".config")
 to_backup = [
@@ -15,7 +15,7 @@ to_backup = [
     Path(CONFIG, "spicetify"),
     Path(CONFIG, "nautilus"),
 ]
-destination = "./dotfiles/dotfiles-{}-{}-{}/".format(
+destination = "./archive/dotfiles-{}-{}-{}/".format(
     datetime.datetime.now().day,
     datetime.datetime.now().month,
     datetime.datetime.now().year,
@@ -24,6 +24,7 @@ destination = "./dotfiles/dotfiles-{}-{}-{}/".format(
 subprocess.run(["mkdir", destination])
 Path(destination + "readme.md").touch()
 
+log = ""
 for file in to_backup:
     if file.exists():
         subprocess.run(
@@ -34,3 +35,17 @@ for file in to_backup:
                 destination,
             ]
         )
+        print("Copied {}".format(file))
+        log += "✅ {}\n".format(str(file).replace(str(Path.home()), "[HOME]"))
+
+with open(destination + "readme.md", "w") as f:
+    f.write(
+        f"""
+# Dotfiles Backup
+ created at {datetime.datetime.now()}.
+
+```ocaml
+{log}
+```
+"""
+    )
