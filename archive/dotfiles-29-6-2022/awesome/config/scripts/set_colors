@@ -1,0 +1,5 @@
+#!/usr/bin/bash
+
+read -r theme<"$HOME/.config/awesome/config/colorscheme"
+cd ~/Documents/code/themer/
+./themer -a $theme

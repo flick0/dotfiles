@@ -1,0 +1,5 @@
+#!/usr/bin/bash
+
+eww open bar --toggle --config ~/.config/awesome/config/eww
+
+

@@ -1,0 +1,102 @@
+#
+# CUSTOM hotkeys
+#
+
+# terminal emulator
+ctrl + alt + t
+	alacritty -e /bin/fish -C neofetch
+
+# dolphin
+super + e
+    thunar 
+
+# mutt gmail
+ctrl + alt + g
+	alacritty -e /bin/fish -C neomutt
+
+# open downloads folder
+super + d
+	thunar ~/Downloads
+
+# ranger screenshots
+shift + super + s
+    alacritty -e ranger /home/lenovo/Pictures/Screenshots 
+
+# ranger downloads
+shift + super + d
+    alacritty -e ranger /home/lenovo/Downloads
+
+# ranger
+ctrl + alt + n
+    alacritty -e ranger
+
+# chromium
+ctrl + alt + f
+    google-chrome-stable
+
+# idea
+ctrl + alt + i
+    /home/lenovo/software/idea-IC-201.7846.76/bin/idea.sh
+
+# code
+ctrl + alt + c
+    code
+
+# spectacle (all)
+Print
+    spectacle
+
+# spectacle (window)
+super + Print
+    spectacle -a
+
+# spectacle (region)
+super + shift + Print
+    spectacle -r
+
+# rofi 
+super + Return 
+    rofi -font "Iosevka Bold 11" -show drun -show-icons -width 25 -lines 11
+
+# rofi-usb unmount
+super + u
+    sudo ~/.local/usb-rofi/usb_mgr -u
+
+# make sxhkd reload its configuration files:
+super + Escape
+	pkill -USR1 -x sxhkd
+
+# spotify
+#ctrl + alt + s
+#    bspc desktop -f '^8' --follow ; spotify
+
+# AUDIO (pulsemixer)
+# pulsemixer
+ctrl + alt + v
+    alacritty -e /bin/fish -C "pulsemixer"
+
+# pulsemixer volume UP (+5)
+super + F8
+	pulsemixer --change-volume +5
+
+# pulsemixer volume DOWN (-5)
+super + F7
+	pulsemixer --change-volume -5
+
+# pulsemixer volume MUTE (0)
+super + F5
+	pulsemixer --toggle-mute
+
+# system shutdown
+super + alt + s
+    systemctl poweroff
+
+# system restart
+super + alt + r
+    reboot
+
+# quit openbox
+super + alt + q
+    openbox --exit
+# ------------------------------------------------------------------------
+# gpg --keyserver keys.gnupg.net --recv-keys 1D1F0DC78F173680

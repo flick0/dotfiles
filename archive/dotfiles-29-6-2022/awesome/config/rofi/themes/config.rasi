@@ -1,0 +1,58 @@
+configuration {
+  modes: [ run, drun, window ];
+  combi-modes: [ window, drun, run ];
+  dpi: 96;
+  terminal: "st";
+
+  drun-display-format: "{name} {generic}";
+
+  inputchange {
+    action: "kb-row-first";
+  }
+
+  timeout {
+    delay: 15;
+    action: "kb-cancel";
+  }
+
+  run {
+    display-name: "Commands";
+  }
+
+  drun {
+    fallback-icon: "network";
+    display-name: "Apps";
+    delay: 5;
+    action: "kb-cancel";
+    match-fields: "name,generic,exec,categories,keywords";
+
+    parse-user: true;
+    parse-system: true;
+  }
+
+  window {
+    display-name: "Active";
+    close-on-delete: false;
+    thumbnail: true;
+  }
+
+  windowcd {
+    display-name: "Desktop";
+    close-on-delete: false;
+  }
+
+  file-browser {
+    display-name: "Explore";
+    directory: "~/";
+    sorting-method: "mtime";
+    directories-first: true;
+  }
+
+  icon {
+    theme: "McMuse-green,McMuse,Zafiro,Papirus";
+  }
+}
+
+@theme "dishonest"
+
+// vim:filetype=rasi

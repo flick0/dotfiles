@@ -1,0 +1,45 @@
+#!/bin/sh
+
+workspaces() {
+
+ws1=0
+ws2=1
+ws3=2
+ws4=3
+ws5=4
+ws6=5
+
+# Unoccupied
+un="0"
+
+# check if Occupied
+o1=$(bspc query -D -d .occupied --names | grep "$ws1" )
+o2=$(bspc query -D -d .occupied --names | grep "$ws2" )
+o3=$(bspc query -D -d .occupied --names | grep "$ws3" )
+o4=$(bspc query -D -d .occupied --names | grep "$ws4" )
+o5=$(bspc query -D -d .occupied --names | grep "$ws5" )
+o6=$(bspc query -D -d .occupied --names | grep "$ws6" )
+
+# check if Focused
+f1=$(wmctrl -d | grep "*" | cut -d ' ' -f1 | grep "$ws1")
+f2=$(wmctrl -d | grep "*" | cut -d ' ' -f1 | grep "$ws2")
+f3=$(wmctrl -d | grep "*" | cut -d ' ' -f1 | grep "$ws3")
+f4=$(wmctrl -d | grep "*" | cut -d ' ' -f1 | grep "$ws4")
+f5=$(wmctrl -d | grep "*" | cut -d ' ' -f1 | grep "$ws5")
+f6=$(wmctrl -d | grep "*" | cut -d ' ' -f1 | grep "$ws6")
+
+# check if Urgent
+# u1=$(bspc query -D -d .urgent --names | grep 1)
+# u2=$(bspc query -D -d .urgent --names | grep 2)
+# u3=$(bspc query -D -d .urgent --names | grep 3)
+# u4=$(bspc query -D -d .urgent --names | grep 4)
+# u5=$(bspc query -D -d .urgent --names | grep 5)
+
+echo 	"(box	:class \"works\" :orientation \"v\"	:halign \"center\"	:valign \"start\"	 :space-evenly \"false\" :spacing \"-5\" (button :onclick \"wmctrl -s $ws1\"	:class	\"$un$o1$f1\"	\"\") (button :onclick \"wmctrl -s $ws2\"	:class \"$un$o2$f2\"	 \"\") (button :onclick \"wmctrl -s $ws3\"	:class \"$un$o3$f3\" \"\") (button :onclick \"wmctrl -s $ws4\"	:class \"$un$o4$f4\"	\"\") (button :onclick \"wmctrl -s $ws5\"	:class \"$un$o5$f5\" \"\" )  (button :onclick \"wmctrl -s $ws6\"	:class \"$un$o6$f6\" \"\"))"
+
+}
+
+workspaces
+bspc subscribe desktop node_transfer | while read -r _ ; do
+workspaces
+done@
