@@ -11,13 +11,12 @@
 ![workflow](./assets/workflow.png)<br>
 ![hyprland](./assets/hyprland.mp4)<br>
 
-##install (arch only)
+</div>
+
+## install (arch only)
 ```bash
 git clone https://github.com/flick0/dotfiles/tree/cherry-blossom
 cd cherry-blossom
 chmod +x ./install
 ./install
 ```
-
-</div>
-
