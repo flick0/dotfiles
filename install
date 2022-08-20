@@ -8,4 +8,5 @@ sudo rsync ./util/cherry-blossom /usr/bin/
 sudo chmod +x /usr/bin/cherry-blossom
 sudo rsync ./util/cherry-blossom.desktop /usr/share/wayland-sessions/
 echo "[====changing shell====]"
+sudo chsh -s /usr/bin/fish
 chsh -s /usr/bin/fish
