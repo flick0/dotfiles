@@ -15,7 +15,7 @@
 
 ## install (arch only)
 ```bash
-git clone https://github.com/flick0/dotfiles/tree/cherry-blossom
+git clone -b cherry-blossom https://github.com/flick0/dotfiles
 cd cherry-blossom
 chmod +x ./install
 ./install
