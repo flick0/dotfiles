@@ -1,0 +1,5 @@
+#!/usr/bin/bash
+
+dunst &
+hyprpaper &
+
