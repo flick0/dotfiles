@@ -5,7 +5,11 @@
 ```ocaml
  🌸 hyprland / cherry / blossom 🌸
 ```
-https://github.com/flick0/dotfiles/blob/cherry-blossom/assets/hypr.mp4
+
+![apps](./assets/app_picker.png)<br>
+![cava](./assets/cava.png)<br>
+![workflow](./assets/workflow.png)<br>
+![hypr](./assets/hypr.mp4)<br>
 
 </div>
 
