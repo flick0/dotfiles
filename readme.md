@@ -14,6 +14,9 @@
 </div>
 
 ## install (arch only)
+
+> you will need `paru` before running the script
+
 ```bash
 git clone -b cherry-blossom https://github.com/flick0/dotfiles
 cd cherry-blossom
