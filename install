@@ -1,11 +1,11 @@
 #!/usr/bin/bash
-echo "installing deps"
+echo "🌸====installing deps====🌸"
 sudo pacman -S paru
-paru -S hyprland-git dunst bat cava fish kitty neofetch waybar wofi rsync hyprpaper-git
-echo "moving config"
+paru --noconfirm -S hyprland-git dunst bat cava fish kitty neofetch waybar wofi rsync hyprpaper-git
+echo "🌸====moving config====🌸"
 rsync -r -a ./config ~/.config
 sudo rsync ./util/cherry-blossom /usr/bin/
 chmod +x /usr/bin/cherry-blossom
 sudo rsync ./util/cherry-blossom.desktop /usr/share/wayland-sessions/
-echo "changing shell"
+echo "🌸====changing shell====🌸"
 chsh -s /usr/bin/fish
