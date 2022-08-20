@@ -1,11 +1,18 @@
 #!/usr/bin/bash
 echo "[====installing deps====]"
-paru --noconfirm -S hyprland-git dunst bat cava fish kitty neofetch waybar-hyprland-git wofi rsync hyprpaper-git
+paru --noconfirm -S hyprland-git dunst bat cava fish kitty neofetch waybar-hyprland-git wofi rsync hyprpaper-git sddm
 echo "[====moving config====]"
 rsync -r -a ./config ~/.config
 sudo rsync ./util/cherry-blossom /usr/bin/
 sudo chmod +x /usr/bin/cherry-blossom
 sudo rsync ./util/cherry-blossom.desktop /usr/share/wayland-sessions/
+echo "[====changing dm====]"
+sudo systemctl disable lightdm
+sudo systemctl disable gdm
+sudo systemctl enable sddm
+sudo systemctl start sddm
 echo "[====changing shell====]"
 sudo chsh -s /usr/bin/fish
 chsh -s /usr/bin/fish
+echo "[====done====]"
+echo "you can now logout and login to 'cherry-blossom' desktop "
