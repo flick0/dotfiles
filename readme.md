@@ -15,6 +15,8 @@
 
 ## install (arch only)
 
+** ⚠️ USE SCRIPT AT YOUR OWN RISK, ID RECOMEND USING THE SCRIPT AS A REFERENCE ⚠️ **
+
 > you will need `paru` before running the script
 
 ```bash
