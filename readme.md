@@ -9,7 +9,7 @@
 ![apps](./assets/app_picker.png)<br>
 ![cava](./assets/cava.png)<br>
 ![workflow](./assets/workflow.png)<br>
-![hypr](./assets/hypr.mp4)<br>
+![hyprland](./assets/hyprland.mp4)<br>
 
 </div>
 
