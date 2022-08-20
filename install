@@ -1,6 +1,5 @@
 #!/usr/bin/bash
 echo "[====installing deps====]"
-sudo pacman --noconfirm -S paru
 paru --noconfirm -S hyprland-git dunst bat cava fish kitty neofetch waybar-hyprland-git wofi rsync hyprpaper-git
 echo "[====moving config====]"
 rsync -r -a ./config ~/.config
