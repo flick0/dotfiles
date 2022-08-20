@@ -1,0 +1,9 @@
+#!/usr/bin/bash
+echo "installing deps"
+sudo pacman -S paru
+paru -S hyprland-git dunst bat cava fish kitty neofetch waybar wofi rsync hyprpaper-git
+echo "moving config"
+rsync -r -a ./config ~/.config
+rsync -r -a ./bin /usr/bin
+echo "changing shell"
+chsh -s /usr/bin/fish
