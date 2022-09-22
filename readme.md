@@ -1,5 +1,3 @@
-# dotfiles dump for safe keeping
-
 # other branches
 
 <hr>
@@ -13,4 +11,3 @@
 [![dreamy](https://raw.githubusercontent.com/flick0/dotfiles/dreamy/assets/terminal.png)](https://github.com/flick0/dotfiles/tree/dreamy)
 
 <hr>
-
