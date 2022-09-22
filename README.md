@@ -21,9 +21,12 @@ https://user-images.githubusercontent.com/77581181/191730195-56fa4616-59ac-4dae-
 <div align="center">
 
 ## installation
+ 
 <hr>
+ 
 </div>
 </div>
+
 # Arch
 dependancies
 ```
