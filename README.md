@@ -7,7 +7,7 @@
 ```
 
 
-## gallery
+# gallery
 ![cava](./assets/cava.png)
 ![term](./assets/terminal.png)
 </div>
@@ -20,14 +20,14 @@ https://user-images.githubusercontent.com/77581181/191730195-56fa4616-59ac-4dae-
 
 <div align="center">
 
-## installation
+# installation
  
 <hr>
  
 </div>
 </div>
 
-# Arch
+## Arch
 dependancies
 ```
 hyprland-git waybar-hyprland-git cava waybar-mpris-git python rustup kitty fish wofi xdg-desktop-portal-wlr tty-clock-git swaylockd grim slurp pokemon-colorscripts-git starship
@@ -37,13 +37,13 @@ using `paru`
 paru -S hyprland-git waybar-hyprland-git cava waybar-mpris-git python rustup kitty fish wofi xdg-desktop-portal-wlr tty-clock-git swaylockd grim slurp pokemon-colorscripts-git starship
 ```
 
-# moving config files
+## moving config files
 
 ```bash
 cp -r ./config/* ~/.config
 ```
 
-# building the tools used in this rice
+## building the tools used in this rice
 
 `swww` | wallpaper changer/daemon
 ```bash
@@ -62,9 +62,9 @@ cp ./target/release/rgb ~/.config/hypr/scripts/
 ```
 
 
-## extras
+# extras
 
-# vscode custom css
+## vscode custom css
 
 you will need the `custom css and js loader` extension, you can get it from [here](https://marketplace.visualstudio.com/items?itemName=be5invis.vscode-custom-css)
 
