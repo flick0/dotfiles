@@ -12,7 +12,11 @@
 ![term](./assets/terminal.png)
 </div>
 </div>
-https://user-images.githubusercontent.com/77581181/191729869-961bf653-578e-409b-a9cf-3de08e63a65e.mp4
+
+
+https://user-images.githubusercontent.com/77581181/191730195-56fa4616-59ac-4dae-a64a-2fe95fa8cdc3.mp4
+
+
 
 ## installation
 <hr>
