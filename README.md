@@ -16,7 +16,9 @@
 
 https://user-images.githubusercontent.com/77581181/191730195-56fa4616-59ac-4dae-a64a-2fe95fa8cdc3.mp4
 
+<div align="justify">
 
+<div align="center">
 
 ## installation
 <hr>
@@ -54,6 +56,8 @@ cd rgb-rs
 cargo build --release
 cp ./target/release/rgb ~/.config/hypr/scripts/
 ```
+</div>
+</div>
 
 
 
