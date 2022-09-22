@@ -38,7 +38,6 @@ cp -r ./config/* ~/.config
 
 `swww` | wallpaper changer/daemon
 ```bash
-# cd ./config/hypr/components/source/swww
 git clone https://github.com/flick0/swww
 cd swww
 cargo build --release
