@@ -61,6 +61,7 @@ cargo build --release
 cp ./target/release/rgb ~/.config/hypr/scripts/
 ```
 
+
 *lmk if something is broken on the repo*
 
 
