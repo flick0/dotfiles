@@ -22,7 +22,8 @@ https://user-images.githubusercontent.com/77581181/191730195-56fa4616-59ac-4dae-
 
 ## installation
 <hr>
-
+</div>
+</div>
 # Arch
 dependancies
 ```
@@ -56,8 +57,7 @@ cd rgb-rs
 cargo build --release
 cp ./target/release/rgb ~/.config/hypr/scripts/
 ```
-</div>
-</div>
+
 
 
 
