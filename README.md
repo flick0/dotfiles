@@ -28,25 +28,29 @@ using `paru`
 paru -S hyprland-git waybar-hyprland-git cava waybar-mpris-git python rustup kitty fish wofi xdg-desktop-portal-wlr tty-clock-git swaylockd grim slurp
 ```
 
-# building scirpts used in this rice
-
-`swww` | wallpaper changer/daemon
-```bash
-cd ./config/hypr/components/source/swww
-cargo build --release
-```
-
-`rgb-borders` | rgb borders for grouped windows
-```bash
-cd ./config/hypr/components/source/rgb-rs
-cargo build --release
-cp ./target/release/rgb-borders ../../../scripts
-```
-
 # moving config files
 
 ```bash
 cp -r ./config/* ~/.config
+```
+
+# building the tools used in this rice
+
+`swww` | wallpaper changer/daemon
+```bash
+# cd ./config/hypr/components/source/swww
+git clone https://github.com/flick0/swww
+cd swww
+cargo build --release
+cp ./target/release/swww ~/.config/hypr/scripts/tools/
+```
+
+`rgb-borders` | rgb borders for grouped windows
+```bash
+git clone https://github.com/flick0/rgb-rs
+cd rgb-rs
+cargo build --release
+cp ./target/release/rgb ~/.config/hypr/scripts/
 ```
 
 
