@@ -10,10 +10,9 @@
 ## gallery
 ![cava](./assets/cava.png)
 ![term](./assets/terminal.png)
+</div>
+</div>
 https://user-images.githubusercontent.com/77581181/191729869-961bf653-578e-409b-a9cf-3de08e63a65e.mp4
-
-</div>
-</div>
 
 ## installation
 <hr>
