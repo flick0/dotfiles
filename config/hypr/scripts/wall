@@ -2,4 +2,4 @@
 
 swww_fork=~/.config/hypr/scripts/tools/swww
 $swww_fork init
-$swww_fork img $1 --transition-type from --transition-cord-x 1630 --transition-cord-y 1050 --transition-fps 60 --transition-speed 5 --transition-speed-step 1
+$swww_fork img $1 --transition-type from --transition-center-x 1630 --transition-center-y 1050 --transition-fps 60 --transition-speed 5 --transition-speed-step 1
