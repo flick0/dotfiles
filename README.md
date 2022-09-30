@@ -30,17 +30,31 @@ https://user-images.githubusercontent.com/77581181/191730195-56fa4616-59ac-4dae-
 ## Arch
 dependancies
 ```
-hyprland-git waybar-hyprland-git cava waybar-mpris-git python rustup kitty fish wofi xdg-desktop-portal-wlr tty-clock-git swaylockd grim slurp pokemon-colorscripts-git starship
+hyprland-git waybar-hyprland-git cava waybar-mpris-git python rustup kitty fish wofi xdg-desktop-portal-wlr tty-clock-git swaylockd grim slurp pokemon-colorscripts-git starship jq dunst
 ```
 using `paru`
 ```
-paru -S hyprland-git waybar-hyprland-git cava waybar-mpris-git python rustup kitty fish wofi xdg-desktop-portal-wlr tty-clock-git swaylockd grim slurp pokemon-colorscripts-git starship
+paru -S hyprland-git waybar-hyprland-git cava waybar-mpris-git python rustup kitty fish wofi xdg-desktop-portal-wlr tty-clock-git swaylockd grim slurp pokemon-colorscripts-git starship jq dunst
 ```
 
 ## moving config files
 
 ```bash
+git clone -b dreamy https://github.com/flick0/dotfiles
+cd dotfiles
 cp -r ./config/* ~/.config
+```
+
+## additional setup
+
+```bash
+touch ~/.config/hypr/store/dynamic_out.txt
+touch ~/.config/hypr/store/prev.txt
+touch ~/.config/hypr/store/latest_notif
+
+chmod +x ~/.config/hypr/scripts/tools/*
+chmod +x ~/.config/hypr/scripts/*
+chmod +x ~/.config/hypr/*
 ```
 
 ## building the tools used in this rice
