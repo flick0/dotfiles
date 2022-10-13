@@ -48,6 +48,7 @@ cp -r ./config/* ~/.config
 ## additional setup
 
 ```bash
+mkdir ~/.config/hypr/store
 touch ~/.config/hypr/store/dynamic_out.txt
 touch ~/.config/hypr/store/prev.txt
 touch ~/.config/hypr/store/latest_notif
