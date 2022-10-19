@@ -12,4 +12,4 @@
 
 <hr>
 
-<img alt="" align="center" width="96%" src="https://api.star-history.com/svg?repos=flick0/dotfiles&type=Date"/>
+<img alt="" align="center" width="100%" src="https://api.star-history.com/svg?repos=flick0/dotfiles&type=Date"/>
