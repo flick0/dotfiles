@@ -4,9 +4,11 @@
 
 [cherry-blossom](https://github.com/flick0/dotfiles/tree/cherry-blossom)
 <div align="center">
+ 
 ```ocaml
  🌸 hyprland / cherry / blossom 🌸
 ```
+ 
 </div>
 [![cherry-blossom](https://raw.githubusercontent.com/flick0/dotfiles/cherry-blossom/assets/workflow.png)](https://github.com/flick0/dotfiles/tree/cherry-blossom)
 
@@ -14,9 +16,11 @@
 
 [dreamy](https://github.com/flick0/dotfiles/tree/dreamy)
 <div align="center">
+ 
 ```ocaml
  ✨ hyprland / dreamy / catppuccin ✨
 ```
+ 
 </div>
 [![dreamy](https://raw.githubusercontent.com/flick0/dotfiles/dreamy/assets/terminal.png)](https://github.com/flick0/dotfiles/tree/dreamy)
 
