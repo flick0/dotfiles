@@ -1,4 +1,4 @@
-!/usr/bin/bash
+#!/usr/bin/bash
 
 swww_fork=~/.config/hypr/scripts/tools/swww
 $swww_fork init
