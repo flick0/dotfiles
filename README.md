@@ -62,7 +62,7 @@ chmod +x ~/.config/hypr/*
 
 `swww` | wallpaper changer/daemon
 ```bash
-git clone -b huge_changes https://github.com/flick0/swww
+git clone -b bezier https://github.com/flick0/swww
 cd swww
 cargo build --release
 cp ./target/release/swww ~/.config/hypr/scripts/tools/
