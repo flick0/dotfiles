@@ -11,7 +11,7 @@
 ![pipes](./assets/pipes.png)
 ![fetch](./assets/fetch.png)
  
-https://www.youtube.com/watch?v=zi2Nm5-0PYY
+https://raw.githubusercontent.com/flick0/dotfiles/aurora/assets/aurora.mp4
  
 </div>
 </div>
