@@ -28,10 +28,6 @@
 
 <hr>
 
-<img alt="" align="center" width="100%" src="https://api.star-history.com/svg?repos=flick0/dotfiles&type=Date"/>
-
-
-
 ```ocaml
  ❄️ hyprland / aurora / catppuccin ❄️
 ```
@@ -42,3 +38,12 @@
 
 <hr>
 [aurora](https://github.com/flick0/dotfiles/tree/aurora)
+ 
+</div>
+
+<hr>
+
+<img alt="" align="center" width="100%" src="https://api.star-history.com/svg?repos=flick0/dotfiles&type=Date"/>
+
+
+
