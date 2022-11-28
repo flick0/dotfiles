@@ -11,7 +11,9 @@
 ![pipes](./assets/pipes.png)
 ![fetch](./assets/fetch.png)
  
-https://raw.githubusercontent.com/flick0/dotfiles/aurora/assets/aurora.mp4
+
+https://user-images.githubusercontent.com/77581181/204240865-8a272152-7c31-45f9-a46b-47099b071060.mp4
+
  
 </div>
 </div>
