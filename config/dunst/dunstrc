@@ -24,13 +24,13 @@
     # dynamic width from 0 to 300
     # width = (0, 300)
     # constant width of 300
-    width = 600
+    width = (0, 300)
 
     # The maximum height of a single notification, excluding the frame.
     height = 200
 
     # Position the notification in the top right corner
-    origin = top-left
+    origin = bottom-right
 
     # Offset from the origin
     offset = 20x20
@@ -90,7 +90,7 @@
     frame_width = 3
 
     # Defines color of the frame around the notification window.
-    frame_color = "#c0caf5"
+    frame_color = "#11111b"
 
     # Size of gap to display between notifications - requires a compositor.
     # If value is greater than 0, separator_height will be ignored and a border
@@ -301,7 +301,7 @@
 [urgency_low]
     # IMPORTANT: colors have to be defined in quotation marks.
     # Otherwise the "#" and following would be interpreted as a comment.
-    background = "#fff"
+    background = "#11111b"
     foreground = "#89b4fa"
     frame_color = "#89b4fa"
     timeout = 3
@@ -310,7 +310,7 @@
     #default_icon = /path/to/icon
 
 [urgency_normal]
-    background = "#fff"
+    background = "#11111b"
     foreground = "#a6e3a1"
     frame_color = "#a6e3a1"
     timeout = 3
@@ -319,7 +319,7 @@
     #default_icon = /path/to/icon
 
 [urgency_critical]
-    background = "#fff"
+    background = "#11111b"
     foreground = "#f38ba8"
     frame_color = "#f38ba8"
     timeout = 3

@@ -1,5 +1,5 @@
 #!/usr/bin/bash
-
+~/.config/hypr/scripts/tools/dynamic &
 while true
 do
     # echo ""

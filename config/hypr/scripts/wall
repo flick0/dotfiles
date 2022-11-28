@@ -1,5 +1,6 @@
 #!/usr/bin/bash
 
 swww_fork=~/.config/hypr/scripts/tools/swww
-$swww_fork init
-$swww_fork img $1 --transition-type grow --transition-pos 0.9,0.1 --transition-duration 3
+
+$swww_fork query || $swww_fork init
+$swww_fork img $1 --transition-fps 60 --transition-type grow --transition-pos 0.854,0.977 --transition-duration 2

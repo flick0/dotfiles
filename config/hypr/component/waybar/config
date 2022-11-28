@@ -1,5 +1,5 @@
 {
-    "layer": "bottom", // Waybar at top layer
+    "layer": "top", // Waybar at top layer
     "position": "top", // Waybar position (top|bottom|left|right)
     "height": 50, // Waybar height (to be removed for auto height)
     // "width": 1280, // Waybar width
@@ -18,14 +18,13 @@
     // custom modules ////////////////
     "custom/dynamic_pill": {
         "return-type": "json",
-        // "format":"{}",
         "exec": "~/.config/hypr/scripts/tools/start_dyn",
         "escape":true
     },
     "custom/ss":{
         "format":"{}",
         "exec":"~/.config/hypr/scripts/tools/expand ss-icon",
-        "on-click": "~/.config/hypr/scripts/screenshot"
+        "on-click": "~/.config/hypr/scripts/screenshot_full"
     },
     "custom/cycle_wall":{
         "format":"{}",

@@ -23,8 +23,11 @@ PAUSE_MEDIA = False
 
 def notif_watcher():
     with open(f"{Path.home()}/.config/hypr/store/latest_notif","rb") as f:
-        new = pickle.load(f)
         global prev
+        try:
+            new = pickle.load(f)
+        except:
+            new = prev
         if new != prev:
                 print(json.dumps({"class":"none","text":""}))
                 global PAUSE_MEDIA

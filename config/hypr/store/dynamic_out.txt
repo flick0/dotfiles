@@ -1,0 +1,1 @@
+{"class": "paused", "text": "\u25b6 flicko - aurora | hyprland | catppuccin | linux rice ", "tooltip": "aurora | hyprland | catppuccin | linux rice\nby flicko\n(firefox.instance1843221)"}
