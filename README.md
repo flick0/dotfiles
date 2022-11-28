@@ -3,7 +3,7 @@
 <div align="center">
 
 ```ocaml
- ✨ hyprland / dreamy / catppuccin ✨
+ ❄️ hyprland / aurora / catppuccin ❄️
 ```
 
 
