@@ -2,16 +2,18 @@
 
 <hr>
 
-[cherry-blossom](https://github.com/flick0/dotfiles/tree/cherry-blossom)
+[aurora](https://github.com/flick0/dotfiles/tree/aurora)
 <div align="center">
  
-```ocaml
- 🌸 hyprland / cherry / blossom 🌸
+ ```ocaml
+ ❄️ hyprland / aurora / catppuccin ❄️
 ```
+
+[![aurora](https://github.com/flick0/dotfiles/blob/aurora/assets/pipes.png?raw=true)](https://github.com/flick0/dotfiles/tree/aurora)
+
+<hr>
  
 </div>
-
-[![cherry-blossom](https://raw.githubusercontent.com/flick0/dotfiles/cherry-blossom/assets/workflow.png)](https://github.com/flick0/dotfiles/tree/cherry-blossom)
 
 <hr>
 
@@ -28,19 +30,18 @@
 
 <hr>
 
-
-[aurora](https://github.com/flick0/dotfiles/tree/aurora)
+[cherry-blossom](https://github.com/flick0/dotfiles/tree/cherry-blossom)
 <div align="center">
  
- ```ocaml
- ❄️ hyprland / aurora / catppuccin ❄️
+```ocaml
+ 🌸 hyprland / cherry / blossom 🌸
 ```
-
-[![aurora](https://github.com/flick0/dotfiles/blob/aurora/assets/pipes.png?raw=true)](https://github.com/flick0/dotfiles/tree/aurora)
-
-<hr>
  
 </div>
+
+[![cherry-blossom](https://raw.githubusercontent.com/flick0/dotfiles/cherry-blossom/assets/workflow.png)](https://github.com/flick0/dotfiles/tree/cherry-blossom)
+
+
 
 <hr>
 
