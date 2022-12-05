@@ -15,8 +15,6 @@
  
 </div>
 
-<hr>
-
 [dreamy](https://github.com/flick0/dotfiles/tree/dreamy)
 <div align="center">
  
