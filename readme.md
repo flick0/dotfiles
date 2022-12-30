@@ -24,7 +24,7 @@
  
 </div>
 
-[![dreamy](https://raw.githubusercontent.com/flick0/dotfiles/dreamy/assets/cava.png)
+[![dreamy](https://raw.githubusercontent.com/flick0/dotfiles/dreamy/assets/cava.png)]
 
 <hr>
 
