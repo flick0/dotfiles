@@ -33,7 +33,7 @@ https://user-images.githubusercontent.com/77581181/204240865-8a272152-7c31-45f9-
 </div>
 
 ## Arch
-dependancies
+dependencies
 ```
 hyprland-git waybar-hyprland-git cava waybar-mpris-git python rustup kitty fish wofi xdg-desktop-portal-wlr tty-clock-git swaylockd grim slurp pokemon-colorscripts-git starship jq dunst wl-clipboard swaylock-effects-git
 ```
