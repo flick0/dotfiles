@@ -67,10 +67,11 @@ chmod +x ~/.config/hypr/*
 
 `swww` | wallpaper changer/daemon
 ```bash
-git clone -b bezier https://github.com/flick0/swww
+git clone -b screen_pos https://github.com/flick0/swww
 cd swww
 cargo build --release
-cp ./target/release/swww ~/.config/hypr/scripts/tools/
+sudo cp ./target/release/swww-daemon /usr/bin/swww-daemon
+sudo cp ./target/release/swww /usr/bin/swww
 ```
 
 `rgb-borders` | rgb borders for grouped windows
