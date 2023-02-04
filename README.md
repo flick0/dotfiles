@@ -132,14 +132,12 @@ then finally to apply the changes, open the command pallette(`ctrl`+`shift`+`p`)
 
 <hr>
 
-<div align="justify">
 <div align="center">
 
 [![Reddit](https://img.shields.io/badge/Reddit-%23FF4500.svg?style=for-the-badge&logo=Reddit&logoColor=white)](https://www.reddit.com/r/unixporn/comments/xkvmhy/hyprland_dreamy/)
 
 [![YouTube](https://img.shields.io/badge/YouTube-%23FF0000.svg?style=for-the-badge&logo=YouTube&logoColor=white)](https://www.youtube.com/watch?v=Ly7ANfUgGXQ)
  
-</div>
 </div>
 
 
