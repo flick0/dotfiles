@@ -137,7 +137,7 @@ then finally to apply the changes, open the command pallette(`ctrl`+`shift`+`p`)
 		<img alt="Reddit" src="https://img.shields.io/badge/Reddit-%23eba0ac.svg?style=for-the-badge&logo=Reddit&logoColor=1e1e2e">
   </a>
 	<a href="https://www.youtube.com/watch?v=Ly7ANfUgGXQ">
-		<img alt="Youtube" src="https://img.shields.io/badge/YouTube-%23FF0000.svg?style=for-the-badge&logo=YouTube&logoColor=white"/>
+		<img alt="Youtube" src="https://img.shields.io/badge/YouTube-%23f38ba8.svg?style=for-the-badge&logo=YouTube&logoColor=white"/>
   </a>
 </p>
 
