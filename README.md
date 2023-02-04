@@ -135,6 +135,8 @@ then finally to apply the changes, open the command pallette(`ctrl`+`shift`+`p`)
 
 *lmk if anything is broken on the repo*
 
+[![Reddit](https://img.shields.io/badge/Reddit-%23FF4500.svg?style=for-the-badge&logo=Reddit&logoColor=white)](https://www.reddit.com/r/unixporn/comments/xkvmhy/hyprland_dreamy/)
+
 
 
 
