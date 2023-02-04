@@ -10,8 +10,7 @@
 # gallery
 ![cava](./assets/cava.png)
 ![term](./assets/terminal.png)
-![workflow](https://www.youtube.com/watch?v=Ly7ANfUgGXQ)
-
+![./assets/dreamy.mp4](https://www.youtube.com/watch?v=Ly7ANfUgGXQ)
 </div>
 </div>
 
