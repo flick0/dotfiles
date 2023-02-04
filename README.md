@@ -10,7 +10,7 @@
 # gallery
 ![cava](./assets/cava.png)
 ![term](./assets/terminal.png)
-./assets/dreamy.mp4
+[https://raw.githubusercontent.com/flick0/dotfiles/dreamy/assets/dreamy.mp4](https://www.youtube.com/watch?v=Ly7ANfUgGXQ)
  
 </div>
 </div>
