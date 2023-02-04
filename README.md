@@ -134,7 +134,17 @@ then finally to apply the changes, open the command pallette(`ctrl`+`shift`+`p`)
 
 <hr>
 
+<p align="center">
+	<a href="https://www.reddit.com/r/unixporn/comments/z6s20y/hyprland_aurora_modified_my_previous_rice_to_fit/">
+		<img alt="Reddit" src="https://img.shields.io/badge/Reddit-%23eba0ac.svg?style=for-the-badge&logo=Reddit&logoColor=1e1e2e">
+  </a>
+	<a href="https://www.youtube.com/watch?v=zi2Nm5-0PYY">
+		<img alt="Youtube" src="https://img.shields.io/badge/YouTube-%23f38ba8.svg?style=for-the-badge&logo=YouTube&logoColor=white">
+  </a>
+</p>
+
 *lmk if anything is broken on the repo*
+
 
 
 
