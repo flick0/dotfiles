@@ -139,6 +139,11 @@ then finally to apply the changes, open the command pallette(`ctrl`+`shift`+`p`)
 	<a href="https://www.youtube.com/watch?v=Ly7ANfUgGXQ">
 		<img alt="Youtube" src="https://img.shields.io/badge/YouTube-%23f38ba8.svg?style=for-the-badge&logo=YouTube&logoColor=white">
   </a>
+  ॱ
+ 	<a href="https://discord.com/channels/@me/482139697796349953">
+		<img alt="Youtube" src="https://dcbadge.vercel.app/api/shield/482139697796349953">
+  </a>
+  
 </p>
 
 *lmk if anything is broken on the repo*
