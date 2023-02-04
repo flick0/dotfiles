@@ -10,8 +10,8 @@
 # gallery
 ![cava](./assets/cava.png)
 ![term](./assets/terminal.png)
- 
-https://user-images.githubusercontent.com/77581181/191730195-56fa4616-59ac-4dae-a64a-2fe95fa8cdc3.mp4
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Ly7ANfUgGXQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 </div>
 </div>
