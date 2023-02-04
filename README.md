@@ -12,7 +12,7 @@
 ![term](./assets/terminal.png)
  
  
-https://raw.githubusercontent.com/flick0/dotfiles/dreamy/assets/dreamy.mp4 
+https://user-images.githubusercontent.com/77581181/191730195-56fa4616-59ac-4dae-a64a-2fe95fa8cdc3.mp4
  
  
 </div>
