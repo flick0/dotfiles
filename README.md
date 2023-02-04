@@ -134,7 +134,7 @@ then finally to apply the changes, open the command pallette(`ctrl`+`shift`+`p`)
 
 <p align="center">
 	<a href="https://www.reddit.com/r/unixporn/comments/xkvmhy/hyprland_dreamy/">
-		<img alt="Reddit" src="https://img.shields.io/badge/Reddit-%23FF4500.svg?style=for-the-badge&logo=Reddit&logoColor=white">
+		<img alt="Reddit" src="https://img.shields.io/badge/Reddit-%23eba0ac.svg?style=for-the-badge&logo=Reddit&logoColor=1e1e2e">
   </a>
 	<a href="https://www.youtube.com/watch?v=Ly7ANfUgGXQ">
 		<img alt="Youtube" src="https://img.shields.io/badge/YouTube-%23FF0000.svg?style=for-the-badge&logo=YouTube&logoColor=white"/>
