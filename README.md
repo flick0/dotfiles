@@ -35,11 +35,11 @@ https://user-images.githubusercontent.com/77581181/204240865-8a272152-7c31-45f9-
 ## Arch
 dependencies
 ```
-hyprland-git waybar-hyprland-git cava waybar-mpris-git python rustup kitty fish wofi xdg-desktop-portal-wlr tty-clock-git swaylockd grim slurp pokemon-colorscripts-git starship jq dunst wl-clipboard swaylock-effects-git
+hyprland-git waybar-hyprland-git cava waybar-mpris-git python rustup kitty fish wofi xdg-desktop-portal-wlr tty-clock-git swaylockd grim slurp pokemon-colorscripts-git starship jq dunst wl-clipboard swaylock-effects-git swww-git
 ```
 using `paru`
 ```
-paru -S hyprland-git waybar-hyprland-git cava waybar-mpris-git python rustup kitty fish wofi xdg-desktop-portal-wlr tty-clock-git swaylockd grim slurp pokemon-colorscripts-git starship jq dunst wl-clipboard swaylock-effects-git
+paru -S hyprland-git waybar-hyprland-git cava waybar-mpris-git python rustup kitty fish wofi xdg-desktop-portal-wlr tty-clock-git swaylockd grim slurp pokemon-colorscripts-git starship jq dunst wl-clipboard swaylock-effects-git swww-git
 ```
 
 ## moving config files
@@ -64,15 +64,6 @@ chmod +x ~/.config/hypr/*
 ```
 
 ## building the tools used in this rice
-
-`swww` | wallpaper changer/daemon
-```bash
-git clone -b screen_pos https://github.com/flick0/swww
-cd swww
-cargo build --release
-sudo cp ./target/release/swww-daemon /usr/bin/swww-daemon
-sudo cp ./target/release/swww /usr/bin/swww
-```
 
 `rgb-borders` | rgb borders for grouped windows
 ```bash
