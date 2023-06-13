@@ -45,7 +45,7 @@ paru -S hyprland-git waybar-hyprland-git cava waybar-mpris-git python rustup kit
 ## moving config files
 
 ```bash
-git clone -b dreamy https://github.com/flick0/dotfiles
+git clone -b aurora https://github.com/flick0/dotfiles
 cd dotfiles
 cp -r ./config/* ~/.config
 ```
