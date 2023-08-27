@@ -2,26 +2,21 @@
     "layer": "top", // Waybar at top layer
     "position": "top", // Waybar position (top|bottom|left|right)
     "height": 50, // Waybar height (to be removed for auto height)
-    // "width": 1280, // Waybar width
     "spacing": 5, // Gaps between modules (4px)
-    // Choose the order of the modules
-    // "margin-left":25,
-    // "margin-right":25,
     "margin-bottom":-11,
-    //"margin-top":5,
-    "modules-left": ["wlr/workspaces"],
-    "modules-right": ["temperature","network","battery","custom/ss","custom/cycle_wall","custom/expand","cpu","clock"],
+    "modules-left": ["custom/launcher", "wlr/workspaces"],
+    "modules-right": ["custom/screenshot","custom/cycle_wall","custom/expand","cpu", "pulseaudio", "clock","custom/wlogout"],
     "modules-center": ["custom/dynamic_pill"],
-    // Modules configuration
 
 
-    // custom modules ////////////////
+    // modules configuration
+    // custom modules
     "custom/dynamic_pill": {
         "return-type": "json",
         "exec": "~/.config/hypr/scripts/tools/start_dyn",
         "escape":true
     },
-    "custom/ss":{
+    "custom/screenshot":{
         "format":"{}",
         "exec":"~/.config/hypr/scripts/tools/expand ss-icon",
         "on-click": "~/.config/hypr/scripts/screenshot_full"
@@ -37,21 +32,18 @@
         "format":"{}",
         "exec":"~/.config/hypr/scripts/tools/expand arrow-icon"
     },
-    // "custom/waybar-mpris": {
-    //     "return-type": "json",
-    //     "exec": "echo '   '",
-    //     "on-click": "waybar-mpris --send toggle",
-    //     // This option will switch between players on right click.
-    //         "on-click-right": "waybar-mpris --send player-next",
-    //     // The options below will switch the selected player on scroll
-    //         // "on-scroll-up": "waybar-mpris --send player-next",
-    //         // "on-scroll-down": "waybar-mpris --send player-prev",
-    //     // The options below will go to next/previous track on scroll
-    //         // "on-scroll-up": "waybar-mpris --send next",
-    //         // "on-scroll-down": "waybar-mpris --send prev",
-    //     "escape": true
-    // },
-    //////////////////////////////////
+    "custom/wlogout": {
+        "format": "",
+        "interval": "once",
+        "on-click": "wlogout"
+    },
+    "custom/launcher":{
+        "format": " ",
+        "on-click": "wofi --show drun",
+        "on-click-right": "killall wofi"
+    },
+
+    // other modules
     "keyboard-state": {
         "numlock": true,
         "capslock": true,
@@ -65,9 +57,6 @@
         "format": "{icon}",
         "format-active": " {icon} ",
         "on-click": "activate"
-        // "format-icons":{
-        //     "10":"10"
-        // }
     },
     "sway/mode": {
         "format": "<span style=\"italic\">{}</span>"
@@ -106,7 +95,6 @@
         }
     },
     "tray": {
-        // "icon-size": 21,
         "spacing": 10
     },
     "clock": {
@@ -144,8 +132,6 @@
         "format": "{icon}",
         "format-charging": "",
         "format-plugged": "",
-        // "format-good": "", // An empty format will hide the module
-        // "format-full": "",
         "format-icons": ["", "", "", "", ""]
     },
     "battery#bat2": {
@@ -177,16 +163,4 @@
         },
         "on-click": "pavucontrol"
     },
-    "custom/media": {
-        "format": "{icon} {}",
-        "return-type": "json",
-        "max-length": 40,
-        "format-icons": {
-            "spotify": "",
-            "default": "🎜"
-        },
-        "escape": true,
-        "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
-        // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
-    }
 }

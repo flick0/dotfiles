@@ -13,13 +13,14 @@
 #network,
 #pulseaudio,
 #custom-media,
-#tray,
-#mode,
+#tray, #mode,
 #idle_inhibitor,
 #custom-expand,
 #custom-cycle_wall,
-#custom-ss,
+#custom-screenshot,
 #custom-dynamic_pill,
+#custom-launcher,
+#custom-wlogout,
 #mpd {
     padding: 0 10px;
     border-radius: 15px;
@@ -60,7 +61,7 @@ window#waybar {
     margin-top: 10px;
     margin-bottom: 10px;
     margin-right: 10px;
-    margin-left: 25px;
+    margin-left: 10px;
 }
 #workspaces button{
     box-shadow: rgba(0, 0, 0, 0.116) 2 2 5 2px;
@@ -166,7 +167,7 @@ window#waybar {
     color: #b4befe;
 }
 
-#custom-ss{
+#custom-screentshot{
     background: #11111b;
     color: #89b4fa;
     font-weight:  bolder;
@@ -199,15 +200,29 @@ window#waybar {
     background-size: 200% 300%;
 
     animation: gradient_f_nh 4s linear infinite;
-    margin-right: 25px;
+    margin-right: 10px;
     color: #fff ;
     text-shadow: 0 0 5px rgba(0, 0, 0, 0.377);
     
     font-size: 15px;
-    padding-top: 5px;
-    padding-right: 21px;
+    /* padding-top: 5px; */
+    padding-right: 20px;
     font-weight: bolder;
     padding-left: 20px;
+}
+
+#custom-wlogout {
+    /* padding-top: 4px; */
+    padding-right: 20px;
+    padding-left: 20px;
+    margin-right: 25px;
+}
+
+#custom-launcher {
+    /* padding-top: 2px; */
+    padding-right: 10px;
+    padding-left: 10px;
+    margin-left: 25px;
 }
 
 #battery.charging, #battery.plugged {
@@ -335,4 +350,3 @@ window#waybar {
     -gtk-icon-effect: highlight;
     background-color: #eb4d4b;
 }
-
