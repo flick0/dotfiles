@@ -202,11 +202,11 @@
     max_icon_size = 64
 
     # Paths to default icons.
-    icon_path = /usr/share/icons/gnome/128x128/status/:/usr/share/icons/gnome/128x128/devices/
+    icon_path = /usr/share/icons/Papirus/128x128/device/
     icon_theme = "Papirus, Adwaita"
     enable_recursive_icon_lookup = true
 
-    always_run_scripts = true
+    # always_run_scripts = true
     ### History ###
 
     # Should a notification popped up from history be sticky or timeout
