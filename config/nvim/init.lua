@@ -1,0 +1,8 @@
+require("einsimon.plugins-setup")
+require("einsimon.core.options")
+require("einsimon.core.keymaps")
+require("einsimon.core.colorscheme")
+require("einsimon.plugins.statusbar")
+require("einsimon.plugins.winbar")
+require("einsimon.plugins.autocompletion")
+require("einsimon.plugins.lsp")
