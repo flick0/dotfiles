@@ -1,3 +1,0 @@
-#!/usr/bin/env sh
-light -A 5
-notify-send "$(light -G)"

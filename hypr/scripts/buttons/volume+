@@ -1,3 +1,0 @@
-#!/usr/bin/env sh
-pamixer -i 5
-notify-send "$(pamixer --get-volume)"
