@@ -5,7 +5,4 @@ asusctl #optional
 grim
 slurp
 swww
-
-# zsh
-# zsh-syntax-highlighting
-# zsh-autosuggestions
+fish
