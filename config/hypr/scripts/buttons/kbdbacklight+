@@ -1,0 +1,10 @@
+#!/usr/bin/env sh
+current=$(asusctl -k | grep -Eo '[0-9]')
+
+case $current in
+    '3')
+        ;;
+    
+    *)
+        asusctl -n;;
+esac

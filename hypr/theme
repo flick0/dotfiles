@@ -1,0 +1,4 @@
+#!/usr/bin/bash
+
+echo $1 > ~/.config/hypr/themes/term_theme
+pkill -USR2 fish
