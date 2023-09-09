@@ -1,5 +1,4 @@
 function theme --on-signal USR2
-	#echo "Changing theme to $(cat ~/.config/hypr/themes/term_theme)"
     ~/.config/hypr/components/theme.sh/bin/theme.sh < $HOME/.config/hypr/themes/colors
 end
 
@@ -7,14 +6,11 @@ if status is-interactive
 	pokemon-colorscripts -r --no-title &
 	starship init fish | source &
     # Commands to run in interactive sessions can go here
-	theme
-	#~/.config/fish/tty.sh &
+	theme	
 end
 
 export LANG="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
-
-
 
 set -l teal 94e2d5
 set -l flamingo f2cdcd
@@ -27,12 +23,6 @@ set -l yellow f9e2af
 set -l blue 89b4fa
 set -l gray 1f1d2e
 set -l black 191724
-    
-# Completion Pager Colors
-set -g fish_pager_color_progress $gray
-set -g fish_pager_color_prefix $mauve
-set -g fish_pager_color_completion $peach
-set -g fish_pager_color_description $gray
 
 # Some config
 set -g fish_greeting
@@ -69,14 +59,7 @@ abbr -a -g lal 'ls -al'
 abbr -a -g d 'dirs'
 abbr -a -g h 'cd $HOME'
 
-# Locale
-export LANG="en_US.UTF-8"
-export LC_ALL="en_US.UTF-8"
-
-
 set MOZ_ENABLE_WAYLAND 1
 set XDG_CURRENT_DESKTOP sway
-
-# trap "~/.config/hypr/components/theme.sh/bin/theme.sh $(cat ~/.config/hypr/themes/term_theme)" SIGUSR1
 
 alias theme.sh=~/.config/hypr/components/theme.sh/bin/theme.sh
