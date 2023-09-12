@@ -1,0 +1,1 @@
+SUBSYSTEM=="power_supply",ENV{POWER_SUPPLY_ONLINE}=="0",RUN+="/usr/bin/profile-battery.sh"
