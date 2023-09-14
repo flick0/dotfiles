@@ -1,5 +1,5 @@
 #!/usr/bin/bash
-swaylockd \
+swaylock \
 --screenshots \
 --indicator \
 --clock \
