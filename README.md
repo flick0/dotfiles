@@ -1,3 +1,5 @@
+> coming soon: remake with modular themes [:0](https://github.com/hyprland-community/theme-repo)
+
 # other branches
 
 <hr>
