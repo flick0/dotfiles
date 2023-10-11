@@ -129,7 +129,6 @@ const Media = () => Widget.Button({
         const mpris = Mpris.getPlayer('');
         // mpris player can be undefined
         if (mpris){
-            console.log(mpris.playBackStatus)
             if (mpris.playBackStatus === 'Playing') {
                 self.className = ['media','playing'];
             } else {

@@ -1,7 +1,9 @@
+
+
+/* Defaults */
 label {
     font-weight: bolder;
 }
-
 
 .clock,
 .media,
@@ -22,6 +24,7 @@ label {
     transition: padding 0.5s cubic-bezier(.55,-0.68,.48,1.68),background 0.2s linear;
 }
 
+/* Active Workspace */
 .workspaces button.active {
     padding-right: 20px;
     padding-left: 20px;
@@ -34,8 +37,9 @@ label {
     transition: padding 0.3s cubic-bezier(.55,-0.68,.48,1.682),background 0.7s ease-in-out;
 }
 
+/* Center Pill Thing™ */
 .media.playing {
-    background: rgb(137,180,250);
+    background: rgb(137,180,255);
     background: radial-gradient(circle, rgba(137,180,250,120) 0%, rgba(142,179,250,120) 6%, rgba(148,226,213,1) 14%, rgba(147,178,250,1) 14%, rgba(155,176,249,1) 18%, rgba(245,194,231,1) 28%, rgba(158,175,249,1) 28%, rgba(181,170,248,1) 58%, rgba(205,214,244,1) 69%, rgba(186,169,248,1) 69%, rgba(195,167,247,1) 72%, rgba(137,220,235,1) 73%, rgba(198,167,247,1) 78%, rgba(203,166,247,1) 100%); 
     background-size: 400% 400%;
     animation: gradient_f 9s cubic-bezier(.72,.39,.21,1) infinite;
@@ -43,21 +47,20 @@ label {
     color: #fff ;
     padding-left: 40px;
     padding-right: 40px;
-    transition: padding 0.3s cubic-bezier(.55,-0.68,.48,1.682),background 0.7s ease-in-out,font-size 0.2s ease-in;
+    transition: padding 0.3s cubic-bezier(.55,-0.68,.48,1.682),background 0.2s ease-in-out,font-size 0.2s ease-in;
 }
 
 .media.paused {
-    background: rgb(137,180,250);
-    /* background: radial-gradient(circle, rgba(137,180,250,120) 0%, rgba(142,179,250,120) 6%, rgba(148,226,213,1) 14%, rgba(147,178,250,1) 14%, rgba(155,176,249,1) 18%, rgba(245,194,231,1) 28%, rgba(158,175,249,1) 28%, rgba(181,170,248,1) 58%, rgba(205,214,244,1) 69%, rgba(186,169,248,1) 69%, rgba(195,167,247,1) 72%, rgba(137,220,235,1) 73%, rgba(198,167,247,1) 78%, rgba(203,166,247,1) 100%);  */
+    background: #11111b;
     background-size: 400% 400%;
     animation: gradient_f 9s cubic-bezier(.72,.39,.21,1) infinite;
     text-shadow: 0 0 5px rgba(0, 0, 0, 0.377);
-    color: #fff ;
+    color: rgb(137,180,255) ;
     font-size: 13px;
-    transition: padding 0.3s cubic-bezier(.55,-0.68,.48,1.682),background 0.7s ease-in-out,font-size 0.2s ease-in;
+    transition: padding 0.3s cubic-bezier(.55,-0.68,.48,1.682),background 0.2s ease-in-out,font-size 0.2s ease-in;
 }
 
-
+/* Fancy Stuff */
 @keyframes gradient {
 	0% {
 		background-position: 0% 50%;
@@ -93,7 +96,6 @@ label {
 
 
 .bar {
-    /* border: red 2px solid; */
     background-color: transparent;
 }
 
