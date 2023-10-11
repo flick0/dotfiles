@@ -21,7 +21,15 @@ label {
     background-position: 0% 0%;
     text-shadow: 0 0 5px rgba(0, 0, 0, 0.377);
     font-size: 15px;
-    transition: padding 0.5s cubic-bezier(.55,-0.68,.48,1.68),background 0.2s linear;
+    transition: padding 0.5s cubic-bezier(.55,-0.68,.48,1.68),background 0.2s ease-in;
+}
+
+.media {
+    background-color: transparent;
+    box-shadow: none;
+    padding-right: 5;
+    padding-left: 5;
+    transition: padding 0.3s cubic-bezier(.55,-0.68,.48,1.68),background 1s ease-in;
 }
 
 /* Active Workspace */
