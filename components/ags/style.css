@@ -94,6 +94,10 @@ label {
 	}
 }
 
+.segment {
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
 
 .bar {
     background-color: transparent;
@@ -141,9 +145,8 @@ label {
     background-size: 200% 300%;
 
     animation: gradient_f_nh 4s linear infinite;
-    margin-right: 25px;
     padding-top: 5px;
-    padding-right: 21px;
+    padding-right: 20px;
     padding-left: 20px;
 }
 

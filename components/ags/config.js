@@ -217,6 +217,7 @@ const Left = () => Widget.Box({
         Workspaces(),
         ClientTitle(),
     ],
+    className: 'segment',
 });
 
 const Center = () => Widget.Box({
@@ -224,6 +225,7 @@ const Center = () => Widget.Box({
         Media(),
         Notification(),
     ],
+    className: 'segment',
 });
 
 const Right = () => Widget.Box({
@@ -234,6 +236,7 @@ const Right = () => Widget.Box({
         Clock(),
         //SysTray(),
     ],
+    className: 'segment',
 });
 
 const Bar = ({ monitor } = {}) => Widget.Window({
