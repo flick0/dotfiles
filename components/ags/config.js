@@ -13,17 +13,62 @@ import { exec, execAsync } from 'resource:///com/github/Aylur/ags/utils.js';
 // so to make a reuseable widget, just make it a function
 // then you can use it by calling simply calling it
 
+
 const Workspaces = () => Widget.Box({
     className: 'workspaces',
+    children: [
+        Widget.Button({
+                child:Widget.Label({label:"1"}),
+                className: ["workspace"]
+            }),
+        Widget.Button({
+                child:Widget.Label({label:"2"}),
+                className: ["workspace"]
+            }),
+        Widget.Button({
+                child:Widget.Label({label:"3"}),
+                className: ["workspace"]
+            }),
+        Widget.Button({
+                child:Widget.Label({label:"4"}),
+                className: ["workspace"]
+            }),
+        Widget.Button({
+                child:Widget.Label({label:"5"}),
+                className: ["workspace"]
+            }),
+        Widget.Button({
+                child:Widget.Label({label:"6"}),
+                className: ["workspace"]
+            }),
+        Widget.Button({
+                child:Widget.Label({label:"7"}),
+                className: ["workspace"]
+            }),
+        Widget.Button({
+                child:Widget.Label({label:"8"}),
+                className: ["workspace"]
+            }),
+        Widget.Button({
+                child:Widget.Label({label:"9"}),
+                className: ["workspace"]
+            }),
+        Widget.Button({
+                child:Widget.Label({label:"10"}),
+                className: ["workspace"]
+            }),
+    ],
     connections: [[Hyprland, box => {
-        const arr = Hyprland.workspaces.sort((a, b) => {return a.id - b.id});
-        // Labels for each workspace id
-        let wsNames = [, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
-        box.children = arr.map( i => Widget.Button({
-          onClicked: () => execAsync(`hyprctl dispatch workspace ${i.id}`),
-          child: Widget.Label({ label: `${wsNames[i.id]}`}),
-          className: [Hyprland.active.workspace.id == i.id ? 'focused' : '', 'workspace']
-        }))
+
+        //loop through children
+        for (let i = 0; i < box.children.length; i++) {
+            //set the label of the child to the name of the workspace
+            if(box.children[i].child.label == Hyprland.active.workspace.id){
+                box.children[i].className = ["active","workspace"];
+            } else {
+                box.children[i].className = ["workspace"];
+            }
+        }
       }
     ]]
 });
@@ -72,12 +117,29 @@ const Media = () => Widget.Button({
         connections: [[Mpris, self => {
             const mpris = Mpris.getPlayer('');
             // mpris player can be undefined
-            if (mpris)
-                self.label = `${mpris.trackArtists.join(', ')} - ${mpris.trackTitle}`;
-            else
-                self.label = 'Nothing is playing';
+            let txt = `${mpris.trackArtists.join(', ')} - ${mpris.trackTitle}`;
+            if (mpris){
+                self.label = txt;
+            } else {
+                self.label = '';
+            }
         }]],
     }),
+    connections: [[Mpris, self => {
+        const mpris = Mpris.getPlayer('');
+        // mpris player can be undefined
+        if (mpris){
+            console.log(mpris.playBackStatus)
+            if (mpris.playBackStatus === 'Playing') {
+                self.className = ['media','playing'];
+            } else {
+                self.className = ['media','paused'];
+            }
+            
+        } else {
+            self.className = ['media'];
+        }
+    }]]
 });
 
 const Volume = () => Widget.Box({
@@ -179,6 +241,7 @@ const Bar = ({ monitor } = {}) => Widget.Window({
     name: `bar-${monitor}`, // name has to be unique
     className: 'bar',
     monitor,
+    margin: [0, 20],
     anchor: ['top', 'left', 'right'],
     exclusive: true,
     child: Widget.CenterBox({
