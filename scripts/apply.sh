@@ -3,6 +3,7 @@
 set -Ux STARSHIP_CONFIG $argv[1]/starship.toml
 set color ~/.config/hypr/scripts/color
 
+pkill dunst &
 pkill -USR2 fish &
 
 #TODO: add a check for asusctl
