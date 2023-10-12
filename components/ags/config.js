@@ -8,56 +8,21 @@ import SystemTray from 'resource:///com/github/Aylur/ags/service/systemtray.js';
 import App from 'resource:///com/github/Aylur/ags/app.js';
 import Widget from 'resource:///com/github/Aylur/ags/widget.js';
 import { exec, execAsync } from 'resource:///com/github/Aylur/ags/utils.js';
+import nowplaying from './service/nowplaying.js';
 
 // widgets can be only assigned as a child in one container
 // so to make a reuseable widget, just make it a function
 // then you can use it by calling simply calling it
 
 
-const Workspaces = () => Widget.Box({
+
+const Workspaces = () => Widget.EventBox({child:Widget.Box({
     className: 'workspaces',
-    children: [
-        Widget.Button({
-                child:Widget.Label({label:"1"}),
-                className: ["workspace"]
-            }),
-        Widget.Button({
-                child:Widget.Label({label:"2"}),
-                className: ["workspace"]
-            }),
-        Widget.Button({
-                child:Widget.Label({label:"3"}),
-                className: ["workspace"]
-            }),
-        Widget.Button({
-                child:Widget.Label({label:"4"}),
-                className: ["workspace"]
-            }),
-        Widget.Button({
-                child:Widget.Label({label:"5"}),
-                className: ["workspace"]
-            }),
-        Widget.Button({
-                child:Widget.Label({label:"6"}),
-                className: ["workspace"]
-            }),
-        Widget.Button({
-                child:Widget.Label({label:"7"}),
-                className: ["workspace"]
-            }),
-        Widget.Button({
-                child:Widget.Label({label:"8"}),
-                className: ["workspace"]
-            }),
-        Widget.Button({
-                child:Widget.Label({label:"9"}),
-                className: ["workspace"]
-            }),
-        Widget.Button({
-                child:Widget.Label({label:"10"}),
-                className: ["workspace"]
-            }),
-    ],
+    children: Array.from({ length: 10 }, (_, i) => i + 1).map(i => Widget.Button({
+         child:Widget.Label({label:`${i}`}),
+         className: "workspace"
+      })
+    ),
     connections: [[Hyprland, box => {
 
         //loop through children
@@ -71,7 +36,7 @@ const Workspaces = () => Widget.Box({
         }
       }
     ]]
-});
+})});
 
 const ClientTitle = () => Widget.Label({
     className: 'client-title',
@@ -109,36 +74,48 @@ const Notification = () => Widget.Box({
 });
 
 const Media = () => Widget.Button({
-    className: 'media',
-    onPrimaryClick: () => Mpris.getPlayer('')?.playPause(),
-    onScrollUp: () => Mpris.getPlayer('')?.next(),
-    onScrollDown: () => Mpris.getPlayer('')?.previous(),
-    child: Widget.Label({
+        className: 'media',
+        onPrimaryClick: () => Mpris.getPlayer('')?.playPause(),
+        onScrollUp: () => Mpris.getPlayer('')?.next(),
+        onScrollDown: () => Mpris.getPlayer('')?.previous(),
+        child: Widget.Label({
+            connections: [
+                [Mpris, async (self) => {
+                    const mpris = Mpris.getPlayer('');
+                    // mpris player can be undefined
+                    if (mpris && `${mpris.trackArtists.join(', ')}|${mpris.trackTitle}`.length > 1){
+                        nowplaying.now_playing = `${mpris.trackArtists.join(', ')}|${mpris.trackTitle}`;
+                    } else {
+                        while (nowplaying.now_playing.length > 0){
+                            console.log("updating back3:: ",nowplaying.now_playing)
+                            nowplaying.now_playing = nowplaying.now_playing.slice(1,-1);
+                            await new Promise(r => setTimeout(r, 50));
+                        }
+                    }
+                    
+                    
+                    
+            }],
+            [nowplaying, self => {
+                console.log(0,nowplaying.now_playing)
+                self.label = nowplaying.now_playing;
+            }]
+        ],
+        }),
         connections: [[Mpris, self => {
             const mpris = Mpris.getPlayer('');
             // mpris player can be undefined
-            let txt = `${mpris.trackArtists.join(', ')} - ${mpris.trackTitle}`;
             if (mpris){
-                self.label = txt;
+                if (mpris.playBackStatus === 'Playing') {
+                    self.className = ['media','playing'];
+                } else {
+                    self.className = ['media','paused'];
+                }
+                
             } else {
-                self.label = '';
+                self.className = ['media'];
             }
-        }]],
-    }),
-    connections: [[Mpris, self => {
-        const mpris = Mpris.getPlayer('');
-        // mpris player can be undefined
-        if (mpris){
-            if (mpris.playBackStatus === 'Playing') {
-                self.className = ['media','playing'];
-            } else {
-                self.className = ['media','paused'];
-            }
-            
-        } else {
-            self.className = ['media'];
-        }
-    }]]
+        }]]
 });
 
 const Volume = () => Widget.Box({

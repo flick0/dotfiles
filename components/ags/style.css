@@ -29,7 +29,8 @@ label {
     box-shadow: none;
     padding-right: 5;
     padding-left: 5;
-    transition: padding 0.3s cubic-bezier(.55,-0.68,.48,1.68),background 1s ease-in;
+    transition-delay: 250ms;
+    transition: padding 1s cubic-bezier(0,1.77,.08,1.49),background 1s ease-in;
 }
 
 /* Active Workspace */
@@ -55,7 +56,9 @@ label {
     color: #fff ;
     padding-left: 40px;
     padding-right: 40px;
-    transition: padding 0.4s cubic-bezier(.55,-0.68,.48,1.68),background 0.2s ease-in-out,font-size 0.2s ease-in;
+    transition-delay: 250ms;
+    transition: padding 1s cubic-bezier(0,1.77,.08,1.49),background 0.2s ease-in-out,font-size 0.2s ease-in;
+    
 }
 
 .media.paused {
@@ -65,7 +68,8 @@ label {
     text-shadow: 0 0 5px rgba(0, 0, 0, 0.377);
     color: rgb(137,180,255) ;
     font-size: 13px;
-    transition: padding 0.4s cubic-bezier(.55,-0.68,.48,1.68),background 0.2s ease-in-out,font-size 0.2s ease-in;
+    transition-delay: 250ms;
+    transition: padding 1s cubic-bezier(0,1.77,.08,1.49),background 0.2s ease-in-out,font-size 0.2s ease-in;
 }
 
 /* Fancy Stuff */
