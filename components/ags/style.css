@@ -23,7 +23,7 @@ label {
     background-position: 0% 0%;
     text-shadow: 0 0 5px rgba(0, 0, 0, 0.377);
     font-size: 15px;
-    transition: padding 0.7s cubic-bezier(.55,-0.68,.48,1.68),background 0.7s ease-in;
+    transition: padding 0.4s cubic-bezier(.55,-0.68,.48,1.68),background 0.7s ease-in;
 }
 
 /* Notification */
@@ -93,6 +93,10 @@ label {
 }
 
 /* Active Workspace */
+.workspace:hover {
+    background-color: #32325c;
+    transition: background 0.3s ease-in;
+}
 .workspaces button.active {
     padding-right: 20px;
     padding-left: 20px;
@@ -121,6 +125,7 @@ label {
     transition: padding 1s cubic-bezier(0,1.77,.08,1.49),background 0.2s ease-in-out,font-size 0.5s ease-out;
     
 }
+
 
 .media.paused {
     background: #11111b;
