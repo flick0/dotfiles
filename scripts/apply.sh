@@ -8,4 +8,6 @@ pkill -USR2 fish &
 #TODO: add a check for asusctl
 asusctl led-mode static -c "$($color cursor -n)" &
 
+swww init &
+
 ags -c ~/rice/themes/aurora/components/ags/config.js &
