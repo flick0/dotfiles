@@ -59,18 +59,33 @@ const Clock = () => Widget.Label({
 const Notification = () => Widget.Box({
     className: 'notification',
     children: [
-        Widget.Icon({
-            icon: 'preferences-system-notifications-symbolic',
-            connections: [
-                [Notifications, self => self.visible = Notifications.popups.length > 0],
-            ],
-        }),
         Widget.Label({
-            connections: [[Notifications, self => {
-                self.label = Notifications.popups[0]?.summary || '';
+            connections: [[Notifications, async (self) => {
+                if (Notifications.popups.length === 0) {
+                    // so the transition plays nicely when there are no notifications
+                    await new Promise(r => setTimeout(r, 200));
+                    self.label = '';
+                } else {
+                    await new Promise(r => setTimeout(r, 200));
+                    self.label = Notifications.popups[0]?.summary
+                }
             }]],
         }),
     ],
+    connections: [[Notifications, self => {
+        if (Notifications.popups.length > 0) {
+            console.log(Notifications.popups[0].urgency)
+            if (Notifications.popups[0].urgency === 'critical') {
+                self.className = ['notification','critical'];
+            } else if (Notifications.popups[0].urgency === 'normal') {
+                self.className = ['notification','normal'];
+            } else {
+                self.className = ['notification','low'];
+            }
+        } else {
+            self.className = ['notification'];
+        }
+    }]],
 });
 
 const Media = () => Widget.Button({
@@ -91,10 +106,7 @@ const Media = () => Widget.Button({
                             nowplaying.now_playing = nowplaying.now_playing.slice(1,-1);
                             await new Promise(r => setTimeout(r, 50));
                         }
-                    }
-                    
-                    
-                    
+                    }        
             }],
             [nowplaying, self => {
                 console.log(0,nowplaying.now_playing)
