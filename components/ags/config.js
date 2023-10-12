@@ -16,27 +16,28 @@ import nowplaying from './service/nowplaying.js';
 
 
 
-const Workspaces = () => Widget.EventBox({child:Widget.Box({
-    className: 'workspaces',
-    children: Array.from({ length: 10 }, (_, i) => i + 1).map(i => Widget.Button({
-         child:Widget.Label({label:`${i}`}),
-         className: "workspace"
-      })
-    ),
-    connections: [[Hyprland, box => {
+const Workspaces = () => Widget.Box({
+        className: 'workspaces',
+        
+        children: Array.from({ length: 10 }, (_, i) => i + 1).map(i => Widget.Button({
+            child:Widget.Label({label:`${i}`}),
+            className: "workspace",
+            onClicked: () => execAsync(`hyprctl dispatch workspace ${i}`),
+        })
+        ),
+        connections: [[Hyprland, box => {
 
-        //loop through children
-        for (let i = 0; i < box.children.length; i++) {
-            //set the label of the child to the name of the workspace
-            if(box.children[i].child.label == Hyprland.active.workspace.id){
-                box.children[i].className = ["active","workspace"];
-            } else {
-                box.children[i].className = ["workspace"];
+            //loop through children
+            for (let i = 0; i < box.children.length; i++) {
+                //set the label of the child to the name of the workspace
+                if(box.children[i].child.label == Hyprland.active.workspace.id){
+                    box.children[i].className = ["active","workspace"];
+                } else {
+                    box.children[i].className = ["workspace"];
+                }
             }
         }
-      }
-    ]]
-})});
+        ]]});
 
 const ClientTitle = () => Widget.Label({
     className: 'client-title',
