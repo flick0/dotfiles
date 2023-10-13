@@ -7,13 +7,60 @@ import Battery from 'resource:///com/github/Aylur/ags/service/battery.js';
 import SystemTray from 'resource:///com/github/Aylur/ags/service/systemtray.js';
 import App from 'resource:///com/github/Aylur/ags/app.js';
 import Widget from 'resource:///com/github/Aylur/ags/widget.js';
-import { exec, execAsync } from 'resource:///com/github/Aylur/ags/utils.js';
+import { exec, execAsync, readFileAsync, writeFile, subprocess } from 'resource:///com/github/Aylur/ags/utils.js';
 import nowplaying from './service/nowplaying.js';
 
 // widgets can be only assigned as a child in one container
 // so to make a reuseable widget, just make it a function
 // then you can use it by calling simply calling it
 
+//get home dir
+const home = `/home/${exec('whoami')}`
+console.log(home)
+
+function get_color(){
+    return readFileAsync(home + '/.config/hypr/themes/colors')
+        .then(content => {
+            var colors = {}
+            //split into lines
+            let lines = content.split('\n');
+            for (let i = 0; i < lines.length; i++) {
+                let [key, value] = lines[i].split(':');
+                //strip
+                key = key.trim();
+                value = value.trim();
+
+                colors[key] = value;
+            }
+            console.log(colors)
+            return colors
+        })
+        .catch(console.error);
+    //return colors;
+}
+
+subprocess([
+    'inotifywait',
+    '--recursive',
+    '--event', 'create,modify',
+    '-m', home + '/.config/hypr/themes/colors',
+], () => {
+    const colors_path = App.configDir + '/colors.css';
+    
+    get_color().then( colors => {
+        let content = "";
+        //loop through colors
+        for (const [key, value] of Object.entries(colors)) {
+            content += `@define-color c${key} ${value};\n`;
+        }
+
+        writeFile(content, colors_path)
+            .then(file => print('colors.css updated'))
+            .catch(err => print(err));
+    })
+    App.resetCss();
+    App.applyCss(App.configDir +`/style.css`);
+});
 
 
 const Workspaces = () => Widget.Box({
@@ -128,9 +175,11 @@ const Media = () => Widget.Button({
                 }),
             ]
         }),
-        connections: [[Mpris, self => {
-            is_it_playing(self)
-        }]]
+        connections: [
+            [Mpris, self => {
+                is_it_playing(self)
+            }],
+        ]
 });
 
 const Volume = () => Widget.Button({
