@@ -39,18 +39,11 @@ const Workspaces = () => Widget.Box({
         }
         ]]});
 
-const ClientTitle = () => Widget.Label({
-    className: 'client-title',
-    binds: [
-        ['label', Hyprland.active.client, 'title'],
-    ],
-});
-
 const Clock = () => Widget.Label({
     className: 'clock',
     connections: [
         // this is what you should do
-        [1000, self => execAsync(['date', '+%H:%M'])
+        [1000, self => execAsync(['date', '+%I:%M'])
             .then(date => self.label = date).catch(console.error)],
     ],
 });
@@ -75,13 +68,10 @@ const Notification = () => Widget.Box({
     ],
     connections: [[Notifications, self => {
         if (Notifications.popups.length > 0) {
-            console.log(Notifications.popups[0].urgency)
             if (Notifications.popups[0].urgency === 'critical') {
                 self.className = ['notification','critical'];
-            } else if (Notifications.popups[0].urgency === 'normal') {
-                self.className = ['notification','normal'];
             } else {
-                self.className = ['notification','low'];
+                self.className = ['notification','normal'];
             }
         } else {
             self.className = ['notification'];
@@ -89,34 +79,8 @@ const Notification = () => Widget.Box({
     }]],
 });
 
-const Media = () => Widget.Button({
-        className: 'media',
-        onPrimaryClick: () => Mpris.getPlayer('')?.playPause(),
-        onScrollUp: () => Mpris.getPlayer('')?.next(),
-        onScrollDown: () => Mpris.getPlayer('')?.previous(),
-        child: Widget.Label({
-            connections: [
-                [Mpris, async (self) => {
-                    const mpris = Mpris.getPlayer('');
-                    // mpris player can be undefined
-                    if (mpris && `${mpris.trackArtists.join(', ')}|${mpris.trackTitle}`.length > 1){
-                        nowplaying.now_playing = `${mpris.trackArtists.join(', ')}|${mpris.trackTitle}`;
-                    } else {
-                        while (nowplaying.now_playing.length > 0){
-                            console.log("updating back3:: ",nowplaying.now_playing)
-                            nowplaying.now_playing = nowplaying.now_playing.slice(1,-1);
-                            await new Promise(r => setTimeout(r, 50));
-                        }
-                    }        
-            }],
-            [nowplaying, self => {
-                console.log(0,nowplaying.now_playing)
-                self.label = nowplaying.now_playing;
-            }]
-        ],
-        }),
-        connections: [[Mpris, self => {
-            const mpris = Mpris.getPlayer('');
+const is_it_playing = (self) => {
+    const mpris = Mpris.getPlayer('');
             // mpris player can be undefined
             if (mpris){
                 if (mpris.playBackStatus === 'Playing') {
@@ -128,46 +92,61 @@ const Media = () => Widget.Button({
             } else {
                 self.className = ['media'];
             }
+}
+
+const Media = () => Widget.Button({
+        className: 'media',
+        onPrimaryClick: () => Mpris.getPlayer('')?.playPause(),
+        onScrollUp: (self) => {
+            Mpris.getPlayer('')?.next();
+            self.className = ['media','next'];
+        },
+        onScrollDown: (self) => {
+            Mpris.getPlayer('')?.previous();
+            self.className = ['media','back'];
+        },
+        child: Widget.Box({
+            children: [
+                Widget.Label({
+                    connections: [
+                        [Mpris, async (self) => {
+                            const mpris = Mpris.getPlayer('');
+                            // mpris player can be undefined
+                            if (mpris && `${mpris.trackArtists.join(', ')}|${mpris.trackTitle}`.length > 1){
+                                nowplaying.now_playing = `${mpris.trackArtists.join(', ')}|${mpris.trackTitle}`;
+                            } else {
+                                while (nowplaying.now_playing.length > 0){
+                                    nowplaying.now_playing = nowplaying.now_playing.slice(1,-1);
+                                    await new Promise(r => setTimeout(r, 50));
+                                }
+                            }        
+                    }],
+                    [nowplaying, self => {
+                        self.label = nowplaying.now_playing;
+                    }]
+                ],
+                }),
+            ]
+        }),
+        connections: [[Mpris, self => {
+            is_it_playing(self)
         }]]
 });
 
-const Volume = () => Widget.Box({
+const Volume = () => Widget.Button({
     className: 'volume',
-    style: 'min-width: 180px',
-    children: [
-        Widget.Stack({
-            items: [
-                // tuples of [string, Widget]
-                ['101', Widget.Icon('audio-volume-overamplified-symbolic')],
-                ['67', Widget.Icon('audio-volume-high-symbolic')],
-                ['34', Widget.Icon('audio-volume-medium-symbolic')],
-                ['1', Widget.Icon('audio-volume-low-symbolic')],
-                ['0', Widget.Icon('audio-volume-muted-symbolic')],
-            ],
-            connections: [[Audio, self => {
-                if (!Audio.speaker)
-                    return;
-
-                if (Audio.speaker.isMuted) {
-                    self.shown = '0';
-                    return;
-                }
-
-                const show = [101, 67, 34, 1, 0].find(
-                    threshold => threshold <= Audio.speaker.volume * 100);
-
-                self.shown = `${show}`;
-            }, 'speaker-changed']],
-        }),
-        Widget.Slider({
-            hexpand: true,
-            drawValue: false,
-            onChange: ({ value }) => Audio.speaker.volume = value,
-            connections: [[Audio, self => {
-                self.value = Audio.speaker?.volume || 0;
-            }, 'speaker-changed']],
-        }),
-    ],
+    onScrollUp: (self) => {
+        let speaker = Audio.speaker;
+        if (speaker) {
+            speaker.volume = Math.min(1, speaker.volume + 0.01);
+        }
+    },
+    onScrollDown: (self) => {
+        let speaker = Audio.speaker;
+        if (speaker) {
+            speaker.volume = Math.min(1, speaker.volume - 0.01);
+        }
+    }
 });
 
 const BatteryLabel = () => Widget.Box({
@@ -205,7 +184,7 @@ const SysTray = () => Widget.Box({
 const Left = () => Widget.Box({
     children: [
         Workspaces(),
-        ClientTitle(),
+        // ClientTitle(),
     ],
     className: 'segment',
 });
@@ -221,9 +200,10 @@ const Center = () => Widget.Box({
 const Right = () => Widget.Box({
     halign: 'end',
     children: [
-        //Volume(),
+        // Volume(),
         //BatteryLabel(),
         Clock(),
+        // ClientTitle()
         //SysTray(),
     ],
     className: 'segment',

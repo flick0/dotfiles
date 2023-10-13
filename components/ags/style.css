@@ -81,16 +81,7 @@ label {
     /* transition: padding 0.5s cubic-bezier(.55,-0.68,.48,1.68),background 0.3s ease-in-out; */
 }
 
-.media {
-    background-color: transparent;
-    box-shadow: none;
-    padding-right: 5;
-    padding-left: 5;
-    padding-bottom: 5;
-    padding-top: 3;
-    transition-delay: 250ms;
-    transition: padding 1s cubic-bezier(0,1.77,.08,1.49),background 1s ease-in;
-}
+
 
 /* Active Workspace */
 .workspace:hover {
@@ -110,6 +101,62 @@ label {
 }
 
 /* Center Pill Thing™ */
+.media {
+    background-color: transparent;
+    box-shadow: none;
+    padding-right: 5;
+    padding-left: 5;
+    padding-bottom: 5;
+    padding-top: 3;
+    transition: padding 1s cubic-bezier(0,1.77,.08,1.49),background 1s ease-in;
+    
+}
+
+.media slider{
+    /* --volume: 50%; */
+    all: unset;
+    background-color: rgb(0, 255, 34);
+    border-radius: 50px;
+    min-height: 50px;
+    margin-top: 0;
+    padding-top: 0;
+    margin-top: -40px;
+
+    min-width: 40px;
+    color: #aaaaaa;
+    /* padding-left: 20;
+    padding-right: 20; */
+    /* background: linear-gradient(to right, #11111b 0%, #11111b 50%, #89b4fa 50%, #89b4fa 100%); */
+}
+
+.media.back {
+     background: rgb(17,17,27);
+background: radial-gradient(circle, rgba(17,17,27,0.41218494233630953) 3%, rgba(177,227,163,1) 13%, rgba(26,29,35,0.3001401244091386) 29%, rgba(17,17,27,0.49341743533350846) 32%, rgba(174,227,163,1) 41%, rgba(17,17,27,0.7707283597032564) 68%, rgba(166,227,161,1) 83%, rgba(17,17,27,0.8379552504595589) 95%); 
+    background-size: 400% 400%;
+    animation: gradient_back 2s cubic-bezier(.72,.39,.21,1) infinite;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.377);
+    color: #fff ;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-bottom: 2;
+    padding-top: 4;
+    transition: padding 1s cubic-bezier(0,1.77,.08,1.49),background 0.4s ease-in-out,font-size 0.5s ease-out;
+}
+
+.media.next {
+    background: rgb(17,17,27);
+    background: radial-gradient(circle, rgba(17,17,27,0.41218494233630953) 3%, rgba(177,227,163,1) 13%, rgba(26,29,35,0.3001401244091386) 29%, rgba(17,17,27,0.49341743533350846) 32%, rgba(174,227,163,1) 41%, rgba(17,17,27,0.7707283597032564) 68%, rgba(166,227,161,1) 83%, rgba(17,17,27,0.8379552504595589) 95%); 
+    background-size: 400% 400%;
+    animation: gradient_next 2s cubic-bezier(.72,.39,.21,1) infinite;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.377);
+    color: #fff ;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-bottom: 2;
+    padding-top: 4;
+    transition: padding 1s cubic-bezier(0,1.77,.08,1.49),background 0.4s ease-in-out,font-size 0.5s ease-out;
+}
+
 .media.playing {
     background: rgb(137,180,255);
     background: radial-gradient(circle, rgba(137,180,250,120) 0%, rgba(142,179,250,120) 6%, rgba(148,226,213,1) 14%, rgba(147,178,250,1) 14%, rgba(155,176,249,1) 18%, rgba(245,194,231,1) 28%, rgba(158,175,249,1) 28%, rgba(181,170,248,1) 58%, rgba(205,214,244,1) 69%, rgba(186,169,248,1) 69%, rgba(195,167,247,1) 72%, rgba(137,220,235,1) 73%, rgba(198,167,247,1) 78%, rgba(203,166,247,1) 100%); 
@@ -121,11 +168,8 @@ label {
     padding-right: 40px;
     padding-bottom: 2;
     padding-top: 4;
-    transition-delay: 250ms;
     transition: padding 1s cubic-bezier(0,1.77,.08,1.49),background 0.2s ease-in-out,font-size 0.5s ease-out;
-    
 }
-
 
 .media.paused {
     background: #11111b;
@@ -160,6 +204,31 @@ label {
     }
 	100% {
 		background-position: 400% 200%;
+	}
+}
+
+@keyframes gradient_back {
+	0% {
+		background-position: 0% 200%;
+	}
+    50% {
+        background-position: 200% 0%;
+    }
+	100% {
+		background-position: 400% 200%;
+	}
+}
+
+
+@keyframes gradient_next {
+    0% {
+		background-position: 400% 200%;
+	}
+    50% {
+        background-position: 200% 0%;
+    }
+	100% {
+		background-position: 0% 200%;
 	}
 }
 
