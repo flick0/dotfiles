@@ -43,6 +43,33 @@ def apply(wallpaper):
     print(cmd)
     subprocess.run(cmd,shell=True)
 
+    #cava
+    with open(os.path.expanduser("~/.config/cava/config"),"r") as f:
+        conf = f.read()
+    
+    conf = conf.split("#--- cover2bg.py ---")[0]
+
+    conf += "\n#--- cover2bg.py ---\n" + f"""
+[color]
+background = '{colors["special"]["background"]}'
+
+gradient = 1
+
+gradient_color_1 = '{colors["colors"]["color0"]}'
+gradient_color_2 = '{colors["colors"]["color1"]}'
+gradient_color_3 = '{colors["colors"]["color2"]}'
+gradient_color_4 = '{colors["colors"]["color3"]}'
+gradient_color_5 = '{colors["colors"]["color4"]}'
+gradient_color_6 = '{colors["colors"]["color5"]}'
+gradient_color_7 = '{colors["colors"]["color6"]}'
+gradient_color_8 = '{colors["colors"]["color7"]}'
+"""
+    with open(os.path.expanduser("~/.config/cava/config"),"w") as f:
+        f.write(conf)
+    
+    subprocess.run("pkill -USR2 cava",shell=True)
+
+
 
 
 
