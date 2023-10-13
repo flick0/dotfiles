@@ -5,11 +5,15 @@ label {
     font-weight: bolder;
 }
 
+.trayitem{
+    all: unset;
+}
 
 .clock,
 .media,
 .workspaces button,
-.notification {
+.notification,
+.trayitem {
     background-color: #11111b ;
     box-shadow: rgba(0, 0, 0, 0.288) 2 2 5 2px;
     border-radius: 15px;
@@ -112,26 +116,9 @@ label {
     
 }
 
-.media slider{
-    /* --volume: 50%; */
-    all: unset;
-    background-color: rgb(0, 255, 34);
-    border-radius: 50px;
-    min-height: 50px;
-    margin-top: 0;
-    padding-top: 0;
-    margin-top: -40px;
-
-    min-width: 40px;
-    color: #aaaaaa;
-    /* padding-left: 20;
-    padding-right: 20; */
-    /* background: linear-gradient(to right, #11111b 0%, #11111b 50%, #89b4fa 50%, #89b4fa 100%); */
-}
-
 .media.back {
-     background: rgb(17,17,27);
-background: radial-gradient(circle, rgba(17,17,27,0.41218494233630953) 3%, rgba(177,227,163,1) 13%, rgba(26,29,35,0.3001401244091386) 29%, rgba(17,17,27,0.49341743533350846) 32%, rgba(174,227,163,1) 41%, rgba(17,17,27,0.7707283597032564) 68%, rgba(166,227,161,1) 83%, rgba(17,17,27,0.8379552504595589) 95%); 
+    background: rgb(17,17,27);
+    background: radial-gradient(circle, rgba(17,17,27,0.41218494233630953) 3%, rgba(177,227,163,1) 13%, rgba(26,29,35,0.3001401244091386) 29%, rgba(17,17,27,0.49341743533350846) 32%, rgba(174,227,163,1) 41%, rgba(17,17,27,0.7707283597032564) 68%, rgba(166,227,161,1) 83%, rgba(17,17,27,0.8379552504595589) 95%); 
     background-size: 400% 400%;
     animation: gradient_back 2s cubic-bezier(.72,.39,.21,1) infinite;
     text-shadow: 0 0 5px rgba(0, 0, 0, 0.377);
