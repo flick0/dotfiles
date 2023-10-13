@@ -16,7 +16,9 @@ import nowplaying from './service/nowplaying.js';
 
 //get home dir
 const home = `/home/${exec('whoami')}`
-console.log(home)
+const themedir = App.configDir.split('/').slice(0,-2).join('/')
+console.log("homedir:: "+ home)
+console.log("themedir:: " + themedir)
 
 function get_color(){
     return readFileAsync(home + '/.config/hypr/themes/colors')
@@ -26,6 +28,9 @@ function get_color(){
             let lines = content.split('\n');
             for (let i = 0; i < lines.length; i++) {
                 let [key, value] = lines[i].split(':');
+                if (key == undefined || value == undefined){
+                    continue;
+                }
                 //strip
                 key = key.trim();
                 value = value.trim();
@@ -55,11 +60,13 @@ subprocess([
         }
 
         writeFile(content, colors_path)
-            .then(file => print('colors.css updated'))
+            .then(file => {
+                print('colors.css updated');
+                App.resetCss();
+                App.applyCss(App.configDir +`/style.css`);
+            })
             .catch(err => print(err));
     })
-    App.resetCss();
-    App.applyCss(App.configDir +`/style.css`);
 });
 
 
@@ -176,8 +183,19 @@ const Media = () => Widget.Button({
             ]
         }),
         connections: [
-            [Mpris, self => {
+            [Mpris,async (self) => {
                 is_it_playing(self)
+
+                //cover art
+                const player = Mpris.getPlayer('');
+
+                if (player){
+                    const cover_path = `${player.trackCoverUrl} `.slice(7,-1);
+
+                    execAsync(["python", `${themedir}/scripts/cover2bg.py`, cover_path])
+                        .then(out => console.log(out))
+                        .catch(err => console.log(err));
+                }
             }],
         ]
 });

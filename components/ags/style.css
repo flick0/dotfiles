@@ -60,6 +60,7 @@ label {
     color: #fff;
     /* transition: padding 0.5s cubic-bezier(.55,-0.68,.48,1.68),background 0.3s ease-in-out; */
 }
+
 .notification.critical{
     padding-right: 20px;
     padding-left: 20px;
@@ -249,6 +250,7 @@ label {
 .clock {
     background: @cforeground;
     color: @cbackground;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.777);
     background: linear-gradient(118deg, @cforeground 5%, @c1 5%, @c1 20%, @cforeground 20%, @cforeground 40%, @c1 40%, @c1 60%, @cforeground 60%, @cforeground 80%, @c1 80%, @c1 95%, @cforeground 95%); 
 
     background-size: 200% 300%;
