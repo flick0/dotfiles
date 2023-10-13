@@ -20,6 +20,7 @@ def apply(wallpaper):
     subprocess.run("touch ~/.config/hypr/themes/colors",shell=True)
     subprocess.run("pkill -USR2 fish",shell=True)
 
+    # active borders
     gradient = ""
     for color,value in colors["colors"].items():
         gradient += f"rgba({value[1:]}ff) "
@@ -28,6 +29,7 @@ def apply(wallpaper):
     print(cmd)
     subprocess.run(cmd,shell=True)
 
+    # inactive borders
     gradient = ""
     for color,value in colors["colors"].items():
         gradient += f"rgba({value[1:]}44) "
@@ -35,6 +37,13 @@ def apply(wallpaper):
     cmd = f"hyprctl keyword general:col.inactive_border '{gradient}'"
     print(cmd)
     subprocess.run(cmd,shell=True)
+
+    #keyboard
+    cmd = f"asusctl led-mode static -c '{colors['colors']['color0'][1:]}'"
+    print(cmd)
+    subprocess.run(cmd,shell=True)
+
+
 
 
 
