@@ -3,10 +3,28 @@ import argparse
 import subprocess
 import os
 import pywal
+import json
+import numpy as np
+import cv2
 
-def apply(wallpaper):
-    colors = pywal.colors.get(wallpaper,backend="colorz")
+def remove_black_border(image):
+    # remove black border safely while conserving img
+    return image
+
+def get_res():
+    cmd = "hyprctl monitors -j"
+    res = subprocess.run(cmd,shell=True,capture_output=True)
+    res = json.loads(res.stdout)
+
+    return (res[0]["width"],res[0]["height"])
+
+def apply(pre=None,wallpaper=None):
+    if not pre:
+        colors = pywal.colors.get(wallpaper,backend="colorz")
+    else:
+        colors = pre
     print(wallpaper)
+    print("colors::::: ",colors)
     
     cmd = f"swww img '{wallpaper}' --transition-type simple --transition-step 15"
     subprocess.run(cmd,shell=True)
@@ -74,25 +92,31 @@ gradient_color_8 = '{colors["colors"]["color7"]}'
 
 
 
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("image", help="image path")
+
+    width,height = get_res()
 
     args = parser.parse_args()
 
     image = args.image
 
+    #subprocess.run(f"magick mogrify -fuzz 20% -trim +repage -shave 7x7 -format png {image}",shell=True)
+
     # open image
+    pre = pywal.colors.get(image,backend="colorz")
+
     image = Image.open(image)
-
-    image = image.filter(ImageFilter.GaussianBlur(radius=5))
-
+    
+    #image = ImageOps.fit(image, (width,height), Image.NEAREST)
     #image.show()
-
-    # save image
+    
+    image = image.filter(ImageFilter.GaussianBlur(radius=5))
     image.save("/tmp/bg.png")
 
-    apply("/tmp/bg.png")
+    apply(wallpaper="/tmp/bg.png")
     
 
 if __name__ == "__main__":

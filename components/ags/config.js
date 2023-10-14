@@ -191,10 +191,15 @@ const Media = () => Widget.Button({
 
                 if (player){
                     const cover_path = `${player.trackCoverUrl} `.slice(7,-1);
-
-                    execAsync(["python", `${themedir}/scripts/cover2bg.py`, cover_path])
-                        .then(out => console.log(out))
+                    console.log(1,1,cover_path)
+                    execAsync(["cp",cover_path,`/tmp/musiccover.png`])
+                        .then(out => {
+                            execAsync(["python", `${themedir}/scripts/cover2bg.py`, `/tmp/musiccover.png`])
+                                .then(out => console.log(out))
+                                .catch(err => console.log(err));
+                        })
                         .catch(err => console.log(err));
+                    
                 }
             }],
         ]
