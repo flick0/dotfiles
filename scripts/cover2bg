@@ -1,20 +1,13 @@
 #!/usr/bin/env bash
 
-# This script is used to convert a cover image to a background image
-
-# Check if the user has provided an image
 if [ -z "$1" ]; then
     echo "Please provide an image"
     exit 1
 fi
-
-# Check if the image exists
 if [ ! -f "$1" ]; then
     echo "Image does not exist"
     exit 1
 fi
-
-# Check if the image is a valid image
 if ! file "$1" | grep -qE 'image|bitmap'; then
     echo "Image is not a valid image"
     exit 1
@@ -23,100 +16,32 @@ fi
 
 # get json from hyprctl
 json=$(hyprctl monitors -j)
-
-#get first element in json list
 json=$(echo $json | jq '.[0]')
-# get width and height of screen
 width=$(echo $json | jq '.width')
 height=$(echo $json | jq '.height')
-
-#image width and height
 
 cp "$1" /tmp/bg.png
 
 magick mogrify -fuzz 20% -trim +repage -shave 7x7 -format png /tmp/bg.png
-
-# crop image to 1:1 aspect ratio
-# convert /tmp/bg.png -gravity center -background black -extent ${height}:${height} /tmp/bg.png
-
-# fit image in screen / 2 dimensions
 convert /tmp/bg.png -resize $((width / 2))x$((height / 2))^ -gravity center -extent $((width / 2))x$((height / 2)) /tmp/bg.png
-
-# crop image to widthxheight
-# convert /tmp/bg.png -gravity center -crop ${width}x${height}+0+0 +repage /tmp/bg.png
 
 img_width=$(identify -format "%w" /tmp/bg.png)
 img_height=$(identify -format "%h" /tmp/bg.png)
 
-# blur image
-
-#resize image to atleast 1080p conserving the aspect ratio
-# convert /tmp/bg.png -resize 1920x1080^ -gravity center -extent 1920x1080 /tmp/bg.png
-
 convert /tmp/bg.png -blur 0x40 /tmp/bg.png
 
-
-# dominant color
 color=$(convert /tmp/bg.png -gravity center -crop 1x1+0+0 +repage txt:- | grep -m 1 -o '#[0-9A-F]\{6\}')
-
-# # calc fit which is width - height
-# fit=$((width - height))
-
-# # extend right edge of image by width - height with dominant color
-# convert /tmp/bg.png -gravity east -background $color -splice ${fit}x0 /tmp/bg.png
-
-# make a new image with gradient from dominant color to transparent going horizontaly
 convert -size ${width}x$((height / 3)) gradient:$color-transparent /tmp/gradient.png
-
-# # #rotate gradient 90 degrees
-# # convert /tmp/gradient.png -rotate 90 /tmp/gradient.png
-
-# # overlay gradient on image to east
-# convert /tmp/bg.png /tmp/gradient.png -gravity south -composite /tmp/bg.png
-
-# convert /tmp/gradient.png -rotate 180 /tmp/gradient.png
-
 convert /tmp/bg.png /tmp/gradient.png -gravity north -composite /tmp/bg.png
-
-# # make a new image with gradient from dominant color to transparent going horizontaly
-# convert -size ${height}x${height} gradient:$color-transparent /tmp/gradient.png
-
-# #rotate gradient 90 degrees
-# convert /tmp/gradient.png -rotate 90 /tmp/gradient.png
-
-# convert /tmp/bg.png /tmp/gradient.png -gravity west -composite /tmp/bg.png
-
-
-
-
-
-
-
-# # convert white pixels to transparent on texture
-# convert $texture -transparent white /tmp/texture.png
-
-# # make a new image with size width and height and tile texture onto it
-# convert -size ${width}x${height} tile:/tmp/texture.png /tmp/texture.png
 
 # if /tmp/texture.png is not a file
 if [ ! -f /tmp/texture.png ]; then
     echo "texture not found"
     convert -size ${img_width}x${img_height} xc:gray +noise Random -channel A -threshold 90% /tmp/texture.png
 fi
-
-# make a noise texture with controllable noise
-
-# reduce texture opacity
 convert /tmp/texture.png -alpha set -channel A -evaluate set 3.5% /tmp/texture.png
-
-#texture into image
 convert /tmp/bg.png /tmp/texture.png -gravity center -compose overlay -composite /tmp/bg.png
 
 $HYPRLAND_THEME/scripts/apply_wall /tmp/bg.png
-
-# # set image as background
-# swww img /tmp/bg.png --transition-step 30
-
-
 
 
