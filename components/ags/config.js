@@ -169,6 +169,9 @@ const Media = () => Widget.Button({
                             if (mpris && `${mpris.trackArtists.join(', ')}|${mpris.trackTitle}`.length > 1){
                                 nowplaying.now_playing = `${mpris.trackArtists.join(', ')}|${mpris.trackTitle}`;
                             } else {
+                                execAsync([`${themedir}/scripts/pywal_set`, `--reset`])
+                                    .then(out => console.log(out))
+                                    .catch(err => console.log(err));
                                 while (nowplaying.now_playing.length > 0){
                                     nowplaying.now_playing = nowplaying.now_playing.slice(1,-1);
                                     await new Promise(r => setTimeout(r, 50));
@@ -194,7 +197,7 @@ const Media = () => Widget.Button({
                     console.log(1,1,cover_path)
                     execAsync(["cp",cover_path,`/tmp/musiccover.png`])
                         .then(out => {
-                            execAsync(["python", `${themedir}/scripts/cover2bg.py`, `/tmp/musiccover.png`])
+                            execAsync([`${themedir}/scripts/cover2bg`, `/tmp/musiccover.png`])
                                 .then(out => console.log(out))
                                 .catch(err => console.log(err));
                         })
