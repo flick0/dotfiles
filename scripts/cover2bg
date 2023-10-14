@@ -1,93 +1,90 @@
-#!/usr/bin/env python
+#!/usr/bin/env bash
 
-from PIL import Image, ImageFilter, ImageOps
-import argparse
-import subprocess
-import os
-import pywal
-import json
-import numpy as np
-import cv2
+# This script is used to convert a cover image to a background image
 
-def remove_black_border(image):
-    # remove black border safely while conserving img
-    return image
+# Check if the user has provided an image
+if [ -z "$1" ]; then
+    echo "Please provide an image"
+    exit 1
+fi
 
-def get_res():
-    cmd = "hyprctl monitors -j"
-    res = subprocess.run(cmd,shell=True,capture_output=True)
-    res = json.loads(res.stdout)
+# Check if the image exists
+if [ ! -f "$1" ]; then
+    echo "Image does not exist"
+    exit 1
+fi
 
-    return (res[0]["width"],res[0]["height"])
+# Check if the image is a valid image
+if ! file "$1" | grep -qE 'image|bitmap'; then
+    echo "Image is not a valid image"
+    exit 1
+fi
 
-def apply(pre=None,wallpaper=None):
-    if not pre:
-        colors = pywal.colors.get(wallpaper,backend="colorz")
-    else:
-        colors = pre
-    print(wallpaper)
-    print("colors::::: ",colors)
-    
-    cmd = f"swww img '{wallpaper}' --transition-type simple --transition-step 15"
-    subprocess.run(cmd,shell=True)
-    
-    with open(os.path.expanduser("~/.config/hypr/themes/colors"),"w") as f:
-        for color,value in colors["colors"].items():
-            f.write(f"{color[5:]}: {value}\n")
-        for color,value in colors["special"].items():
-            f.write(f"{color}: {value}\n")
 
-    subprocess.run("touch ~/.config/hypr/themes/colors",shell=True)
-    subprocess.run("pkill -USR2 fish",shell=True)
+# get json from hyprctl
+json=$(hyprctl monitors -j)
 
-    # active borders
-    gradient = ""
-    for color,value in colors["colors"].items():
-        gradient += f"rgba({value[1:]}ff) "
-    gradient += " 45deg"
-    cmd = f"hyprctl keyword general:col.active_border '{gradient}'"
-    print(cmd)
-    subprocess.run(cmd,shell=True)
+#get first element in json list
+json=$(echo $json | jq '.[0]')
+# get width and height of screen
+width=$(echo $json | jq '.width')
+height=$(echo $json | jq '.height')
 
-    # inactive borders
-    gradient = ""
-    for color,value in colors["colors"].items():
-        gradient += f"rgba({value[1:]}44) "
-    gradient += " 0deg"
-    cmd = f"hyprctl keyword general:col.inactive_border '{gradient}'"
-    print(cmd)
-    subprocess.run(cmd,shell=True)
+#image width and height
 
-    #keyboard
-    cmd = f"asusctl led-mode static -c '{colors['colors']['color0'][1:]}'"
-    print(cmd)
-    subprocess.run(cmd,shell=True)
+cp "$1" /tmp/bg.png
 
-    #cava
-    with open(os.path.expanduser("~/.config/cava/config"),"r") as f:
-        conf = f.read()
-    
-    conf = conf.split("#--- cover2bg.py ---")[0]
+magick mogrify -fuzz 20% -trim +repage -shave 7x7 -format png /tmp/bg.png
 
-    conf += "\n#--- cover2bg.py ---\n" + f"""
-[color]
-background = '{colors["special"]["background"]}'
+# crop image to 1:1 aspect ratio
+# convert /tmp/bg.png -gravity center -background black -extent ${height}:${height} /tmp/bg.png
 
-gradient = 1
+# fit image in screen / 2 dimensions
+convert /tmp/bg.png -resize $((width / 2))x$((height / 2))^ -gravity center -extent $((width / 2))x$((height / 2)) /tmp/bg.png
 
-gradient_color_1 = '{colors["colors"]["color0"]}'
-gradient_color_2 = '{colors["colors"]["color1"]}'
-gradient_color_3 = '{colors["colors"]["color2"]}'
-gradient_color_4 = '{colors["colors"]["color3"]}'
-gradient_color_5 = '{colors["colors"]["color4"]}'
-gradient_color_6 = '{colors["colors"]["color5"]}'
-gradient_color_7 = '{colors["colors"]["color6"]}'
-gradient_color_8 = '{colors["colors"]["color7"]}'
-"""
-    with open(os.path.expanduser("~/.config/cava/config"),"w") as f:
-        f.write(conf)
-    
-    subprocess.run("pkill -USR2 cava",shell=True)
+# crop image to widthxheight
+# convert /tmp/bg.png -gravity center -crop ${width}x${height}+0+0 +repage /tmp/bg.png
+
+img_width=$(identify -format "%w" /tmp/bg.png)
+img_height=$(identify -format "%h" /tmp/bg.png)
+
+# blur image
+
+#resize image to atleast 1080p conserving the aspect ratio
+# convert /tmp/bg.png -resize 1920x1080^ -gravity center -extent 1920x1080 /tmp/bg.png
+
+convert /tmp/bg.png -blur 0x40 /tmp/bg.png
+
+
+# dominant color
+color=$(convert /tmp/bg.png -gravity center -crop 1x1+0+0 +repage txt:- | grep -m 1 -o '#[0-9A-F]\{6\}')
+
+# # calc fit which is width - height
+# fit=$((width - height))
+
+# # extend right edge of image by width - height with dominant color
+# convert /tmp/bg.png -gravity east -background $color -splice ${fit}x0 /tmp/bg.png
+
+# make a new image with gradient from dominant color to transparent going horizontaly
+convert -size ${width}x$((height / 3)) gradient:$color-transparent /tmp/gradient.png
+
+# # #rotate gradient 90 degrees
+# # convert /tmp/gradient.png -rotate 90 /tmp/gradient.png
+
+# # overlay gradient on image to east
+# convert /tmp/bg.png /tmp/gradient.png -gravity south -composite /tmp/bg.png
+
+# convert /tmp/gradient.png -rotate 180 /tmp/gradient.png
+
+convert /tmp/bg.png /tmp/gradient.png -gravity north -composite /tmp/bg.png
+
+# # make a new image with gradient from dominant color to transparent going horizontaly
+# convert -size ${height}x${height} gradient:$color-transparent /tmp/gradient.png
+
+# #rotate gradient 90 degrees
+# convert /tmp/gradient.png -rotate 90 /tmp/gradient.png
+
+# convert /tmp/bg.png /tmp/gradient.png -gravity west -composite /tmp/bg.png
 
 
 
@@ -95,31 +92,31 @@ gradient_color_8 = '{colors["colors"]["color7"]}'
 
 
 
-def main():
-    parser = argparse.ArgumentParser()
-    parser.add_argument("image", help="image path")
+# # convert white pixels to transparent on texture
+# convert $texture -transparent white /tmp/texture.png
 
-    width,height = get_res()
+# # make a new image with size width and height and tile texture onto it
+# convert -size ${width}x${height} tile:/tmp/texture.png /tmp/texture.png
 
-    args = parser.parse_args()
+# if /tmp/texture.png is not a file
+if [ ! -f /tmp/texture.png ]; then
+    echo "texture not found"
+    convert -size ${img_width}x${img_height} xc:gray +noise Random -channel A -threshold 90% /tmp/texture.png
+fi
 
-    image = args.image
+# make a noise texture with controllable noise
 
-    #subprocess.run(f"magick mogrify -fuzz 20% -trim +repage -shave 7x7 -format png {image}",shell=True)
+# reduce texture opacity
+convert /tmp/texture.png -alpha set -channel A -evaluate set 3.5% /tmp/texture.png
 
-    # open image
-    pre = pywal.colors.get(image,backend="colorz")
+#texture into image
+convert /tmp/bg.png /tmp/texture.png -gravity center -compose overlay -composite /tmp/bg.png
 
-    image = Image.open(image)
-    
-    #image = ImageOps.fit(image, (width,height), Image.NEAREST)
-    #image.show()
-    
-    image = image.filter(ImageFilter.GaussianBlur(radius=5))
-    image.save("/tmp/bg.png")
+$HYPRLAND_THEME/scripts/apply_wall /tmp/bg.png
 
-    apply(wallpaper="/tmp/bg.png")
-    
+# # set image as background
+# swww img /tmp/bg.png --transition-step 30
 
-if __name__ == "__main__":
-    main()
+
+
+
