@@ -19,13 +19,13 @@ def apply(pre=None,wallpaper=None):
     cmd = f"swww img '{wallpaper}' --transition-type simple --transition-step 15"
     subprocess.run(cmd,shell=True)
     
-    with open(os.path.expanduser("~/.config/hypr/themes/colors"),"w") as f:
+    with open(os.path.expanduser("~/.config/hypr/themes/uicolors"),"w") as f:
         for color,value in colors["colors"].items():
             f.write(f"{color[5:]}: {value}\n")
         for color,value in colors["special"].items():
             f.write(f"{color}: {value}\n")
 
-    subprocess.run("touch ~/.config/hypr/themes/colors",shell=True)
+    #subprocess.run("touch ~/.config/hypr/themes/uicolors",shell=True)
     subprocess.run("pkill -USR2 fish",shell=True)
 
     # active borders

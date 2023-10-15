@@ -21,7 +21,7 @@ console.log("homedir:: "+ home)
 console.log("themedir:: " + themedir)
 
 function get_color(){
-    return readFileAsync(home + '/.config/hypr/themes/colors')
+    return readFileAsync(home + '/.config/hypr/themes/uicolors')
         .then(content => {
             var colors = {}
             //split into lines
@@ -48,7 +48,7 @@ subprocess([
     'inotifywait',
     '--recursive',
     '--event', 'create,modify',
-    '-m', home + '/.config/hypr/themes/colors',
+    '-m', home + '/.config/hypr/themes/uicolors',
 ], () => {
     const colors_path = App.configDir + '/colors.css';
     
