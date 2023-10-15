@@ -148,16 +148,30 @@ const is_it_playing = (self) => {
             }
 }
 
+let NO = false;
+
 const Media = () => Widget.Button({
         className: 'media',
         onPrimaryClick: () => Mpris.getPlayer('')?.playPause(),
-        onScrollUp: (self) => {
+        onScrollUp: async (self) => {
+            if (NO){
+                return;
+            }
+            NO = true;
             Mpris.getPlayer('')?.next();
             self.className = ['media','next'];
+            await new Promise(r => setTimeout(r, 700));
+            NO = false;
         },
-        onScrollDown: (self) => {
+        onScrollDown: async (self) => {
+            if (NO){
+                return;
+            }
+            NO = true;
             Mpris.getPlayer('')?.previous();
             self.className = ['media','back'];
+            await new Promise(r => setTimeout(r, 700));
+            NO = false;
         },
         child: Widget.Box({
             children: [
