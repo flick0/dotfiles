@@ -31,7 +31,7 @@ def apply(pre=None,wallpaper=None):
             if line and not line.startswith("#"):
                 color,value = line.split(":")
                 if color.isnumeric():
-                    new_colors[color.strip()] = colormix(value.strip(),colors["colors"]["color"+color.strip()],mix=0.90)
+                    new_colors[color.strip()] = colormix(value.strip(),colors["colors"]["color"+color.strip()],mix=0.75)
 
     for color,value in colors["special"].items():
         new_colors[color] = value
@@ -44,9 +44,6 @@ def apply(pre=None,wallpaper=None):
         for color,value in colors["colors"].items():
             f.write(f"{color[5:]}: {value}\n")
         for color,value in colors["special"].items():
-            if color == "cursor":
-                f.write(f"cursor: {colors['colors']['color5']}\n")
-                continue
             f.write(f"{color}: {value}\n")
 
     subprocess.run("touch ~/.config/hypr/themes/uicolors",shell=True)

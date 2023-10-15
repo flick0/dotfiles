@@ -4,13 +4,23 @@ import pywal
 import argparse
 import os
 import subprocess
+import numpy as np
+import matplotlib as mpl
 
 THEME_DIR = os.environ.get("HYPRLAND_THEME")
 print(THEME_DIR)
 
+
+def colormix(c1,c2,mix=0):
+    
+    #get np arrays c1 and c2 from hex
+    c1 = np.array(mpl.colors.to_rgb(c1))
+    c2 = np.array(mpl.colors.to_rgb(c2))
+    return mpl.colors.to_hex((1-mix)*c1 + mix*c2)
+
 def apply(pre=None,wallpaper=None):
     if not pre:
-        colors = pywal.colors.get(wallpaper,backend="colorz")
+        colors = pywal.colors.get(wallpaper,backend="wal")
     else:
         colors = pre
     print(wallpaper)
@@ -18,6 +28,23 @@ def apply(pre=None,wallpaper=None):
     
     cmd = f"swww img '{wallpaper}' --transition-type simple --transition-step 15"
     subprocess.run(cmd,shell=True)
+
+    with open(os.path.expanduser("~/.config/hypr/themes/colors_base"),"r") as cr:
+        raw = cr.read()
+        new_colors = {}
+
+        for line in raw.split("\n"):
+            if line and not line.startswith("#"):
+                color,value = line.split(":")
+                if color.isnumeric():
+                    new_colors[color.strip()] = colormix(value.strip(),colors["colors"]["color"+color.strip()],mix=0.75)
+
+    for color,value in colors["special"].items():
+        new_colors[color] = value
+        
+    with open(os.path.expanduser("~/.config/hypr/themes/colors"),"w") as f:
+        for color,value in new_colors.items():
+            f.write(f"{color}: {value}\n")
     
     with open(os.path.expanduser("~/.config/hypr/themes/uicolors"),"w") as f:
         for color,value in colors["colors"].items():
@@ -25,7 +52,7 @@ def apply(pre=None,wallpaper=None):
         for color,value in colors["special"].items():
             f.write(f"{color}: {value}\n")
 
-    #subprocess.run("touch ~/.config/hypr/themes/uicolors",shell=True)
+    subprocess.run("touch ~/.config/hypr/themes/uicolors",shell=True)
     subprocess.run("pkill -USR2 fish",shell=True)
 
     # active borders
