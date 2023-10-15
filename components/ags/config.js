@@ -187,10 +187,10 @@ const Media = () => Widget.Button({
                                     .then(out => console.log(out))
                                     .catch(err => console.log(err));
                                 nowplaying.now_playing = "";
-                                // while (nowplaying.now_playing.length > 0){
-                                //     nowplaying.now_playing = nowplaying.now_playing.slice(1,-1);
-                                //     await new Promise(r => setTimeout(r, 50));
-                                // }
+                                while (nowplaying.now_playing.length > 0){
+                                    nowplaying.now_playing = nowplaying.now_playing.slice(1,-1);
+                                    await new Promise(r => setTimeout(r, 50));
+                                }
                             }        
                     }],
                     [nowplaying, self => {
