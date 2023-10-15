@@ -1,4 +1,4 @@
-import Service from 'resource:///com/github/Aylur/ags/service/service.js';
+import { Service } from '../imports.js';
 
 class PillThing extends Service {
     static {
@@ -35,11 +35,4 @@ class PillThing extends Service {
 
 }
 
-// the singleton instance
-const service = new PillThing();
-
-// make it global for easy use with cli
-globalThis.now_playing = service;
-
-// export to use in other modules
-export default service;
+export default new PillThing();

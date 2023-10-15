@@ -1,27 +1,27 @@
 // importing 
-import Hyprland from 'resource:///com/github/Aylur/ags/service/hyprland.js';
-import Notifications from 'resource:///com/github/Aylur/ags/service/notifications.js';
-import Mpris from 'resource:///com/github/Aylur/ags/service/mpris.js';
-import Audio from 'resource:///com/github/Aylur/ags/service/audio.js';
-import Battery from 'resource:///com/github/Aylur/ags/service/battery.js';
-import SystemTray from 'resource:///com/github/Aylur/ags/service/systemtray.js';
-import App from 'resource:///com/github/Aylur/ags/app.js';
-import Widget from 'resource:///com/github/Aylur/ags/widget.js';
-import { exec, execAsync, readFileAsync, writeFile, subprocess } from 'resource:///com/github/Aylur/ags/utils.js';
-import nowplaying from './service/nowplaying.js';
+import { Hyprland, Notifications, Mpris, Audio, Battery, SystemTray, App, Widget, Utils} from './imports.js';
+// import Notifications from './imports.js';
+// import Mpris from './imports.js';
+// import Audio from './imports.js';
+// import Battery from './imports.js';
+// import SystemTray from './imports.js';
+// import App from './imports.js';
+// import Widget from './imports.js';
+// import { Utils } from './imports.js';
+import nowplaying  from './service/nowplaying.js'; //;
 
 // widgets can be only assigned as a child in one container
 // so to make a reuseable widget, just make it a function
 // then you can use it by calling simply calling it
 
 //get home dir
-const home = `/home/${exec('whoami')}`
+const home = `/home/${Utils.exec('whoami')}`
 const themedir = App.configDir.split('/').slice(0,-2).join('/')
 console.log("homedir:: "+ home)
 console.log("themedir:: " + themedir)
 
 function get_color(){
-    return readFileAsync(home + '/.config/hypr/themes/uicolors')
+    return Utils.readFileAsync(home + '/.config/hypr/themes/uicolors')
         .then(content => {
             var colors = {}
             //split into lines
@@ -44,7 +44,7 @@ function get_color(){
     //return colors;
 }
 
-subprocess([
+Utils.subprocess([
     'inotifywait',
     '--recursive',
     '--event', 'create,modify',
@@ -59,7 +59,7 @@ subprocess([
             content += `@define-color c${key} ${value};\n`;
         }
 
-        writeFile(content, colors_path)
+        Utils.writeFile(content, colors_path)
             .then(file => {
                 print('colors.css updated');
                 App.resetCss();
@@ -76,7 +76,7 @@ const Workspaces = () => Widget.Box({
         children: Array.from({ length: 10 }, (_, i) => i + 1).map(i => Widget.Button({
             child:Widget.Label({label:`${i}`}),
             className: "workspace",
-            onClicked: () => execAsync(`hyprctl dispatch workspace ${i}`),
+            onClicked: () => Utils.Utils.execAsync(`hyprctl dispatch workspace ${i}`),
         })
         ),
         connections: [[Hyprland, box => {
@@ -97,7 +97,7 @@ const Clock = () => Widget.Label({
     className: 'clock',
     connections: [
         // this is what you should do
-        [1000, self => execAsync(['date', '+%I:%M'])
+        [1000, self => Utils.execAsync(['date', '+%I:%M'])
             .then(date => self.label = date).catch(console.error)],
     ],
 });
@@ -169,7 +169,7 @@ const Media = () => Widget.Button({
                             if (mpris && `${mpris.trackArtists.join(', ')}|${mpris.trackTitle}`.length > 1){
                                 nowplaying.now_playing = `${mpris.trackArtists.join(', ')}|${mpris.trackTitle}`;
                             } else {
-                                execAsync([`${themedir}/scripts/pywal_set`, `--reset`])
+                                Utils.execAsync([`${themedir}/scripts/pywal_set`, `--reset`])
                                     .then(out => console.log(out))
                                     .catch(err => console.log(err));
                                 while (nowplaying.now_playing.length > 0){
@@ -195,10 +195,10 @@ const Media = () => Widget.Button({
                 if (player){
                     const cover_path = `${player.trackCoverUrl} `.slice(7,-1);
                     console.log(1,1,cover_path)
-                    execAsync(["cp",cover_path,`/tmp/musiccover.png`])
+                    Utils.execAsync(["cp",cover_path,`/tmp/musiccover.png`])
                         .then(async(out) => {
                             await new Promise(r => setTimeout(r, 300));
-                            execAsync([`${themedir}/scripts/cover2bg`, `/tmp/musiccover.png`])
+                            Utils.execAsync([`${themedir}/scripts/cover2bg`, `/tmp/musiccover.png`])
                                 .then(out => console.log(out))
                                 .catch(err => console.log(err));
                         })
@@ -286,6 +286,14 @@ const Right = () => Widget.Box({
     className: 'segment',
 });
 
+const ProgressBar = () => Widget.ProgressBar({
+    className: 'progress',
+    connections: [[1000, self => {
+        console.log("progress::: ",Mpris.getPlayer('')?.length)
+        self.fraction = Mpris.getPlayer('')?.position;
+    }]],
+});
+
 const Bar = ({ monitor } = {}) => Widget.Window({
     name: `bar-${monitor}`, // name has to be unique
     className: 'bar',
@@ -300,11 +308,23 @@ const Bar = ({ monitor } = {}) => Widget.Window({
     }),
 })
 
+
+const BottomBar = ({ monitor } = {}) => Widget.Window({
+    name: `bot-bar-${monitor}`, // name has to be unique
+    className: 'bot-bar',
+    monitor,
+    margin: [0, 20],
+    anchor: ['bottom', 'left', 'right'],
+    exclusive: false,
+    child: ProgressBar(),
+})
+
 // exporting the config so ags can manage the windows
 export default {
     style: App.configDir + '/style.css',
     windows: [
         Bar(),
+        // BottomBar()
 
         // you can call it, for each monitor
         // Bar({ monitor: 0 }),
