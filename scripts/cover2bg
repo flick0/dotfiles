@@ -49,7 +49,7 @@ if [ ! -f /tmp/texture.png ]; then
     echo "texture not found"
     convert -size ${img_width}x${img_height} xc:gray +noise Random -channel A -threshold 90% /tmp/texture.png
 fi
-convert /tmp/texture.png -alpha set -channel A -evaluate set 3.5% /tmp/texture.png
+convert /tmp/texture.png -alpha set -channel A -evaluate set 3% /tmp/texture.png
 convert /tmp/bg.png /tmp/texture.png -gravity center -compose overlay -composite /tmp/bg.png
 
 $HYPRLAND_THEME/scripts/apply_wall /tmp/bg.png

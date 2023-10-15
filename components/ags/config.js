@@ -172,10 +172,11 @@ const Media = () => Widget.Button({
                                 Utils.execAsync([`${themedir}/scripts/pywal_set`, `--reset`])
                                     .then(out => console.log(out))
                                     .catch(err => console.log(err));
-                                while (nowplaying.now_playing.length > 0){
-                                    nowplaying.now_playing = nowplaying.now_playing.slice(1,-1);
-                                    await new Promise(r => setTimeout(r, 50));
-                                }
+                                nowplaying.now_playing = "";
+                                // while (nowplaying.now_playing.length > 0){
+                                //     nowplaying.now_playing = nowplaying.now_playing.slice(1,-1);
+                                //     await new Promise(r => setTimeout(r, 50));
+                                // }
                             }        
                     }],
                     [nowplaying, self => {
@@ -193,9 +194,7 @@ const Media = () => Widget.Button({
                 const player = Mpris.getPlayer('');
 
                 if (player){
-                    const cover_path = `${player.trackCoverUrl} `.slice(7,-1);
-                    console.log(1,1,cover_path)
-                    Utils.execAsync(["cp",cover_path,`/tmp/musiccover.png`])
+                    Utils.execAsync(["cp",player.cover_path,`/tmp/musiccover.png`])
                         .then(async(out) => {
                             await new Promise(r => setTimeout(r, 300));
                             Utils.execAsync([`${themedir}/scripts/cover2bg`, `/tmp/musiccover.png`])
@@ -288,10 +287,25 @@ const Right = () => Widget.Box({
 
 const ProgressBar = () => Widget.ProgressBar({
     className: 'progress',
-    connections: [[1000, self => {
-        console.log("progress::: ",Mpris.getPlayer('')?.length)
-        self.fraction = Mpris.getPlayer('')?.position;
-    }]],
+    connections: [
+        [100, self => {
+        self.fraction = Mpris.getPlayer('')?.position/Mpris.getPlayer('')?.length;
+        }],
+        [Mpris, self => {
+            const mpris = Mpris.getPlayer('');
+            // mpris player can be undefined
+            if (mpris){
+                if (mpris.playBackStatus === 'Playing') {
+                    self.className = ['progress','playing'];
+                } else {
+                    self.className = ['progress','paused'];
+                }
+                
+            } else {
+                self.className = ['progress'];
+            }
+        }]
+    ],
 });
 
 const Bar = ({ monitor } = {}) => Widget.Window({
@@ -313,7 +327,7 @@ const BottomBar = ({ monitor } = {}) => Widget.Window({
     name: `bot-bar-${monitor}`, // name has to be unique
     className: 'bot-bar',
     monitor,
-    margin: [0, 20],
+    margin: [0, 0],
     anchor: ['bottom', 'left', 'right'],
     exclusive: false,
     child: ProgressBar(),
@@ -324,7 +338,7 @@ export default {
     style: App.configDir + '/style.css',
     windows: [
         Bar(),
-        // BottomBar()
+        BottomBar()
 
         // you can call it, for each monitor
         // Bar({ monitor: 0 }),
