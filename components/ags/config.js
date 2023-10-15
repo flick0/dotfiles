@@ -196,7 +196,8 @@ const Media = () => Widget.Button({
                     const cover_path = `${player.trackCoverUrl} `.slice(7,-1);
                     console.log(1,1,cover_path)
                     execAsync(["cp",cover_path,`/tmp/musiccover.png`])
-                        .then(out => {
+                        .then(async(out) => {
+                            await new Promise(r => setTimeout(r, 300));
                             execAsync([`${themedir}/scripts/cover2bg`, `/tmp/musiccover.png`])
                                 .then(out => console.log(out))
                                 .catch(err => console.log(err));

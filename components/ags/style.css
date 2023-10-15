@@ -15,7 +15,7 @@ label {
 .notification,
 .trayitem {
     background-color: @cbackground ;
-    box-shadow: rgba(0, 0, 0, 0.288) 2 2 5 2px;
+    box-shadow: alpha(@cbackground,0.2) 2 2 5 2px;
     border-radius: 15px;
     margin-right: 10px;
     padding: 10px;
@@ -160,11 +160,12 @@ label {
     background-size: 400% 400%;
     animation: gradient_f 9s cubic-bezier(.72,.39,.21,1) infinite;
     text-shadow: 0 0 5px rgba(0, 0, 0, 0.377);
-    color: #fff ;
+    color: @cbackground ;
     padding-left: 40px;
     padding-right: 40px;
     padding-bottom: 2;
     padding-top: 4;
+    box-shadow: alpha(@cbackground,0.2) 2 2 5 2px;
     transition: padding 1s cubic-bezier(0,1.77,.08,1.49),background 0.2s ease-in-out,font-size 0.5s ease-out;
 }
 

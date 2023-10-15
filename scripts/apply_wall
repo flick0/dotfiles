@@ -5,7 +5,7 @@ import pywal
 
 def apply(pre=None,wallpaper=None):
     if not pre:
-        colors = pywal.colors.get(wallpaper,backend="colorz")
+        colors = pywal.colors.get(wallpaper,backend="wal")
     else:
         colors = pre
     print(wallpaper)

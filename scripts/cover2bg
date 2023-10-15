@@ -13,16 +13,26 @@ if ! file "$1" | grep -qE 'image|bitmap'; then
     exit 1
 fi
 
-
 # get json from hyprctl
 json=$(hyprctl monitors -j)
 json=$(echo $json | jq '.[0]')
 width=$(echo $json | jq '.width')
 height=$(echo $json | jq '.height')
 
+if [ -f /tmp/prev_bg.png ]; then
+    if cmp -s "$1" /tmp/prev_bg.png; then
+        echo "Image is the same"
+        exit 0
+    fi
+fi
+
+cp "$1" /tmp/prev_bg.png
+
+echo "Image is different"
+
 cp "$1" /tmp/bg.png
 
-magick mogrify -fuzz 20% -trim +repage -shave 7x7 -format png /tmp/bg.png
+magick mogrify -fuzz 4% -trim +repage -shave 7x7 -format png /tmp/bg.png
 convert /tmp/bg.png -resize $((width / 2))x$((height / 2))^ -gravity center -extent $((width / 2))x$((height / 2)) /tmp/bg.png
 
 img_width=$(identify -format "%w" /tmp/bg.png)
