@@ -9,7 +9,7 @@ dunst &
 
 foot -s -c $config/components/foot.ini &
 
-swayidle -w timeout 300 '$HOME/.config/hypr/scripts/lock' timeout 600 'hyprctl dispatch dpms off' resume 'hyprctl dispatch dpms on' before-sleep '$HOME/.config/hypr/scripts/lock'
+swayidle -w timeout 300 '$HOME/.config/hypr/scripts/lock' timeout 600 'hyprctl dispatch dpms off' resume 'hyprctl dispatch dpms on' before-sleep '$HOME/.config/hypr/scripts/lock' &
 
 # # waybar
 # $scripts/launch_waybar &
