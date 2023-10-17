@@ -1,0 +1,174 @@
+@import url("colors.css");
+
+* {
+    all:unset;
+    padding: 2px;
+}
+
+/* Defaults */
+label {
+    font-weight: bolder;
+}
+
+.trayitem{
+    all: unset;
+}
+
+.clock,
+.media,
+.workspaces button,
+.notification,
+.trayitem {
+    background-color: @cbackground ;
+    box-shadow: alpha(@cbackground,0.2) 2 2 5 2px;
+    border-radius: 15px;
+    margin-right: 10px;
+    padding: 10px;
+    padding-top: 4px;
+    padding-bottom: 2px;
+    font-weight: bolder;
+    color: 	@cforeground ;
+    background-size: 100% 100%;
+    background-position: 0% 0%;
+    text-shadow: 0 0 5px alpha(@cbackground,0.2);
+    font-size: 15px;
+}
+
+/* Notification */
+.notification {
+    background-color: transparent;
+    box-shadow: none;
+    padding-right: 0;
+    padding-left: 0;
+}
+
+.notification.active{
+    color: @cbackground;
+    background-position: 0% 200%;
+    background-size: 400% 400%;
+}
+
+.notification.normal{
+    padding-right: 20px;
+    padding-left: 20px;
+    background: rgb(148,226,213);
+    background-size: 400% 400%;
+    text-shadow: 0 0 5px alpha(@cbackground,0.2);
+    font-weight: bolder;
+    color: #fff;
+}
+
+.notification.critical{
+    padding-right: 20px;
+    padding-left: 20px;
+    background: rgb(235,160,172);
+    background-size: 200% 200%;
+    text-shadow: 0 0 5px alpha(@cbackground,0.2);
+    font-weight: bolder;
+    color: #fff;
+}
+
+
+
+/* Active Workspace */
+.workspace:hover {
+    background-color: #32325c;
+}
+.workspaces button.active {
+    padding-right: 20px;
+    padding-left: 20px;
+    padding-bottom: 3px;
+    color: @cbackground;
+    background: @c2;
+    background-position: 0% 200%;
+    background-size: 400% 400%;
+}
+
+/* Center Pill Thing™ */
+.media {
+    background-color: transparent;
+    box-shadow: none;
+    padding-right: 5;
+    padding-left: 5;
+    padding-bottom: 5;
+    padding-top: 3;
+    
+}
+
+.media.back {
+    background: @cbackground;
+    background-size: 400% 400%;
+    text-shadow: 0 0 5px alpha(@cbackground,0.2);
+    color: @cforeground ;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-bottom: 2;
+    padding-top: 4;
+}
+
+.media.next {
+    background: @cbackground;
+    background-size: 400% 400%;
+    text-shadow: 0 0 5px alpha(@cbackground,0.2);
+    color: @cforeground ;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-bottom: 2;
+    padding-top: 4;
+}
+
+.media.playing {
+    background: @c4;
+    background-size: 400% 400%;
+    text-shadow: 0 0 5px alpha(@cforeground,0.4);
+    color: @cbackground ;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-bottom: 2;
+    padding-top: 4;
+    box-shadow: alpha(@cbackground,0.2) 2 2 5 2px;
+}
+
+.media.paused {
+    background: @cbackground;
+    background-size: 400% 400%;
+    text-shadow: 0 0 5px alpha(@cbackground,0.2);
+    color: @c4 ;
+    font-size: 13px;
+}
+
+.segment {
+    margin-top: 10px;
+    margin-bottom: 7px;
+}
+
+.bar {
+    background-color: transparent;
+}
+
+.progress {
+    padding: 0px;
+}
+
+.clock {
+    background: @cforeground;
+    color: @cbackground;
+    text-shadow: 0 0 5px alpha(@cforeground,0.2);
+    background-size: 200% 300%;
+
+    padding-top: 5px;
+    padding-right: 20px;
+    padding-left: 20px;
+}
+
+.progress progress {
+    background-size: 100% 100%;
+    padding: 0px;
+}
+
+.progress.playing progress {
+    background-size: 200% 300%;
+}
+
+
+

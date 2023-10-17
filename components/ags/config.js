@@ -1,5 +1,5 @@
 // importing 
-import { Hyprland, Notifications, Mpris, Audio, Battery, SystemTray, App, Widget, Utils} from './imports.js';
+import { Hyprland, Notifications, Mpris, Audio, Battery, SystemTray, App, Widget, Utils, Variable} from './imports.js';
 // import Notifications from './imports.js';
 // import Mpris from './imports.js';
 // import Audio from './imports.js';
@@ -19,6 +19,11 @@ const home = `/home/${Utils.exec('whoami')}`
 const themedir = App.configDir.split('/').slice(0,-2).join('/')
 console.log("homedir:: "+ home)
 console.log("themedir:: " + themedir)
+
+
+const battery = Variable(false,{})
+
+globalThis.battery = battery;
 
 function get_color(){
     return Utils.readFileAsync(home + '/.config/hypr/themes/uicolors')
@@ -44,6 +49,15 @@ function get_color(){
     //return colors;
 }
 
+battery.connect('changed', ({ value }) => {
+    App.resetCss();
+    if (battery.value) {
+        App.applyCss(App.configDir +`/style-battery.css`);
+    } else {
+        App.applyCss(App.configDir +`/style.css`);
+    }
+});
+
 Utils.subprocess([
     'inotifywait',
     '--recursive',
@@ -63,7 +77,11 @@ Utils.subprocess([
             .then(file => {
                 print('colors.css updated');
                 App.resetCss();
-                App.applyCss(App.configDir +`/style.css`);
+                if (battery.value) {
+                    App.applyCss(App.configDir +`/style-battery.css`);
+                } else {
+                    App.applyCss(App.configDir +`/style.css`);
+                }
             })
             .catch(err => print(err));
     })
@@ -76,7 +94,7 @@ const Workspaces = () => Widget.Box({
         children: Array.from({ length: 10 }, (_, i) => i + 1).map(i => Widget.Button({
             child:Widget.Label({label:`${i}`}),
             className: "workspace",
-            onClicked: () => Utils.Utils.execAsync(`hyprctl dispatch workspace ${i}`),
+            onClicked: () => Utils.execAsync(`hyprctl dispatch workspace ${i}`),
         })
         ),
         connections: [[Hyprland, box => {
@@ -303,7 +321,10 @@ const ProgressBar = () => Widget.ProgressBar({
     className: 'progress',
     connections: [
         [100, self => {
-        self.fraction = Mpris.getPlayer('')?.position/Mpris.getPlayer('')?.length;
+            const mpris = Mpris.getPlayer('');
+            if (mpris){
+                self.fraction = mpris.position/mpris.length;
+            }
         }],
         [Mpris, self => {
             const mpris = Mpris.getPlayer('');
@@ -317,6 +338,7 @@ const ProgressBar = () => Widget.ProgressBar({
                 
             } else {
                 self.className = ['progress'];
+                self.fraction = 0;
             }
         }]
     ],
@@ -349,7 +371,7 @@ const BottomBar = ({ monitor } = {}) => Widget.Window({
 
 // exporting the config so ags can manage the windows
 export default {
-    style: App.configDir + '/style.css',
+    style: App.configDir +`/style.css`,
     windows: [
         Bar(),
         BottomBar()

@@ -1,5 +1,10 @@
 @import url("colors.css");
 
+* {
+    all:unset;
+    padding: 2px;
+}
+
 /* Defaults */
 label {
     font-weight: bolder;
@@ -248,6 +253,10 @@ label {
     background-color: transparent;
 }
 
+.progress {
+    padding: 0px;
+}
+
 .clock {
     background: @cforeground;
     color: @cbackground;
@@ -262,14 +271,11 @@ label {
     padding-left: 20px;
 }
 
-.progress {
-    all: unset;
-}
-
 .progress progress {
     background: linear-gradient(118deg, @cforeground 5%, @c1 5%, @c1 20%, @cforeground 20%, @cforeground 40%, @c1 40%, @c1 60%, @cforeground 60%, @cforeground 80%, @c1 80%, @c1 95%, @cforeground 95%);
     background-size: 100% 100%;
     transition: padding 1s cubic-bezier(0,1.77,.08,1.49),background 0.7s ease-in-out,font-size 0.5s ease-out;
+    padding: 0px;
 }
 
 .progress.playing progress {
