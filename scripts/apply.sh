@@ -15,3 +15,5 @@ asusctl led-mode static -c "$($color cursor -n)" &
 python $argv[1]/scripts/pywal_set.py 1 &
 
 ags -c ~/rice/themes/aurora/components/ags/config.js &
+
+
