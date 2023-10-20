@@ -21,12 +21,12 @@ json=$(echo $json | jq '.[0]')
 width=$(echo $json | jq '.width')
 height=$(echo $json | jq '.height')
 
-if [ -f /tmp/prev_bg.png ]; then
-    if cmp -s "$1" /tmp/prev_bg.png; then
-        echo "Image is the same"
-        exit 0
-    fi
-fi
+# if [ -f /tmp/prev_bg.png ]; then
+#     if cmp -s "$1" /tmp/prev_bg.png; then
+#         echo "Image is the same"
+#         exit 0
+#     fi
+# fi
 
 cp "$1" /tmp/prev_bg.png
 
@@ -58,7 +58,7 @@ if [ ! -f /tmp/texture.png ]; then
     convert -size ${img_width}x${img_height} xc:gray +noise Random -channel A -threshold 90% /tmp/texture.png
 fi
 # convert -size ${img_width}x${img_height} xc:gray +noise Random -channel A -threshold 90% /tmp/texture.png
-convert /tmp/texture.png -alpha set -channel A -evaluate set 2% /tmp/texture.png
+convert /tmp/texture.png -alpha set -channel A -evaluate set 3% /tmp/texture.png
 convert /tmp/bg.png /tmp/texture.png -gravity center -compose overlay -composite /tmp/bg.png
 
 $HYPRLAND_THEME/scripts/apply_wall /tmp/bg.png

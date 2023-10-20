@@ -26,7 +26,7 @@ def apply(pre=None,wallpaper=None):
     print(wallpaper)
     print("colors::::: ",colors)
     
-    cmd = f"swww img '{wallpaper}' --transition-type simple --transition-step 15"
+    cmd = f"swww img '{wallpaper}' --transition-type wave --transition-duration 5 --transition-step 255"
     subprocess.run(cmd,shell=True)
 
     with open(os.path.expanduser("~/.config/hypr/themes/colors_base"),"r") as cr:
