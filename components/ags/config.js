@@ -21,9 +21,32 @@ console.log("homedir:: "+ home)
 console.log("themedir:: " + themedir)
 
 
-const battery = Variable(false,{})
+const battery = Variable(false,{
+    poll:[1500,['cat','/sys/class/power_supply/ADP0/online'], out => {
+        if (out=="1") {
+            return false
+        } else if (out=="0") {
+            return true
+        }
+    }]
+})
 
 globalThis.battery = battery;
+
+let prev_battery = false
+battery.connect('changed', ({ value }) => {
+    if (prev_battery == value){
+        return
+    }
+    prev_battery = value
+    if (battery.value) {
+        App.resetCss();
+        App.applyCss(App.configDir +`/style-battery.css`);
+    } else {
+        App.resetCss();
+        App.applyCss(App.configDir +`/style.css`);
+    }
+});
 
 function get_color(){
     return Utils.readFileAsync(home + '/.config/hypr/themes/uicolors')
@@ -48,15 +71,6 @@ function get_color(){
         .catch(console.error);
     //return colors;
 }
-
-battery.connect('changed', ({ value }) => {
-    App.resetCss();
-    if (battery.value) {
-        App.applyCss(App.configDir +`/style-battery.css`);
-    } else {
-        App.applyCss(App.configDir +`/style.css`);
-    }
-});
 
 Utils.subprocess([
     'inotifywait',
