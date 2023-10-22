@@ -160,8 +160,7 @@ label {
 }
 
 .media.playing {
-    background: @c4;
-    background: radial-gradient(circle, @c2 0%, @c2 6%, @c3 14%, @c4 14%, @c5 18%, @c6 28%, @c6 28%, @c9 58%, @c10 69%, @c11 72%, @c12 73%, @c13 78%, @c14 100%);
+    background-image: cross-fade(50% image(radial-gradient(circle, @c2 0%, @c2 6%, @c3 14%, @c4 14%, @c5 18%, @c6 28%, @c6 28%, @c9 58%, @c10 69%, @c11 72%, @c12 73%, @c13 78%, @c14 100%)),url("../../texture.png"));
     background-size: 400% 400%;
     animation: gradient_f 9s cubic-bezier(.72,.39,.21,1) infinite;
     text-shadow: 0 0 5px alpha(@cforeground,0.4);
@@ -170,7 +169,7 @@ label {
     padding-right: 40px;
     padding-bottom: 2;
     padding-top: 4;
-    box-shadow: alpha(@cbackground,0.2) 2 2 5 2px;
+    box-shadow: alpha(@cbackground,0.1) 2 2 5 2px;
     transition: padding 1s cubic-bezier(0,1.77,.08,1.49),background 0.2s ease-in-out,font-size 0.5s ease-out;
 }
 
