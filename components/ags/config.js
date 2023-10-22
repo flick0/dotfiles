@@ -215,13 +215,16 @@ const Media = () => Widget.Button({
                             if (mpris && `${mpris.trackArtists.join(', ')}|${mpris.trackTitle}`.length > 1){
                                 nowplaying.now_playing = `${mpris.trackArtists.join(', ')}|${mpris.trackTitle}`;
                             } else {
-                                Utils.execAsync([`${themedir}/scripts/pywal_set`, `--reset`])
-                                    .then(out => console.log(out))
-                                    .catch(err => console.log(err));
                                 nowplaying.now_playing = "";
                                 while (nowplaying.now_playing.length > 0){
                                     nowplaying.now_playing = nowplaying.now_playing.slice(1,-1);
                                     await new Promise(r => setTimeout(r, 50));
+                                }
+                                await new Promise(r => setTimeout(r, 2000))
+                                if (nowplaying.now_playing.length == 0){
+                                    Utils.execAsync([`${themedir}/scripts/pywal_set`, `--reset`])
+                                        .then(out => console.log(out))
+                                        .catch(err => console.log(err));
                                 }
                             }        
                     }],
@@ -365,6 +368,7 @@ const Bar = ({ monitor } = {}) => Widget.Window({
     margin: [0, 20],
     anchor: ['top', 'left', 'right'],
     exclusive: true,
+    layer: "bottom",
     child: Widget.CenterBox({
         startWidget: Left(),
         centerWidget: Center(),
@@ -388,7 +392,7 @@ export default {
     style: App.configDir +`/style.css`,
     windows: [
         Bar(),
-        BottomBar()
+        // BottomBar()
 
         // you can call it, for each monitor
         // Bar({ monitor: 0 }),
