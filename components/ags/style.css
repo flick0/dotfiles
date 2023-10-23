@@ -19,7 +19,7 @@ label {
 .workspaces button,
 .notification,
 .trayitem {
-    background-color: @cbackground ;
+    background-color: alpha(@cbackground,0.7) ;
     box-shadow: alpha(@cbackground,0.2) 2 2 5 2px;
     border-radius: 15px;
     margin-right: 10px;

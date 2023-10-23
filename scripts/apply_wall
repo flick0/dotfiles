@@ -5,13 +5,18 @@ import pywal
 import numpy as np
 import matplotlib as mpl
 import time
+import json
+import random
 
 def colormix(c1,c2,mix=0):
-    
     #get np arrays c1 and c2 from hex
     c1 = np.array(mpl.colors.to_rgb(c1))
     c2 = np.array(mpl.colors.to_rgb(c2))
     return mpl.colors.to_hex((1-mix)*c1 + mix*c2)
+
+def alpha(c1,a):
+    c1 = np.array(mpl.colors.to_rgb(c1))
+    return mpl.colors.to_hex(c1 + (1-c1)*a)
 
 def apply(pre=None,wallpaper=None):
     if not pre:
@@ -20,6 +25,20 @@ def apply(pre=None,wallpaper=None):
         colors = pre
     print(wallpaper)
     print("colors::::: ",colors)
+    
+    # with open(os.path.expanduser("~/.config/Code/User/settings.json"),"r") as f:
+    #     code_conf = json.load(f)
+    
+    # if not code_conf.get("workbench.colorCustomizations"):
+    #     code_conf["workbench.colorCustomizations"] = {}
+
+    # for key,value in code_conf["workbench.colorCustomizations"].items():
+    #     value = value.strip()
+    #     if value.startswith("#"):
+    #         code_conf["workbench.colorCustomizations"][key] = colormix(value,colors["colors"][f"color5"],mix=0.1)
+    
+    # with open(os.path.expanduser("~/.config/Code/User/settings.json"), "w") as f:
+    #     json.dump(code_conf, f, indent=4)
     
     cmd = f"swww img '{wallpaper}' --transition-type grow --transition-step 1 --transition-duration 1 --transition-pos 0.5,1.0"
     subprocess.run(cmd,shell=True)

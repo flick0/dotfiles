@@ -6,17 +6,20 @@ import os
 import subprocess
 import numpy as np
 import matplotlib as mpl
+import time
 
 THEME_DIR = os.environ.get("HYPRLAND_THEME")
 print(THEME_DIR)
 
-
 def colormix(c1,c2,mix=0):
-    
     #get np arrays c1 and c2 from hex
     c1 = np.array(mpl.colors.to_rgb(c1))
     c2 = np.array(mpl.colors.to_rgb(c2))
     return mpl.colors.to_hex((1-mix)*c1 + mix*c2)
+
+def alpha(c1,a):
+    c1 = np.array(mpl.colors.to_rgb(c1))
+    return mpl.colors.to_hex(c1 + (1-c1)*a)
 
 def apply(pre=None,wallpaper=None):
     if not pre:
@@ -26,7 +29,21 @@ def apply(pre=None,wallpaper=None):
     print(wallpaper)
     print("colors::::: ",colors)
     
-    cmd = f"swww img '{wallpaper}' --transition-type wave --transition-duration 5 --transition-step 255"
+    # with open(os.path.expanduser("~/.config/Code/User/settings.json"),"r") as f:
+    #     code_conf = json.load(f)
+    
+    # if not code_conf.get("workbench.colorCustomizations"):
+    #     code_conf["workbench.colorCustomizations"] = {}
+
+    # for key,value in code_conf["workbench.colorCustomizations"].items():
+    #     value = value.strip()
+    #     if value.startswith("#"):
+    #         code_conf["workbench.colorCustomizations"][key] = colormix(value,colors["colors"][f"color5"],mix=0.1)
+    
+    # with open(os.path.expanduser("~/.config/Code/User/settings.json"), "w") as f:
+    #     json.dump(code_conf, f, indent=4)
+    
+    cmd = f"swww img '{wallpaper}' --transition-type grow --transition-step 1 --transition-duration 1 --transition-pos 0.5,1.0"
     subprocess.run(cmd,shell=True)
 
     with open(os.path.expanduser("~/.config/hypr/themes/colors_base"),"r") as cr:
@@ -53,7 +70,6 @@ def apply(pre=None,wallpaper=None):
             f.write(f"{color}: {value}\n")
 
     subprocess.run("touch ~/.config/hypr/themes/uicolors",shell=True)
-    subprocess.run("pkill -USR2 fish",shell=True)
 
     # active borders
     gradient = ""
@@ -70,6 +86,14 @@ def apply(pre=None,wallpaper=None):
         gradient += f"rgba({value[1:]}44) "
     gradient += " 0deg"
     cmd = f"hyprctl keyword general:col.inactive_border '{gradient}'"
+    print(cmd)
+    subprocess.run(cmd,shell=True)
+
+    cmd = f"hyprctl keyword decoration:col.shadow '0x33{colors['colors']['color5'][1:]}'"
+    print(cmd)
+    subprocess.run(cmd,shell=True)
+
+    cmd = f"hyprctl keyword decoration:col.shadow_inactive '0x22{colors['special']['background'][1:]}'"
     print(cmd)
     subprocess.run(cmd,shell=True)
 
@@ -102,7 +126,9 @@ gradient_color_8 = '{colors["colors"]["color7"]}'
     with open(os.path.expanduser("~/.config/cava/config"),"w") as f:
         f.write(conf)
     
+    time.sleep(0.5)
     subprocess.run("pkill -USR2 cava",shell=True)
+    subprocess.run("pkill -USR2 fish",shell=True)
 
 
 def main():
