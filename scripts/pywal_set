@@ -132,8 +132,6 @@ gradient_color_8 = '{colors["colors"]["color7"]}'
 
 
 def main():
-    
-        
     parser = argparse.ArgumentParser()
     parser.add_argument("--index", help="wallpaper index")
     parser.add_argument("--nosave", help="to save wallpaper to `currentwall` or not",action="store_true")
