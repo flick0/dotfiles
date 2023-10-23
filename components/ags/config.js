@@ -1,14 +1,7 @@
 // importing 
 import { Hyprland, Notifications, Mpris, Audio, Battery, SystemTray, App, Widget, Utils, Variable} from './imports.js';
-// import Notifications from './imports.js';
-// import Mpris from './imports.js';
-// import Audio from './imports.js';
-// import Battery from './imports.js';
-// import SystemTray from './imports.js';
-// import App from './imports.js';
-// import Widget from './imports.js';
-// import { Utils } from './imports.js';
-import nowplaying  from './service/nowplaying.js'; //;
+
+import nowplaying  from './service/nowplaying.js'; 
 
 // widgets can be only assigned as a child in one container
 // so to make a reuseable widget, just make it a function
@@ -31,7 +24,35 @@ const battery = Variable(false,{
     }]
 })
 
+const dominant_color = Variable("#000000",{});
+
+function dark_text(color){
+    //check limunosity of color and determine if white text will be visible 
+    let tolerence = 0.5;
+    let r = parseInt(color.slice(1,3),16);
+    let g = parseInt(color.slice(3,5),16);
+    let b = parseInt(color.slice(5,7),16);
+    let limunosity = 0.2126*r + 0.7152*g + 0.0722*b;
+    return limunosity > 255*tolerence;
+}
+
+function arrremove(arr, value) { 
+    return arr.filter(function(ele){ 
+        return ele != value; 
+    });
+}
+
+function arradd(arr, value) {
+    if (arr.includes(value)){
+        return arr;
+    }
+    arr.push(value);
+    return arr;
+}
+
+
 globalThis.battery = battery;
+globalThis.dominant_color = dominant_color;
 
 let prev_battery = false
 battery.connect('changed', ({ value }) => {
@@ -51,18 +72,16 @@ battery.connect('changed', ({ value }) => {
 function get_color(){
     return Utils.readFileAsync(home + '/.config/hypr/themes/uicolors')
         .then(content => {
-            var colors = {}
+            let colors = {}
             //split into lines
             let lines = content.split('\n');
-            for (let i = 0; i < lines.length; i++) {
-                let [key, value] = lines[i].split(':');
+            for (const element of lines) {
+                let [key, value] = element.split(':');
                 if (key == undefined || value == undefined){
                     continue;
                 }
-                //strip
                 key = key.trim();
                 value = value.trim();
-
                 colors[key] = value;
             }
             console.log(colors)
@@ -106,31 +125,52 @@ const Workspaces = () => Widget.Box({
         className: 'workspaces',
         
         children: Array.from({ length: 10 }, (_, i) => i + 1).map(i => Widget.Button({
-            child:Widget.Label({label:`${i}`}),
+            child:Widget.Label({label:`${i}`,}),
             className: "workspace",
             onClicked: () => Utils.execAsync(`hyprctl dispatch workspace ${i}`),
         })
         ),
-        connections: [[Hyprland, box => {
+        connections: [
+        
+        [dominant_color, self => {
+                if (dark_text(dominant_color.value)){
+                    self.className = arrremove(self.className,"light");
+                    self.className = arradd(self.className,"dark");
+                } else {
+                    self.className = arrremove(self.className,"dark");
+                    self.className = arradd(self.className,"light");
+                }
+            
+        }],
+        [Hyprland, box => {
 
             //loop through children
-            for (let i = 0; i < box.children.length; i++) {
+            for (const element of box.children) {
                 //set the label of the child to the name of the workspace
-                if(box.children[i].child.label == Hyprland.active.workspace.id){
-                    box.children[i].className = ["active","workspace"];
+                if(element.child.label == Hyprland.active.workspace.id){
+                    element.className = ["active","workspace"];
                 } else {
-                    box.children[i].className = ["workspace"];
+                    element.className = ["workspace"];
                 }
             }
         }
         ]]});
 
 const Clock = () => Widget.Label({
-    className: 'clock',
+    className: ['clock'],
     connections: [
         // this is what you should do
-        [1000, self => Utils.execAsync(['date', '+%I:%M'])
+        [1000, self => Utils.execAsync(['date', '+%I : %M'])
             .then(date => self.label = date).catch(console.error)],
+            [dominant_color, self => {
+                if (dark_text(dominant_color.value)){
+                    self.className = arrremove(self.className,"light");
+                    self.className = arradd(self.className,"dark");
+                } else {
+                    self.className = arrremove(self.className,"dark");
+                    self.className = arradd(self.className,"light");
+                }
+            }],
     ],
 });
 
@@ -149,7 +189,18 @@ const Notification = () => Widget.Box({
                     await new Promise(r => setTimeout(r, 200));
                     self.label = Notifications.popups[0]?.summary
                 }
-            }]],
+            }],
+            [dominant_color, self => {
+                if (dark_text(dominant_color.value)){
+                    self.className = arrremove(self.className,"light");
+                    self.className = arradd(self.className,"dark");
+                } else {
+                    self.className = arrremove(self.className,"dark");
+                    self.className = arradd(self.className,"light");
+                }
+            
+            }],
+        ],
         }),
     ],
     connections: [[Notifications, self => {
@@ -162,7 +213,8 @@ const Notification = () => Widget.Box({
         } else {
             self.className = ['notification'];
         }
-    }]],
+    }],
+    ],
 });
 
 const is_it_playing = (self) => {
@@ -183,7 +235,7 @@ const is_it_playing = (self) => {
 let NO = false;
 
 const Media = () => Widget.Button({
-        className: 'media',
+        className: ['media'],
         onPrimaryClick: () => Mpris.getPlayer('')?.playPause(),
         onScrollUp: async (self) => {
             if (NO){
@@ -220,7 +272,7 @@ const Media = () => Widget.Button({
                                     nowplaying.now_playing = nowplaying.now_playing.slice(1,-1);
                                     await new Promise(r => setTimeout(r, 50));
                                 }
-                                await new Promise(r => setTimeout(r, 2000))
+                                await new Promise(r => setTimeout(r, 1000))
                                 if (nowplaying.now_playing.length == 0){
                                     Utils.execAsync([`${themedir}/scripts/pywal_set`, `--reset`])
                                         .then(out => console.log(out))
@@ -230,7 +282,22 @@ const Media = () => Widget.Button({
                     }],
                     [nowplaying, self => {
                         self.label = nowplaying.now_playing;
-                    }]
+                    }],
+                    [dominant_color, self => {
+                        if (dark_text(dominant_color.value)){
+                            self.className = arrremove(self.className,"light");
+                            self.className = arradd(self.className,"dark");
+                        } else {
+                            self.className = arrremove(self.className,"dark");
+                            self.className = arradd(self.className,"light");
+                        }
+                    
+                    }],
+                    // [100, self => {
+                    //     console.log(arradd(self.className,"light"));
+                    //     self.className = arradd(self.className,"light");
+                    //     console.log(self.className);
+                    // }]
                 ],
                 }),
             ]
@@ -367,8 +434,8 @@ const Bar = ({ monitor } = {}) => Widget.Window({
     monitor,
     margin: [0, 20],
     anchor: ['top', 'left', 'right'],
-    exclusive: true,
-    layer: "bottom",
+    exclusive: false,
+    layer: "top",
     child: Widget.CenterBox({
         startWidget: Left(),
         centerWidget: Center(),

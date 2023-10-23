@@ -2,12 +2,40 @@
 
 * {
     all:unset;
-    padding: 2px;
+    /* padding: 1px; */
 }
 
 /* Defaults */
 label {
     font-weight: bolder;
+}
+
+.workspaces.dark .active{
+    color: @cbackground;
+    text-shadow: 0 0 4px alpha(@cforeground,0.7);
+}
+
+.workspaces.light .active{
+    color: @cforeground;
+    text-shadow: 0 0 4px alpha(@cbackground,0.7);
+}
+
+.workspaces.light,
+.workspaces.dark,
+.media.paused
+.media{
+    color: @cforeground;
+    text-shadow: 0 0 4px alpha(@cbackground,0.7);
+}
+
+.dark{
+    color: @cbackground;
+    text-shadow: 0 0 4px alpha(@cforeground,0.7);
+}
+
+.light{
+    color: @cforeground;
+    text-shadow: 0 0 4px alpha(@cbackground,0.7);
 }
 
 .trayitem{
@@ -19,6 +47,7 @@ label {
 .workspaces button,
 .notification,
 .trayitem {
+    min-width: 20px;
     background-color: alpha(@cbackground,0.7) ;
     box-shadow: alpha(@cbackground,0.2) 2 2 5 2px;
     border-radius: 15px;
@@ -27,12 +56,11 @@ label {
     padding-top: 4px;
     padding-bottom: 2px;
     font-weight: bolder;
-    color: 	@cforeground ;
+    /* color: 	@cforeground ; */
     background-size: 100% 100%;
     background-position: 0% 0%;
-    text-shadow: 0 0 5px alpha(@cbackground,0.2);
-    font-size: 15px;
-    transition: padding 0.4s cubic-bezier(.55,-0.68,.48,1.68),background 0.7s ease-in;
+    font-size: 16px;
+    transition: padding 0.4s cubic-bezier(.55,-0.68,.48,1.68),background 0.7s ease-in,all 0.3s cubic-bezier(.55,-0.68,.48,1.68);
 }
 
 /* Notification */
@@ -86,11 +114,11 @@ label {
     background-color: #32325c;
     transition: background 0.3s ease-in;
 }
+
 .workspaces button.active {
     padding-right: 20px;
     padding-left: 20px;
     padding-bottom: 3px;
-    color: @cbackground;
     background-position: 0% 200%;
     background: radial-gradient(
         circle,
@@ -116,7 +144,7 @@ label {
         @c12 100%); 
     background-size: 400% 400%;
     animation: gradient_f 20s ease-in-out infinite;
-    transition: padding 0.3s cubic-bezier(.55,-0.68,.48,1.68),background 0.7s ease-in-out;
+    transition: padding 0.3s cubic-bezier(.55,-0.68,.48,1.68),background 0.7s ease-in-out,all 0.3s cubic-bezier(.55,-0.68,.48,1.68);
 }
 
 /* Center Pill Thing™ */
@@ -137,7 +165,7 @@ label {
     background-size: 400% 400%;
     animation: gradient_back 2s cubic-bezier(.72,.39,.21,1) infinite;
     text-shadow: 0 0 5px alpha(@cbackground,0.2);
-    color: @cforeground ;
+    /* color: @cforeground ; */
     padding-left: 40px;
     padding-right: 40px;
     padding-bottom: 2;
@@ -151,7 +179,7 @@ label {
     background-size: 400% 400%;
     animation: gradient_next 2s cubic-bezier(.72,.39,.21,1) infinite;
     text-shadow: 0 0 5px alpha(@cbackground,0.2);
-    color: @cforeground ;
+    /* color: @cforeground ; */
     padding-left: 40px;
     padding-right: 40px;
     padding-bottom: 2;
@@ -163,8 +191,6 @@ label {
     background-image: cross-fade(50% image(radial-gradient(circle, @c2 0%, @c2 6%, @c3 14%, @c4 14%, @c5 18%, @c6 28%, @c6 28%, @c9 58%, @c10 69%, @c11 72%, @c12 73%, @c13 78%, @c14 100%)),url("../../texture.png"));
     background-size: 400% 400%;
     animation: gradient_f 9s cubic-bezier(.72,.39,.21,1) infinite;
-    text-shadow: 0 0 5px alpha(@cforeground,0.4);
-    color: @cbackground ;
     padding-left: 40px;
     padding-right: 40px;
     padding-bottom: 2;
@@ -174,12 +200,11 @@ label {
 }
 
 .media.paused {
-    background: @cbackground;
+    background: alpha(@cbackground,0.7);
     background-size: 400% 400%;
     animation: gradient_f 9s cubic-bezier(.72,.39,.21,1) infinite;
-    text-shadow: 0 0 5px alpha(@cbackground,0.2);
-    color: @c4 ;
-    font-size: 13px;
+    /* color: @c4 ; */
+    /* font-size: 13px; */
     transition-delay: 250ms;
     transition: padding 1s cubic-bezier(0,1.77,.08,1.49),background 0.2s ease-in-out,font-size 0.5s ease-out;
 }
@@ -257,17 +282,39 @@ label {
 }
 
 .clock {
+    font-weight: bolder;
     background: @cforeground;
-    color: @cbackground;
-    text-shadow: 0 0 5px alpha(@cforeground,0.2);
-    background: linear-gradient(118deg, @cforeground 5%, @c1 5%, @c1 20%, @cforeground 20%, @cforeground 40%, @c1 40%, @c1 60%, @cforeground 60%, @cforeground 80%, @c1 80%, @c1 95%, @cforeground 95%); 
 
-    background-size: 200% 300%;
-
-    animation: gradient_f_nh 4s linear infinite;
-    padding-top: 5px;
+    /* color: @cforeground; */
+    background-position: 0% 200%;
+    background: linear-gradient(118deg, @c5 5%, @c3 5%, @c3 20%, @c5 20%, @c5 40%, @c3 40%, @c3 60%, @c5 60%, @c5 80%, @c3 80%, @c3 95%, @c5 95%);
+    /* background: radial-gradient(
+        circle,
+        @c1 0%,
+        @c2 12%,
+        @c3 19%,
+        @c4 20%,
+        @c5 24%,
+        @c6 36%,
+        @c1 37%,
+        @c2 48%,
+        @c3 52%,
+        @c13 52%,
+        @c14 59%,
+        @c6 66%,
+        @c7 67%,
+        @c8 68%,
+        @c9 77%, 
+        @c10 78%,
+        @c11 82%,
+        @c12 83%,
+        @c13 90%,
+        @c14 100%);  */
+    background-size: 400% 400%;
+    animation: gradient_f_nh 20s ease-in-out infinite;
+    /* padding-top: 5px;
     padding-right: 20px;
-    padding-left: 20px;
+    padding-left: 20px; */
 }
 
 .progress progress {

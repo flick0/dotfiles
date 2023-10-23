@@ -61,6 +61,8 @@ fi
 convert /tmp/texture.png -alpha set -channel A -evaluate set 5% /tmp/texture.png
 convert /tmp/bg.png /tmp/texture.png -gravity center -compose overlay -composite /tmp/bg.png
 
+ags -r "dominant_color.value = '$color';"
+
 $HYPRLAND_THEME/scripts/apply_wall /tmp/bg.png
 
 
