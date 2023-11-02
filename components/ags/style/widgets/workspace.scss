@@ -1,0 +1,78 @@
+@import "../color";
+@import "../nier/longbutton.scss";
+
+.workspace-button-container.active-no-hover {
+  .nier-long-button {
+    @include long-button-hover;
+    label {
+      transition: background 0.3s cubic-bezier(0.15, 0.79, 0, 1);
+      animation: active-label 0.5s cubic-bezier(0.15, 0.79, 0, 1) forwards;
+      animation-delay: 0.3s;
+    }
+    animation: active 0.5s cubic-bezier(0.15, 0.79, 0, 1) forwards;
+    animation-delay: 0.3s;
+  }
+}
+
+.workspace-button-container.active {
+  .nier-long-button {
+    label {
+      transition: background 0.3s cubic-bezier(0.15, 0.79, 0, 1);
+      animation: active-label 0.5s cubic-bezier(0.15, 0.79, 0, 1) forwards;
+    }
+    animation: active 0.5s cubic-bezier(0.15, 0.79, 0, 1) forwards;
+  }
+}
+
+.active-on-hold,
+.active-no-hover-on-hold {
+  .nier-long-button-hover-icon {
+    opacity: 1;
+  }
+}
+
+.under-workspaces {
+  margin-top: -8px;
+  margin-right: 120px;
+}
+
+.workspace-button {
+  margin-bottom: 20px;
+  transition: border 0.3s cubic-bezier(0.15, 0.79, 0, 1);
+}
+
+.workspace-button-container {
+  .nier-long-button-hover-icon {
+    margin-bottom: 20px;
+  }
+  .nier-long-button {
+    transition: margin 0.1s cubic-bezier(0.15, 0.79, 0, 1);
+  }
+}
+
+.workspace-button-container.active,
+.workspace-button-container.active-no-hover {
+  .nier-long-button-hover-icon {
+    opacity: 1;
+  }
+}
+
+@keyframes active-label {
+  0% {
+    padding-bottom: 8px;
+  }
+  100% {
+    padding-bottom: 20px;
+  }
+}
+
+@keyframes active {
+  0% {
+    margin-bottom: 20px;
+    border: transparent 0px;
+  }
+  100% {
+    margin-bottom: 0px;
+    @include long-button;
+  }
+}

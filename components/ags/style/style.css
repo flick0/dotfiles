@@ -1,0 +1,190 @@
+* {
+  all: unset; }
+
+.nier-toggle-on {
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out; }
+
+.nier-toggle-off {
+  opacity: 0.3;
+  transition: opacity 0.3s ease-in-out; }
+
+.nier-long-button label {
+  font-size: 2rem;
+  background: linear-gradient(90deg, rgba(72, 70, 61, 0.25) 0%, rgba(72, 70, 61, 0.25) 50%, #48463d 50%, #48463d 100%);
+  background-size: 200%;
+  color: #48463d;
+  padding: 8px 8px 7px;
+  transition: background 0.1s cubic-bezier(0.15, 0.79, 0, 1), border-color 0.3s ease-in-out, color 0.3s ease-in-out, box-shadow 0.4s ease-in-out; }
+
+.nier-long-button-group-vertical .nier-long-button-container {
+  margin-bottom: 10px; }
+  .nier-long-button-group-vertical .nier-long-button-container:last-child {
+    margin-bottom: 0; }
+
+.nier-long-button-group .nier-long-button-container {
+  margin-right: 5px; }
+  .nier-long-button-group .nier-long-button-container:last-child {
+    margin-right: 0; }
+
+.nier-long-button {
+  border: none;
+  border-top: transparent 3px solid;
+  border-bottom: transparent 3px solid;
+  min-width: 200px;
+  transition: border 0.3s ease-in-out; }
+
+.nier-long-button-hover {
+  border-top: #48463d 3px solid;
+  border-bottom: #48463d 3px solid;
+  padding-top: 4px;
+  padding-bottom: 4px; }
+  .nier-long-button-hover label {
+    padding-top: calc(8px - 4px);
+    padding-bottom: calc(7px - 4px);
+    background-position: -100%;
+    color: #c2bda6; }
+  .nier-long-button-hover label {
+    transition: background 1s cubic-bezier(0.15, 0.79, 0, 1); }
+
+.nier-long-button-group-ruler {
+  margin-top: 5px;
+  background: linear-gradient(90deg, rgba(72, 70, 61, 0.25) 7px, transparent 0px, transparent 13px, rgba(72, 70, 61, 0.25) 13px, transparent 18px);
+  min-width: 20px; }
+
+.nier-long-button-hover-icon {
+  margin-left: -14px;
+  margin-right: 14px; }
+
+.nier-long-button-hover-icon-visible {
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out; }
+
+.nier-long-button-hover-icon-hidden {
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out; }
+
+.nier-toggle-on {
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out; }
+
+.nier-toggle-off {
+  opacity: 0.3;
+  transition: opacity 0.3s ease-in-out; }
+
+.nier-long-button label {
+  font-size: 2rem;
+  background: linear-gradient(90deg, rgba(72, 70, 61, 0.25) 0%, rgba(72, 70, 61, 0.25) 50%, #48463d 50%, #48463d 100%);
+  background-size: 200%;
+  color: #48463d;
+  padding: 8px 8px 7px;
+  transition: background 0.1s cubic-bezier(0.15, 0.79, 0, 1), border-color 0.3s ease-in-out, color 0.3s ease-in-out, box-shadow 0.4s ease-in-out; }
+
+.nier-long-button-group-vertical .nier-long-button-container {
+  margin-bottom: 10px; }
+  .nier-long-button-group-vertical .nier-long-button-container:last-child {
+    margin-bottom: 0; }
+
+.nier-long-button-group .nier-long-button-container {
+  margin-right: 5px; }
+  .nier-long-button-group .nier-long-button-container:last-child {
+    margin-right: 0; }
+
+.nier-long-button {
+  border: none;
+  border-top: transparent 3px solid;
+  border-bottom: transparent 3px solid;
+  min-width: 200px;
+  transition: border 0.3s ease-in-out; }
+
+.nier-long-button-hover {
+  border-top: #48463d 3px solid;
+  border-bottom: #48463d 3px solid;
+  padding-top: 4px;
+  padding-bottom: 4px; }
+  .nier-long-button-hover label {
+    padding-top: calc(8px - 4px);
+    padding-bottom: calc(7px - 4px);
+    background-position: -100%;
+    color: #c2bda6; }
+  .nier-long-button-hover label {
+    transition: background 1s cubic-bezier(0.15, 0.79, 0, 1); }
+
+.nier-long-button-group-ruler {
+  margin-top: 5px;
+  background: linear-gradient(90deg, rgba(72, 70, 61, 0.25) 7px, transparent 0px, transparent 13px, rgba(72, 70, 61, 0.25) 13px, transparent 18px);
+  min-width: 20px; }
+
+.nier-long-button-hover-icon {
+  margin-left: -14px;
+  margin-right: 14px; }
+
+.nier-long-button-hover-icon-visible {
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out; }
+
+.nier-long-button-hover-icon-hidden {
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out; }
+
+.workspace-button-container.active-no-hover .nier-long-button {
+  border-top: #48463d 3px solid;
+  border-bottom: #48463d 3px solid;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  animation: active 0.5s cubic-bezier(0.15, 0.79, 0, 1) forwards;
+  animation-delay: 0.3s; }
+  .workspace-button-container.active-no-hover .nier-long-button label {
+    padding-top: calc(8px - 4px);
+    padding-bottom: calc(7px - 4px);
+    background-position: -100%;
+    color: #c2bda6; }
+  .workspace-button-container.active-no-hover .nier-long-button label {
+    transition: background 0.3s cubic-bezier(0.15, 0.79, 0, 1);
+    animation: active-label 0.5s cubic-bezier(0.15, 0.79, 0, 1) forwards;
+    animation-delay: 0.3s; }
+
+.workspace-button-container.active .nier-long-button {
+  animation: active 0.5s cubic-bezier(0.15, 0.79, 0, 1) forwards; }
+  .workspace-button-container.active .nier-long-button label {
+    transition: background 0.3s cubic-bezier(0.15, 0.79, 0, 1);
+    animation: active-label 0.5s cubic-bezier(0.15, 0.79, 0, 1) forwards; }
+
+.active-on-hold .nier-long-button-hover-icon,
+.active-no-hover-on-hold .nier-long-button-hover-icon {
+  opacity: 1; }
+
+.under-workspaces {
+  margin-top: -8px;
+  margin-right: 120px; }
+
+.workspace-button {
+  margin-bottom: 20px;
+  transition: border 0.3s cubic-bezier(0.15, 0.79, 0, 1); }
+
+.workspace-button-container .nier-long-button-hover-icon {
+  margin-bottom: 20px; }
+
+.workspace-button-container .nier-long-button {
+  transition: margin 0.1s cubic-bezier(0.15, 0.79, 0, 1); }
+
+.workspace-button-container.active .nier-long-button-hover-icon,
+.workspace-button-container.active-no-hover .nier-long-button-hover-icon {
+  opacity: 1; }
+
+@keyframes active-label {
+  0% {
+    padding-bottom: 8px; }
+  100% {
+    padding-bottom: 20px; } }
+
+@keyframes active {
+  0% {
+    margin-bottom: 20px;
+    border: transparent 0px; }
+  100% {
+    margin-bottom: 0px;
+    border: none;
+    border-top: transparent 3px solid;
+    border-bottom: transparent 3px solid;
+    min-width: 200px; } }

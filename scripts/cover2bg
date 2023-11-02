@@ -1,0 +1,68 @@
+#!/usr/bin/env bash
+
+HQ=0
+
+if [ -z "$1" ]; then
+    echo "Please provide an image"
+    exit 1
+fi
+if [ ! -f "$1" ]; then
+    echo "Image does not exist"
+    exit 1
+fi
+if ! file "$1" | grep -qE 'image|bitmap'; then
+    echo "Image is not a valid image"
+    exit 1
+fi
+
+# get json from hyprctl
+json=$(hyprctl monitors -j)
+json=$(echo $json | jq '.[0]')
+width=$(echo $json | jq '.width')
+height=$(echo $json | jq '.height')
+
+if [ -f /tmp/prev_bg.png ]; then
+    if cmp -s "$1" /tmp/prev_bg.png; then
+        echo "Image is the same"
+        exit 0
+    fi
+fi
+
+cp "$1" /tmp/prev_bg.png
+
+echo "Image is different"
+
+cp "$1" /tmp/bg.png
+
+magick mogrify -fuzz 4% -trim +repage -shave 7x7 -format png /tmp/bg.png
+
+#if HQ == 1
+if [ $HQ -eq 1 ]; then
+    convert /tmp/bg.png -resize $((width))x$((height))^ -gravity center -extent $((width))x$((height)) /tmp/bg.png
+else
+    convert /tmp/bg.png -resize $((width / 2))x$((height / 2))^ -gravity center -extent $((width / 2))x$((height / 2)) /tmp/bg.png
+fi
+
+img_width=$(identify -format "%w" /tmp/bg.png)
+img_height=$(identify -format "%h" /tmp/bg.png)
+
+convert /tmp/bg.png -blur 0x40 /tmp/bg.png
+
+color=$(convert /tmp/bg.png -gravity center -crop 1x1+0+0 +repage txt:- | grep -m 1 -o '#[0-9A-F]\{6\}')
+convert -size ${width}x$((height / 3)) gradient:$color-transparent /tmp/gradient.png
+convert /tmp/bg.png /tmp/gradient.png -gravity north -composite /tmp/bg.png
+
+# if /tmp/texture.png is not a file
+if [ ! -f /tmp/texture.png ]; then
+    echo "texture not found"
+    convert -size ${img_width}x${img_height} xc:gray +noise Random -channel A -threshold 90% /tmp/texture.png
+fi
+# convert -size ${img_width}x${img_height} xc:gray +noise Random -channel A -threshold 90% /tmp/texture.png
+convert /tmp/texture.png -alpha set -channel A -evaluate set 5% /tmp/texture.png
+convert /tmp/bg.png /tmp/texture.png -gravity center -compose overlay -composite /tmp/bg.png
+
+ags -r "dominant_color.value = '$color';"
+
+$HYPRLAND_THEME/scripts/apply_wall /tmp/bg.png
+
+
