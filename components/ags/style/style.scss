@@ -2,6 +2,11 @@
   all: unset;
 }
 
+label {
+  font-family: Arial, sans-serif;
+}
+
 @import "nier";
 
 @import "widgets/workspace.scss";
+@import "widgets/top.scss";

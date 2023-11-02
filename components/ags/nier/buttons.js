@@ -61,7 +61,7 @@ export const NierLongButton = ({
     children: [
       Icon({
         icon: App.configDir + "/assets/nier-pointer.svg",
-        size: 37,
+        size: 35,
         className: [
           "nier-long-button-hover-icon",
           "nier-long-button-hover-icon-hidden",

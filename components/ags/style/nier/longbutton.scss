@@ -23,11 +23,7 @@ $button_spacing_horizontal: 5px;
   border: none;
   border-top: transparent $accent_border solid;
   border-bottom: transparent $accent_border solid;
-  min-width: 200px;
-}
-
-.nier-toggle {
-  // border: blue 2px solid;
+  min-width: 150px;
 }
 
 .nier-toggle-on {
@@ -42,11 +38,11 @@ $button_spacing_horizontal: 5px;
 
 // the actual button looking thing ( is actuaally a label :0 )
 .nier-long-button label {
-  font-size: 2rem;
+  font-size: 1.5rem;
   background: linear-gradient(
     90deg,
-    $brown25 0%,
-    $brown25 50%,
+    rgba($brown, 0.25) 0%,
+    rgba($brown, 0.25) 50%,
     $brown 50%,
     $brown 100%
   );
@@ -89,10 +85,10 @@ $button_spacing_horizontal: 5px;
   margin-top: 5px;
   background: linear-gradient(
     90deg,
-    $brown25 7px,
+    rgba($brown, 0.25) 7px,
     transparent 0px,
     transparent 13px,
-    $brown25 13px,
+    rgba($brown, 0.25) 13px,
     transparent 18px
   );
   min-width: 20px;

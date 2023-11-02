@@ -1,6 +1,9 @@
 * {
   all: unset; }
 
+label {
+  font-family: Arial, sans-serif; }
+
 .nier-toggle-on {
   opacity: 1;
   transition: opacity 0.3s ease-in-out; }
@@ -10,7 +13,7 @@
   transition: opacity 0.3s ease-in-out; }
 
 .nier-long-button label {
-  font-size: 2rem;
+  font-size: 1.5rem;
   background: linear-gradient(90deg, rgba(72, 70, 61, 0.25) 0%, rgba(72, 70, 61, 0.25) 50%, #48463d 50%, #48463d 100%);
   background-size: 200%;
   color: #48463d;
@@ -31,7 +34,7 @@
   border: none;
   border-top: transparent 3px solid;
   border-bottom: transparent 3px solid;
-  min-width: 200px;
+  min-width: 150px;
   transition: border 0.3s ease-in-out; }
 
 .nier-long-button-hover {
@@ -73,7 +76,7 @@
   transition: opacity 0.3s ease-in-out; }
 
 .nier-long-button label {
-  font-size: 2rem;
+  font-size: 1.5rem;
   background: linear-gradient(90deg, rgba(72, 70, 61, 0.25) 0%, rgba(72, 70, 61, 0.25) 50%, #48463d 50%, #48463d 100%);
   background-size: 200%;
   color: #48463d;
@@ -94,7 +97,7 @@
   border: none;
   border-top: transparent 3px solid;
   border-bottom: transparent 3px solid;
-  min-width: 200px;
+  min-width: 150px;
   transition: border 0.3s ease-in-out; }
 
 .nier-long-button-hover {
@@ -154,16 +157,12 @@
 .active-no-hover-on-hold .nier-long-button-hover-icon {
   opacity: 1; }
 
-.under-workspaces {
-  margin-top: -8px;
-  margin-right: 120px; }
-
 .workspace-button {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   transition: border 0.3s cubic-bezier(0.15, 0.79, 0, 1); }
 
 .workspace-button-container .nier-long-button-hover-icon {
-  margin-bottom: 20px; }
+  margin-bottom: 10px; }
 
 .workspace-button-container .nier-long-button {
   transition: margin 0.1s cubic-bezier(0.15, 0.79, 0, 1); }
@@ -180,11 +179,18 @@
 
 @keyframes active {
   0% {
-    margin-bottom: 20px;
-    border: transparent 0px; }
+    margin-bottom: 10px;
+    border: #48463d; }
+  50% {
+    padding-bottom: 0px; }
   100% {
     margin-bottom: 0px;
-    border: none;
-    border-top: transparent 3px solid;
-    border-bottom: transparent 3px solid;
-    min-width: 200px; } }
+    padding-bottom: 0px;
+    border-top: 0px;
+    border-bottom: 0px; } }
+
+.top {
+  margin-bottom: -60px; }
+
+.under-workspaces {
+  margin-top: -1px; }

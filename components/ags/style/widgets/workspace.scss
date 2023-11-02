@@ -4,6 +4,7 @@
 .workspace-button-container.active-no-hover {
   .nier-long-button {
     @include long-button-hover;
+    // padding-bottom: 0px;
     label {
       transition: background 0.3s cubic-bezier(0.15, 0.79, 0, 1);
       animation: active-label 0.5s cubic-bezier(0.15, 0.79, 0, 1) forwards;
@@ -16,6 +17,7 @@
 
 .workspace-button-container.active {
   .nier-long-button {
+    // padding-bottom: 0px;
     label {
       transition: background 0.3s cubic-bezier(0.15, 0.79, 0, 1);
       animation: active-label 0.5s cubic-bezier(0.15, 0.79, 0, 1) forwards;
@@ -31,19 +33,19 @@
   }
 }
 
-.under-workspaces {
-  margin-top: -8px;
-  margin-right: 120px;
-}
+// .under-workspaces {
+//   margin-top: -8px;
+//   margin-right: 120px;
+// }
 
 .workspace-button {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   transition: border 0.3s cubic-bezier(0.15, 0.79, 0, 1);
 }
 
 .workspace-button-container {
   .nier-long-button-hover-icon {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
   }
   .nier-long-button {
     transition: margin 0.1s cubic-bezier(0.15, 0.79, 0, 1);
@@ -68,11 +70,17 @@
 
 @keyframes active {
   0% {
-    margin-bottom: 20px;
-    border: transparent 0px;
+    margin-bottom: 10px;
+    border: $brown;
+    // @include long-button;
+  }
+  50% {
+    padding-bottom: 0px;
   }
   100% {
     margin-bottom: 0px;
-    @include long-button;
+    padding-bottom: 0px;
+    border-top: 0px;
+    border-bottom: 0px;
   }
 }

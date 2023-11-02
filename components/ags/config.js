@@ -20,10 +20,14 @@ import {
 
 import { css, scss } from "./util.js";
 import { Workspaces } from "./widgets/workspace.js";
+import { Info } from "./widgets/info.js";
 
-Utils.exec(`sassc ${scss} ${css}`);
+const { exec, subprocess } = Utils;
+const { Box, Window, Label } = Widget;
 
-Utils.subprocess(
+exec(`sassc ${scss} ${css}`);
+
+subprocess(
   [
     "inotifywait",
     "--recursive",
@@ -33,59 +37,42 @@ Utils.subprocess(
     App.configDir + "/style",
   ],
   () => {
-    Utils.exec(`sassc ${scss} ${css}`);
+    exec(`sassc ${scss} ${css}`);
     App.resetCss();
     App.applyCss(css);
   }
 );
 
-// const Workspaces = () =>
-//   Widget.Box({
-//     className: "workspaces",
-
-//     children: Array.from({ length: 10 }, (_, i) => i + 1).map((i) =>
-//       Widget.EventBox({
-//         className: [`${i}`],
-//         child: NierToggle({
-//           name: `workspace-${i}`,
-//           className: [`${i}`],
-//           label: `${i}`,
-//           size: 80,
-//         }),
-//         onPrimaryClick: (self) => {
-//           Utils.execAsync(`hyprctl dispatch workspace ${i}`);
-//         },
-//       })
-//     ),
-//     connections: [
-//       [
-//         Hyprland,
-//         (box) => {
-//           //loop through children
-//           for (const element of box.children) {
-//             console.log(element.className, Hyprland.active.workspace.id);
-//             if (element.className.includes(`${Hyprland.active.workspace.id}`)) {
-//               element.child.className = ["nier-toggle-on", "workspace"];
-//             } else {
-//               element.child.className = ["nier-toggle-off"];
-//             }
-//           }
-//         },
-//       ],
-//     ],
-//   });
+const top = () =>
+  Box({
+    vertical: true,
+    className: ["top"],
+    children: [
+      Box({
+        children: [Workspaces(), Info()],
+      }),
+      Box({
+        className: ["under-workspaces"],
+        style: `background: url("${
+          App.configDir + "/assets/nier-border.svg"
+        }") repeat-x;min-width: ${SCREEN_WIDTH}px;background-size: 80px 20px;min-height: 80px;`,
+        child: Label(""),
+      }),
+    ],
+  });
 
 const Bar = ({ monitor } = {}) => {
-  return Widget.Window({
+  return Window({
     name: `bar-${monitor}`, // name has to be unique
     className: "bar",
     monitor,
-    margin: [50, 50],
+    margin: [0, 0],
     anchor: ["top", "left", "right"],
     exclusive: true,
     layer: "top",
-    child: Widget.Box({
-      children: [Workspaces()],
+    child: Box({
+      style: "margin-top: 10px;",
+      children: [top()],
     }),
   });
 };

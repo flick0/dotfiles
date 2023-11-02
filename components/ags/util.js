@@ -44,5 +44,4 @@ export {
   css,
   SCREEN_HEIGHT,
   SCREEN_WIDTH,
-  zoom_out,
 };
