@@ -47,9 +47,6 @@ export const NierLongButton = ({
   containerClassName = [],
   containerConnections = [],
   label = "",
-  toggled = false,
-  tab_style = false,
-  dat = "",
   passedOnHoverLost = async (self) => {},
   passedOnHover = async (self) => {},
 

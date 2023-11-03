@@ -1,6 +1,9 @@
 @import "../color";
 @import "../nier/longbutton.scss";
 
+.workspaces {
+}
+
 .workspace-button-container.active-no-hover {
   .nier-long-button {
     @include long-button-hover;

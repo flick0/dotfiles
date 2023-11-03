@@ -21,6 +21,7 @@ import {
 import { css, scss } from "./util.js";
 import { Workspaces } from "./widgets/workspace.js";
 import { Info } from "./widgets/info.js";
+import { NierSlider } from "./nier/slider.js";
 
 const { exec, subprocess } = Utils;
 const { Box, Window, Label } = Widget;
@@ -49,7 +50,7 @@ const top = () =>
     className: ["top"],
     children: [
       Box({
-        children: [Workspaces(), Info()],
+        children: [NierSlider()],
       }),
       Box({
         className: ["under-workspaces"],
