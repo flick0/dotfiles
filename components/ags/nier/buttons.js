@@ -116,17 +116,5 @@ export const NierToggle = ({
       icon: App.configDir + "/assets/nier-border.svg",
       size: size,
     }),
-    // onClicked: (self) => {
-    //   console.log(state, self.className);
-    //   if (state) {
-    //     self.className = arradd(self.className, "nier-toggle-off");
-    //     self.className = arrremove(self.className, "nier-toggle-on");
-    //     state = false;
-    //   } else {
-    //     self.className = arrremove(self.className, "nier-toggle-off");
-    //     self.className = arradd(self.className, "nier-toggle-on");
-    //     state = true;
-    //   }
-    // },
     ...props,
   });

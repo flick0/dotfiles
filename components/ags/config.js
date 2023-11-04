@@ -21,9 +21,9 @@ import {
 import { css, scss } from "./util.js";
 import { Workspaces } from "./widgets/workspace.js";
 import { Info } from "./widgets/info.js";
-import { NierSlider } from "./nier/slider.js";
+import { NierSlider, NierSliderButton } from "./nier/slider.js";
 
-const { exec, subprocess } = Utils;
+const { exec, subprocess, execAsync } = Utils;
 const { Box, Window, Label } = Widget;
 
 exec(`sassc ${scss} ${css}`);
@@ -50,7 +50,24 @@ const top = () =>
     className: ["top"],
     children: [
       Box({
-        children: [NierSlider()],
+        children: [
+          Workspaces(),
+          NierSliderButton({}),
+          // NierLongButtonGroup({
+          //   heading: "Workspaces",
+          //   scrollable: true,
+          //   className: ["workspaces"],
+          //   buttons: [...Array(10).keys()].map((i) => {
+          //     return NierLongButtonSlider({
+          //       onSliderChange: async (self, value) => {
+          //         console.log("changed");
+          //         // round value to 1 decimal place
+          //         exec(`light -S "${Math.round(value * 100)}"`);
+          //       },
+          //     });
+          //   }),
+          // }),
+        ],
       }),
       Box({
         className: ["under-workspaces"],

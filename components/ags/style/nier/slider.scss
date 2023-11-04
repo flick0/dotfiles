@@ -1,20 +1,16 @@
 @import "../color.scss";
 
-$normal_height: 3px;
-$normal_width: 4px;
-$spacing: 3px;
+$normal_height: 1px;
+$normal_width: 3px;
+$spacing: 2px;
 $filled_width: $normal_width;
-$filled_height: 10px;
-$focus_height: 15px;
+$filled_height: 8px;
+$focus_height: 10px;
 $focus_width: 4px;
 
 $end_gap: 7px;
 $end_width: 4px;
 
-.nier-slider {
-  background: $brown;
-  padding: 20px;
-}
 .nier-slider-size {
   margin: 0px;
   min-height: calc(#{$focus_height} * 2);
@@ -94,8 +90,8 @@ $end_width: 4px;
 
 @keyframes to_focus {
   0% {
-    margin-top: calc(#{$focus_height} - #{$normal_height});
-    margin-bottom: calc(#{$focus_height} - #{$normal_height});
+    margin-top: calc(#{$focus_height} - #{$normal_height}* 2);
+    margin-bottom: calc(#{$focus_height} - #{$normal_height}* 2);
   }
   70% {
     margin-top: 0px;
