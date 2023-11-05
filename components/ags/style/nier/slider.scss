@@ -11,6 +11,10 @@ $focus_width: 4px;
 $end_gap: 7px;
 $end_width: 4px;
 
+.nier-slider-button label {
+  margin-right: 100px;
+}
+
 .nier-slider-size {
   margin: 0px;
   min-height: calc(#{$focus_height} * 2);

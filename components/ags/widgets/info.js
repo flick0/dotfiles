@@ -11,11 +11,7 @@ import {
   Utils,
   Variable,
 } from "../imports.js";
-import {
-  NierLongButton,
-  NierLongButtonGroup,
-  NierToggle,
-} from "../nier/buttons.js";
+import { NierButton, NierButtonGroup } from "../nier/buttons.js";
 
 import { SCREEN_HEIGHT, SCREEN_WIDTH, arradd, arrremove } from "../util.js";
 

@@ -11,11 +11,7 @@ import {
   Utils,
   Variable,
 } from "../imports.js";
-import {
-  NierLongButton,
-  NierLongButtonGroup,
-  NierToggle,
-} from "../nier/buttons.js";
+import { NierLongButton, NierButtonGroup } from "../nier/buttons.js";
 
 import { SCREEN_HEIGHT, SCREEN_WIDTH, arradd, arrremove } from "../util.js";
 
@@ -50,7 +46,7 @@ const int_to_string = (i) => {
 let HOVERING = false;
 let REALLY_HOVERING = false;
 export const Workspaces = () =>
-  NierLongButtonGroup({
+  NierButtonGroup({
     horizontal: true,
     min_scale: SCREEN_WIDTH,
     className: ["workspaces"],

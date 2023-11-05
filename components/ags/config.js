@@ -12,16 +12,14 @@ import {
   Variable,
 } from "./imports.js";
 
-import {
-  NierLongButton,
-  NierLongButtonGroup,
-  NierToggle,
-} from "./nier/buttons.js";
+import { NierButton, NierButtonGroup, NierLongButton } from "./nier/buttons.js";
 
 import { css, scss } from "./util.js";
 import { Workspaces } from "./widgets/workspace.js";
 import { Info } from "./widgets/info.js";
-import { NierSlider, NierSliderButton } from "./nier/slider.js";
+import { NierSliderButton } from "./nier/slider.js";
+import { NierDropDownButton } from "./nier/dropdown.js";
+// import { NierDropDownButton } from "./nier/dropdown.js";
 
 const { exec, subprocess, execAsync } = Utils;
 const { Box, Window, Label } = Widget;
@@ -51,22 +49,40 @@ const top = () =>
     children: [
       Box({
         children: [
-          Workspaces(),
-          NierSliderButton({}),
-          // NierLongButtonGroup({
-          //   heading: "Workspaces",
-          //   scrollable: true,
-          //   className: ["workspaces"],
-          //   buttons: [...Array(10).keys()].map((i) => {
-          //     return NierLongButtonSlider({
-          //       onSliderChange: async (self, value) => {
-          //         console.log("changed");
-          //         // round value to 1 decimal place
-          //         exec(`light -S "${Math.round(value * 100)}"`);
-          //       },
-          //     });
-          //   }),
-          // }),
+          NierDropDownButton({
+            label: "drop",
+          }),
+          NierDropDownButton({
+            label: "drop",
+          }),
+          NierDropDownButton({
+            label: "drop",
+          }),
+          NierDropDownButton({
+            label: "drop",
+          }),
+          NierDropDownButton({
+            label: "drop",
+          }),
+        ],
+      }),
+      Box({
+        children: [
+          NierDropDownButton({
+            label: "drop",
+          }),
+          NierDropDownButton({
+            label: "drop",
+          }),
+          NierDropDownButton({
+            label: "drop",
+          }),
+          NierDropDownButton({
+            label: "drop",
+          }),
+          NierDropDownButton({
+            label: "drop",
+          }),
         ],
       }),
       Box({
@@ -86,7 +102,7 @@ const Bar = ({ monitor } = {}) => {
     monitor,
     margin: [0, 0],
     anchor: ["top", "left", "right"],
-    exclusive: true,
+    exclusive: false,
     layer: "top",
     child: Box({
       style: "margin-top: 10px;",

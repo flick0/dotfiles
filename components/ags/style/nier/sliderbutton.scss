@@ -6,6 +6,32 @@ $button_dist_from_ruler: 14px;
 $button_spacing_vertical: 10px;
 $button_spacing_horizontal: 5px;
 
+$border_size: 3px;
+$border_dist: 3px;
+
+// top-down borders
+.nier-slider-button-top,
+.nier-slider-button-bottom {
+  background: transparent;
+  min-height: 0px;
+}
+
+.nier-slider-button-top-hover {
+  background: $brown;
+  min-height: $border_size;
+  margin-bottom: $border_dist;
+}
+
+.nier-slider-button-bottom-hover {
+  background: $brown;
+  min-height: $border_size;
+  margin-top: $border_dist;
+}
+
+.nier-slider-button-box {
+  margin-bottom: 10px;
+}
+
 //.nier-long-button-container = pointer + buttons
 .nier-long-button-group-vertical .nier-slider-button-container {
   margin-bottom: $button_spacing_vertical;
@@ -21,26 +47,21 @@ $button_spacing_horizontal: 5px;
   }
 }
 
-.nier-slider-button label {
-  margin-right: 50px;
-}
+// .nier-slider-button-box {
+//   padding-top: 0px;
+//   padding-bottom: 0px;
+//   //   border: none;
+//   border-top: transparent $accent_border solid;
+//   border-bottom: transparent $accent_border solid;
+//   min-width: 150px;
+// }
 
-.nier-slider-button-box {
-  padding-top: 0px;
-  padding-bottom: 0px;
-  //   border: none;
-  border-top: transparent $accent_border solid;
-  border-bottom: transparent $accent_border solid;
-  min-width: 150px;
-  transition: border 0.3s ease-in-out;
-}
-
-.nier-slider-button-box-hover {
-  padding-top: $accent_border_dist;
-  padding-bottom: $accent_border_dist;
-  border-top: $brown $accent_border solid;
-  border-bottom: $brown $accent_border solid;
-}
+// .nier-slider-button-box-hover {
+//   padding-top: $accent_border_dist;
+//   padding-bottom: $accent_border_dist;
+//   border-top: $brown $accent_border solid;
+//   border-bottom: $brown $accent_border solid;
+// }
 
 .nier-slider-button {
   padding-top: 0px;
@@ -66,8 +87,8 @@ $button_spacing_horizontal: 5px;
 }
 
 .nier-slider-button-hover {
-  padding-top: calc(0px - #{$accent_border_dist});
-  padding-bottom: calc(0px - #{$accent_border_dist});
+  padding-top: calc(0px - #{$border_dist} - #{$border_size});
+  padding-bottom: calc(0px - #{$border_dist} - #{$border_size});
 
   label {
     font-size: 1.5rem;

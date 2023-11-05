@@ -1,24 +1,21 @@
-import { Widget, App } from "../imports.js";
+import { Widget } from "../imports.js";
 import { arradd, arrremove } from "../util.js";
-const { Button, Label, Overlay, EventBox, Box, Scrollable, Icon, Slider } =
-  Widget;
+import { NierButton } from "./buttons.js";
+const { Box } = Widget;
 
-const { Gdk, Gtk } = imports.gi;
-
-const set_focus = (buttons, index) => {
+const set_focus = (segments, index) => {
   console.log("index:: ", index);
   if (index == 0) {
-    console.log("whoosh");
-    return buttons;
+    return segments;
   }
-  for (let button of buttons) {
-    if (button.className.includes(`nier-slider-boxes-${index}`)) {
-      button.className = arradd(button.className, "focus");
+  for (let segment of segments) {
+    if (segment.className.includes(`nier-slider-boxes-${index}`)) {
+      segment.className = arradd(segment.className, "focus");
       break;
     }
-    button.className = arradd(button.className, "filled");
+    segment.className = arradd(segment.className, "filled");
   }
-  return buttons;
+  return segments;
 };
 
 const calc_segment = (width, segments, x, slider_padding) => {
@@ -29,264 +26,113 @@ const calc_segment = (width, segments, x, slider_padding) => {
   return { value, segmentIndex };
 };
 
-const handle_slider = (self, event, boxes, slider_padding, onSliderChange) => {
-  console.log("motion");
-  let buttons = self.child.children[1].children;
-  let slider_container = self.child.children[1];
-  const [never, x_pos, gonna] = event.get_coords();
+const handle_slider = (
+  slider,
+  event,
+  boxes,
+  slider_padding,
+  onSliderChange
+) => {
+  let segments = slider.children;
+  const [, x_pos] = event.get_coords();
   let x = x_pos;
-  const offset = self.child.children[0].get_allocation().width;
+  const offset = slider.parent.children[0].get_allocation().width;
   if (x >= offset) {
     x = x - offset;
-
     let { value, segmentIndex } = calc_segment(
-      slider_container.get_allocation().width,
+      slider.get_allocation().width,
       boxes,
       x,
       slider_padding
     );
     console.log(x, value, segmentIndex);
-    for (let button of buttons) {
-      button.className = arrremove(button.className, "focus");
-      button.className = arrremove(button.className, "filled");
+    for (let segment of segments) {
+      segment.className = arrremove(segment.className, "focus");
+      segment.className = arrremove(segment.className, "filled");
     }
-    onSliderChange(self, value);
-    set_focus(buttons, segmentIndex <= 0 ? 0 : segmentIndex - 1);
+    onSliderChange(slider, value);
+    set_focus(segments, segmentIndex <= 0 ? 0 : segmentIndex - 1);
   }
   return true;
 };
 
 export const NierSliderButton = ({
-  name = "",
+  label = "",
   className = [],
   containerClassName = [],
   containerConnections = [],
-  label = "",
-  passedOnHoverLost = async (self) => {},
-  passedOnHover = async (self) => {},
-  onSliderChange = async (self, value) => {},
+  //slider
   boxes = 10,
   slider_padding = 20,
-  isDragging = false,
-  ...props
+  onValueChange = async (self, value) => {},
 }) =>
-  Box({
-    className: ["nier-slider-button-container", ...containerClassName],
-    connections: [...containerConnections],
-    child: Box({
-      children: [
-        Icon({
-          icon: App.configDir + "/assets/nier-pointer.svg",
-          size: 35,
-          className: [
-            "nier-long-button-hover-icon",
-            "nier-long-button-hover-icon-hidden",
-          ],
-        }),
-        Box({
-          className: ["nier-slider-button-box"],
-          child: Button({
-            name,
-            onHover: (self) => {
-              passedOnHover(self);
-              self.className = arradd(
-                self.className,
-                "nier-slider-button-hover"
-              );
-              self.parent.className = arradd(
-                self.parent.className,
-                "nier-slider-button-box-hover"
-              );
-              self.parent.parent.children[0].className = [
-                "nier-long-button-hover-icon",
-                "nier-long-button-hover-icon-visible",
-              ];
+  NierButton({
+    label,
+    containerClassName,
+    containerConnections,
+    className: ["nier-slider-button", ...className],
 
-              let buttons = self.child.children[1].children;
-              for (let button of buttons) {
-                if (button.className.includes("focus-on-hold")) {
-                  button.className = arradd(button.className, "focus");
-                  button.className = arrremove(button.className, "filled");
-                  button.className = arrremove(
-                    button.className,
-                    "focus-on-hold"
-                  );
-                }
-              }
-              return true;
-            },
-            onHoverLost: (self) => {
-              passedOnHoverLost(self);
-              if (self.parent.parent.isDragging) {
-                return;
-              }
-              self.className = arrremove(
-                self.className,
-                "nier-slider-button-hover"
-              );
-              self.parent.className = arrremove(
-                self.parent.className,
-                "nier-slider-button-box-hover"
-              );
-              self.parent.parent.children[0].className = [
-                "nier-long-button-hover-icon",
-                "nier-long-button-hover-icon-hidden",
-              ];
-              let buttons = self.child.children[1].children;
-              for (let button of buttons) {
-                if (button.className.includes("focus")) {
-                  button.className = arradd(button.className, "filled");
-                  button.className = arradd(button.className, "focus-on-hold");
-                  button.className = arrremove(button.className, "focus");
-                  return;
-                }
-              }
-            },
-            setup: (box) => {
-              box.connect("button-press-event", (self, event) => {
-                console.log("press");
-                self.parent.parent.isDragging = true;
-                handle_slider(
-                  self,
-                  event,
-                  boxes,
-                  slider_padding,
-                  onSliderChange
-                );
-              });
-              box.connect("button-release-event", (self) => {
-                console.log("not drag");
-                self.parent.parent.isDragging = false;
-              });
-              box.connect("motion-notify-event", (self, event) => {
-                console.log("drag");
-                handle_slider(
-                  self,
-                  event,
-                  boxes,
-                  slider_padding,
-                  onSliderChange
-                );
-              });
-            },
-            child: Box({
-              children: [
-                Label({
-                  label: "⬛ woaaaaA ",
-                  xalign: 0,
-                  justification: "left",
-                }),
-                Box({
-                  className: ["nier-slider"],
-                  style: `padding: ${slider_padding}px;padding-left: 0px;`,
-                  children: [
-                    ...Array.from({ length: boxes }, (_, i) => i).map((i) => {
-                      return Button({
-                        child: Box({ className: ["inner"] }),
-                        className: [
-                          "nier-slider-boxes",
-                          `nier-slider-boxes-${i}`,
-                        ],
-                      });
-                    }),
-                    Box({ className: ["nier-slider-end"] }),
-                    Box({ className: ["nier-slider-size"] }),
-                  ],
-                }),
-              ],
-            }),
-            className: ["nier-slider-button", ...className],
-            ...props,
-          }),
-        }),
-      ],
-    }),
+    passedOnHover: async (self) => {
+      let slider = self.child.centerWidget.children[1];
+      console.log("slider: ", slider.className);
+      let segments = slider.children;
+      for (let segment of segments) {
+        if (segment.className.includes("focus-on-hold")) {
+          segment.className = arradd(segment.className, "focus");
+          segment.className = arrremove(segment.className, "filled");
+          segment.className = arrremove(segment.className, "focus-on-hold");
+          break;
+        }
+      }
+      return true;
+    },
+    passedOnHoverLost: async (self) => {
+      if (self.parent.isDragging) {
+        return false;
+      }
+      let slider = self.child.centerWidget.children[1];
+      let segments = slider.children;
+      for (let segment of segments) {
+        if (segment.className.includes("focus")) {
+          segment.className = arradd(segment.className, "filled");
+          segment.className = arradd(segment.className, "focus-on-hold");
+          segment.className = arrremove(segment.className, "focus");
+          break;
+        }
+      }
+      return true;
+    },
+    handleClick: async (self, event) => {
+      self.parent.isDragging = true;
+      let slider = self.child.centerWidget.children[1];
+      handle_slider(slider, event, boxes, slider_padding, onValueChange);
+    },
+    handleClickRelease: async (self) => {
+      self.parent.isDragging = false;
+    },
+    handleMotion: async (self, event) => {
+      console.log("motion");
+      let slider = self.child.centerWidget.children[1];
+      handle_slider(slider, event, boxes, slider_padding, onValueChange);
+    },
+    children: [NierInertSlider({})],
   });
 
-export const NierSlider = (
-  min = 0,
-  max = 100,
-  value = 0,
-  vertical = false,
-  boxes = 100,
-  isDragging = false
-) =>
+export const NierInertSlider = ({ boxes = 10, slider_padding = 20 }) =>
   Box({
     className: ["nier-slider"],
-    child: Box({
-      children: [
-        ...Array.from({ length: boxes }, (_, i) => i).map((i) => {
-          return Button({
-            child: Box({ className: ["inner"] }),
-            className: ["nier-slider-boxes", `nier-slider-boxes-${i}`],
-            onPrimaryClick: async (self) => {
-              let buttons = self.parent.children;
-              for (let button of buttons) {
-                button.className = arrremove(button.className, "filled");
-              }
-              for (let button of buttons) {
-                button.className = arrremove(button.className, "focus");
-                button.className = arrremove(button.className, "filled");
-              }
-              for (let button of buttons) {
-                if (button.className.includes(`nier-slider-boxes-${i}`)) {
-                  button.className = arradd(button.className, "focus");
-                  break;
-                }
-                button.className = arradd(button.className, "filled");
-              }
-            },
-            setup: (button) => {
-              button.connect("button-press-event", (self, event) => {
-                console.log("drag");
-                self.parent.isDragging = true;
-                return true;
-              });
-              button.connect("button-release-event", (self) => {
-                console.log("not drag");
-                self.parent.isDragging = false;
-              });
-              button.connect("motion-notify-event", (self, event) => {
-                const [never, x, gonna] = event.get_coords();
-                const allocation = self.get_allocation();
-                const sliderPos =
-                  (allocation.x + x) / allocation.width -
-                  self.parent.children[
-                    self.parent.children.length - 2
-                  ].get_allocation().width;
-                const rawPos = Math.min(Math.max(sliderPos, 0), boxes);
-                const value = rawPos / boxes;
-                const segmentIndex = Math.round(rawPos);
-                let buttons = self.parent.children;
-                for (let button of buttons) {
-                  button.className = arrremove(button.className, "focus");
-                  button.className = arrremove(button.className, "filled");
-                }
-                for (let button of buttons) {
-                  console.log(rawPos, segmentIndex, value);
-                  if (
-                    button.className.includes(
-                      `nier-slider-boxes-${segmentIndex}`
-                    )
-                  ) {
-                    break;
-                  }
-                  if (
-                    button.className.includes(
-                      `nier-slider-boxes-${segmentIndex - 1}`
-                    )
-                  ) {
-                    button.className = arradd(button.className, "focus");
-                  } else {
-                    button.className = arradd(button.className, "filled");
-                  }
-                }
-              });
-            },
-          });
-        }),
-        Box({ className: ["nier-slider-end"] }),
-        Box({ className: ["nier-slider-size"] }),
-      ],
-    }),
+    homogeneous: false,
+    halign: "center",
+    valign: "center",
+    style: `padding-right: ${slider_padding}px;padding-left: 0px;`,
+    children: [
+      ...Array.from({ length: boxes }, (_, i) => i).map((i) => {
+        return Box({
+          child: Box({ className: ["inner"] }),
+          className: ["nier-slider-boxes", `nier-slider-boxes-${i}`],
+        });
+      }),
+      Box({ className: ["nier-slider-end"] }),
+      Box({ className: ["nier-slider-size"] }),
+    ],
   });
