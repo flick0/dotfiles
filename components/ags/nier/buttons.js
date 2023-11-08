@@ -2,6 +2,7 @@ import { Widget, App } from "../imports.js";
 import { arradd, arrremove } from "../util.js";
 const { Button, Label, Overlay, EventBox, Box, Scrollable, Icon, CenterBox } =
   Widget;
+const { GObject } = imports.gi;
 
 export const NierButton = ({
   label = "",
@@ -11,7 +12,19 @@ export const NierButton = ({
   children = [],
   label_no_box = false,
   size = 35,
+  font_size = 20,
+  homogeneous_button = true,
+  padding_right = size,
+  passedParent = null,
 
+  labelOveride = (label, font_size) =>
+    Label({
+      className: ["nier-button-label"],
+      style: `font-size: ${font_size}px;`,
+      label: "⬛ " + label,
+      xalign: 0,
+      justification: "left",
+    }),
   passedOnHoverLost = async (self) => {
     return true;
   },
@@ -21,15 +34,22 @@ export const NierButton = ({
   handleMotion = async (self, event) => {},
   handleClick = async (self, event) => {},
   handleClickRelease = async (self) => {},
+  setup = (self) => {},
   overlays = [],
   ...props
 }) =>
   Overlay({
+    setup: (self) => {
+      self._eventbox = self.child.children[1];
+      self._centerbox = self._eventbox.child;
+      self._button = self._centerbox.centerWidget;
+      self.passedParent = passedParent;
+    },
     className: ["nier-button-container", ...containerClassName],
     connections: [...containerConnections],
     child: Box({
-      homogeneous: false,
-      halign: "center",
+      // homogeneous: false,
+      // halign: "center",
       valign: "center",
       children: [
         Icon({
@@ -41,6 +61,7 @@ export const NierButton = ({
           ],
         }),
         EventBox({
+          // homogeneous: true,
           onHover: async (self) => {
             let continutehover = passedOnHover(self).catch((e) => {
               console.log(e);
@@ -107,6 +128,7 @@ export const NierButton = ({
             return true;
           },
           setup: (self) => {
+            setup(self);
             self.connect("button-press-event", (self, event) => {
               handleClick(self, event).catch((e) => {
                 console.log(e);
@@ -125,28 +147,29 @@ export const NierButton = ({
           },
 
           child: CenterBox({
+            // homogeneous: true,
+            // halign: "fill",
+            hexpand: true,
             vertical: true,
             className: ["nier-button-box"],
             startWidget: Box({
               className: ["nier-button-top"],
             }),
             centerWidget: Box({
+              // halign: "justified",
+              homogeneous: homogeneous_button,
               className: ["nier-button", ...className],
-              children: [
-                Label({
-                  className: ["nier-button-label"],
-                  label: (label_no_box ? "" : "⬛ ") + label,
-                  xalign: 0,
-                  justification: "left",
-                }),
-                ...children,
-              ],
+              children: [labelOveride(label, font_size), ...children],
               ...props,
             }),
             endWidget: Box({
               className: ["nier-button-bottom"],
             }),
           }),
+        }),
+        Box({
+          className: ["nier-button-right-padding"],
+          style: `min-width: ${padding_right}px;`,
         }),
       ],
     }),
@@ -156,9 +179,13 @@ export const NierButtonGroup = ({
   heading = "",
   scrollable = false,
   className = [],
+  containerClassName = [],
   buttons = [],
+  style = "",
+  // homogeneous_buttons = true,
   horizontal = false,
   min_scale = 200,
+  passedParent = null,
   passedOnHover = async (self) => {
     return true;
   },
@@ -180,12 +207,18 @@ export const NierButtonGroup = ({
       });
       return true;
     },
+    setup: (self) => {
+      self.passedParent = passedParent;
+    },
     child: Box({
+      className: ["nier-long-button-group-container", ...containerClassName],
       children: [
         Box({
           className: ["nier-long-button-group-ruler"],
         }),
         Box({
+          // homogeneous: homogeneous_buttons,
+          // halign: "fill",
           vertical: !horizontal,
           className: [
             horizontal
@@ -193,6 +226,7 @@ export const NierButtonGroup = ({
               : "nier-long-button-group-vertical",
             ...className,
           ],
+          style: style,
           children: [...buttons],
         }),
       ],

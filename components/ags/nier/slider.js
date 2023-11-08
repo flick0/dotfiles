@@ -1,59 +1,40 @@
-import { Widget } from "../imports.js";
+import { Widget, Variable } from "../imports.js";
 import { arradd, arrremove } from "../util.js";
 import { NierButton } from "./buttons.js";
 const { Box } = Widget;
 
-const set_focus = (segments, index) => {
-  console.log("index:: ", index);
-  if (index == 0) {
+const handle_value = (segments, boxes, value, active) => {
+  for (let segment of segments) {
+    segment.className = arrremove(segment.className, "focus");
+    segment.className = arrremove(segment.className, "filled");
+    segment.className = arrremove(segment.className, "focus-on-hold");
+  }
+  let segment_index = Math.floor(value * boxes) - 1;
+  if (segment_index < 0) {
     return segments;
   }
+  if (segment_index >= boxes) {
+    segment_index = boxes - 1;
+  }
+
   for (let segment of segments) {
-    if (segment.className.includes(`nier-slider-boxes-${index}`)) {
-      segment.className = arradd(segment.className, "focus");
+    segment.className = arrremove(segment.className, "focus");
+    segment.className = arrremove(segment.className, "filled");
+  }
+  for (let segment of segments) {
+    if (segment.className.includes(`nier-slider-boxes-${segment_index}`)) {
+      console.log("active????????? ", active);
+      if (active) {
+        segment.className = arradd(segment.className, "focus");
+      } else {
+        segment.className = arradd(segment.className, "filled");
+        segment.className = arradd(segment.className, "focus-on-hold");
+      }
+
       break;
     }
     segment.className = arradd(segment.className, "filled");
   }
-  return segments;
-};
-
-const calc_segment = (width, segments, x, slider_padding) => {
-  let sliderPos = (x / (width - slider_padding)) * segments;
-  let rawPos = Math.min(Math.max(sliderPos, 0), segments);
-  let value = rawPos / segments;
-  let segmentIndex = Math.round(rawPos);
-  return { value, segmentIndex };
-};
-
-const handle_slider = (
-  slider,
-  event,
-  boxes,
-  slider_padding,
-  onSliderChange
-) => {
-  let segments = slider.children;
-  const [, x_pos] = event.get_coords();
-  let x = x_pos;
-  const offset = slider.parent.children[0].get_allocation().width;
-  if (x >= offset) {
-    x = x - offset;
-    let { value, segmentIndex } = calc_segment(
-      slider.get_allocation().width,
-      boxes,
-      x,
-      slider_padding
-    );
-    console.log(x, value, segmentIndex);
-    for (let segment of segments) {
-      segment.className = arrremove(segment.className, "focus");
-      segment.className = arrremove(segment.className, "filled");
-    }
-    onSliderChange(slider, value);
-    set_focus(segments, segmentIndex <= 0 ? 0 : segmentIndex - 1);
-  }
-  return true;
 };
 
 export const NierSliderButton = ({
@@ -61,20 +42,29 @@ export const NierSliderButton = ({
   className = [],
   containerClassName = [],
   containerConnections = [],
-  //slider
+  connections = [],
+  ratio = Variable(0, {}),
   boxes = 10,
   slider_padding = 20,
   onValueChange = async (self, value) => {},
+  isDragging = false,
+  hovering = false,
+  size = 35,
+  font_size = 20,
 }) =>
   NierButton({
     label,
+    homogeneous_button: true,
     containerClassName,
     containerConnections,
+    size,
+    font_size,
+    // homogeneous_button: false,
     className: ["nier-slider-button", ...className],
 
     passedOnHover: async (self) => {
+      hovering = true;
       let slider = self.child.centerWidget.children[1];
-      console.log("slider: ", slider.className);
       let segments = slider.children;
       for (let segment of segments) {
         if (segment.className.includes("focus-on-hold")) {
@@ -87,7 +77,8 @@ export const NierSliderButton = ({
       return true;
     },
     passedOnHoverLost: async (self) => {
-      if (self.parent.isDragging) {
+      hovering = false;
+      if (isDragging) {
         return false;
       }
       let slider = self.child.centerWidget.children[1];
@@ -103,26 +94,62 @@ export const NierSliderButton = ({
       return true;
     },
     handleClick: async (self, event) => {
-      self.parent.isDragging = true;
+      isDragging = true;
       let slider = self.child.centerWidget.children[1];
-      handle_slider(slider, event, boxes, slider_padding, onValueChange);
+      const [, x_pos] = event.get_coords();
+      let x = x_pos;
+      let alloc = slider.get_allocation();
+      if (x >= alloc.x) {
+        x = x - alloc.x;
+        let sliderPos = (x / (alloc.width - slider_padding)) * boxes;
+        let rawPos = Math.min(Math.max(sliderPos, 0), boxes);
+        let value = rawPos / boxes;
+
+        ratio.setValue(value);
+        console.log("bar click is setting volume", ratio.value);
+      }
     },
     handleClickRelease: async (self) => {
-      self.parent.isDragging = false;
+      isDragging = false;
     },
     handleMotion: async (self, event) => {
-      console.log("motion");
       let slider = self.child.centerWidget.children[1];
-      handle_slider(slider, event, boxes, slider_padding, onValueChange);
+      const [, x_pos] = event.get_coords();
+      let x = x_pos;
+      let alloc = slider.get_allocation();
+      x = x - alloc.x;
+      let sliderPos = (x / (alloc.width - slider_padding)) * boxes;
+      let rawPos = Math.min(Math.max(sliderPos, 0), boxes);
+      let value = rawPos / boxes;
+      ratio.setValue(value);
+      console.log("bar move is setting volume", ratio.value);
     },
-    children: [NierInertSlider({})],
+    children: [
+      NierInertSlider({
+        boxes: boxes,
+        connections: [
+          [
+            ratio,
+            (self) => {
+              console.log("ratio changed", ratio.value);
+              handle_value(self.children, boxes, ratio.value, hovering);
+            },
+          ],
+          ...connections,
+        ],
+      }),
+    ],
   });
 
-export const NierInertSlider = ({ boxes = 10, slider_padding = 20 }) =>
+export const NierInertSlider = ({
+  boxes = 10,
+  slider_padding = 20,
+  connections = [],
+}) =>
   Box({
     className: ["nier-slider"],
     homogeneous: false,
-    halign: "center",
+    halign: "end",
     valign: "center",
     style: `padding-right: ${slider_padding}px;padding-left: 0px;`,
     children: [
@@ -135,4 +162,5 @@ export const NierInertSlider = ({ boxes = 10, slider_padding = 20 }) =>
       Box({ className: ["nier-slider-end"] }),
       Box({ className: ["nier-slider-size"] }),
     ],
+    connections: [...connections],
   });

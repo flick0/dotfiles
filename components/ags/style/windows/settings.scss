@@ -1,0 +1,62 @@
+@import "../color";
+@import "../data";
+
+.nier-settings-container {
+  background: rgba($tan, 0.05);
+  // margin-right: 500px;
+}
+.nier-settings-container.closing {
+  background: rgba($tan, 0.05);
+  margin-right: $screen_width;
+  margin-left: calc(-1 * #{$screen_width});
+  transition: margin 0.3s ease-out;
+}
+
+.nier-settings-1-container {
+  background: $tan;
+  transition: margin 0.2s cubic-bezier(0.15, 0.79, 0, 1);
+}
+.nier-settings-2-container {
+  background: rgba($tan, 0.8);
+  transition: margin 0.2s cubic-bezier(0.15, 0.79, 0, 1);
+}
+.nier-settings-3-container {
+  background: rgba($tan, 0.6);
+  transition: margin 0.2s cubic-bezier(0.15, 0.79, 0, 1);
+}
+.nier-settings-4-container {
+  background: rgba($tan, 0.4);
+  transition: margin 0.2s cubic-bezier(0.15, 0.79, 0, 1);
+}
+
+.nier-settings-1-container.closing {
+  margin-right: calc(#{$screen_width} / 4);
+  margin-left: calc(-1 * #{$screen_width} / 4);
+  opacity: 0;
+  transition: margin 0.2s cubic-bezier(0.15, 0.79, 0, 1), opacity 0.2s ease;
+}
+.nier-settings-2-container.closing {
+  margin-right: calc(#{$screen_width}/ 4);
+  margin-left: calc(-1 * #{$screen_width}/ 4);
+  opacity: 0;
+  transition: margin 0.4s cubic-bezier(0.15, 0.79, 0, 1), opacity 0.4s ease;
+}
+.nier-settings-3-container.closing {
+  margin-right: calc(#{$screen_width} / 4);
+  margin-left: calc(-1 * #{$screen_width} / 4);
+  opacity: 0;
+  transition: margin 0.6s cubic-bezier(0.15, 0.79, 0, 1), opacity 0.6s ease;
+}
+.nier-settings-4-container.closing {
+  margin-right: calc(#{$screen_width} / 4);
+  margin-left: calc(-1 * #{$screen_width} / 4);
+  opacity: 0;
+  transition: margin 0.8s cubic-bezier(0.15, 0.79, 0, 1), opacity 0.8s ease;
+}
+
+// .nier-settings-1-container {
+//   background: $tan;
+//   min-width: 500px;
+//   // transition: margin 0.3s ease;
+//   //   padding-right: 40px;
+// }

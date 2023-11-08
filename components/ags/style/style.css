@@ -67,9 +67,6 @@ label {
   opacity: 0;
   transition: opacity 0.3s ease-in-out; }
 
-.nier-slider-button label {
-  margin-right: 100px; }
-
 .nier-slider-size {
   margin: 0px;
   min-height: calc(10px * 2); }
@@ -207,6 +204,7 @@ label {
   animation: from_border_rev 0.3s ease-out forwards; }
 
 .nier-button-box-hover-from-selected .nier-button {
+  min-width: 200px;
   margin-top: 0px;
   margin-bottom: 0px;
   padding-top: 0px;
@@ -222,6 +220,7 @@ label {
   animation: from_border 0.5s ease-out forwards; }
 
 .nier-button-box-selected .nier-button {
+  min-width: 200px;
   margin-top: 0px;
   margin-bottom: 0px;
   padding-top: 0px;
@@ -273,6 +272,7 @@ label {
     background-position: -100%; } }
 
 .nier-button {
+  min-width: 200px;
   margin-top: calc(0px - 4px - 3px);
   margin-bottom: calc(0px - 4px - 3px);
   padding-top: calc(4px + 3px);
@@ -308,12 +308,165 @@ label {
   opacity: 1;
   transition: opacity 0.3s ease-in-out; }
 
-.nier-option-menu {
-  background: rgba(255, 0, 0, 0.7);
-  border: blue 2px solid;
+.nier-button-container {
+  margin-bottom: 20px; }
+
+.nier-button-box-hover-from-selected .nier-button-top,
+.nier-button-box-hover-from-selected .nier-button-bottom {
+  opacity: 1;
+  animation: from_border_rev 0.3s ease-out forwards; }
+
+.nier-button-box-hover-from-selected .nier-button {
   min-width: 200px;
-  min-height: 200px;
-  margin-left: 200px; }
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  background-position: -100%;
+  transition: background 0.3s cubic-bezier(0.15, 0.79, 0, 1), padding 0.3s ease-out; }
+  .nier-button-box-hover-from-selected .nier-button label {
+    color: #c2bda6; }
+
+.nier-button-box-selected .nier-button-top,
+.nier-button-box-selected .nier-button-bottom {
+  opacity: 1;
+  animation: from_border 0.5s ease-out forwards; }
+
+.nier-button-box-selected .nier-button {
+  min-width: 200px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  padding-right: 20px;
+  background-position: -100%;
+  transition: padding 0.1s ease-out; }
+  .nier-button-box-selected .nier-button label {
+    color: #c2bda6; }
+
+.nier-button-top {
+  opacity: 0;
+  min-height: 4px;
+  margin-bottom: 3px;
+  background: linear-gradient(90deg, transparent 0%, transparent 33.33%, #48463d 33.33%, #48463d 66.66%, transparent 66.66%, transparent 100%);
+  background-size: 300%;
+  background-position: 0%; }
+
+.nier-button-bottom {
+  opacity: 0;
+  min-height: 4px;
+  margin-top: 3px;
+  background: linear-gradient(90deg, transparent 0%, transparent 33.33%, #48463d 33.33%, #48463d 66.66%, transparent 66.66%, transparent 100%);
+  background-size: 300%;
+  background-position: 0%; }
+
+.nier-button-top-hover,
+.nier-button-bottom-hover {
+  opacity: 1;
+  background-position: -100%;
+  transition: opacity 0.3s ease; }
+
+@keyframes to_border {
+  0% {
+    background-position: 0%; }
+  100% {
+    background-position: -100%; } }
+
+@keyframes from_border {
+  0% {
+    background-position: -100%; }
+  100% {
+    background-position: -200%; } }
+
+@keyframes from_border_rev {
+  0% {
+    background-position: -200%; }
+  100% {
+    background-position: -100%; } }
+
+.nier-button {
+  min-width: 200px;
+  margin-top: calc(0px - 4px - 3px);
+  margin-bottom: calc(0px - 4px - 3px);
+  padding-top: calc(4px + 3px);
+  padding-bottom: calc(4px + 3px);
+  background: linear-gradient(90deg, rgba(72, 70, 61, 0.25) 0%, rgba(72, 70, 61, 0.25) 50%, #48463d 50%, #48463d 100%);
+  background-size: 200%;
+  transition: background 0.1s cubic-bezier(0.15, 0.79, 0, 1); }
+  .nier-button label {
+    font-size: 1.5rem;
+    color: #48463d;
+    padding: 8px 8px 7px; }
+
+.nier-button-hover {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  background-position: -100%;
+  transition: background 1s cubic-bezier(0.15, 0.79, 0, 1); }
+  .nier-button-hover label {
+    color: #c2bda6; }
+
+.nier-button-hover-icon {
+  margin: 0;
+  margin-left: -14px;
+  margin-right: 14px; }
+
+.nier-button-hover-icon-visible {
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out; }
+
+.nier-button-hover-icon-hidden {
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out; }
+
+.nier-option-header {
+  margin: 0px;
+  min-height: 3px;
+  background: #f4f0e1;
+  padding: 8px; }
+  .nier-option-header .nier-option-header-inner {
+    background: #48463d;
+    min-height: 1px;
+    min-width: 200px; }
+
+.nier-option-container.nier-option-selected .nier-button label {
+  font-weight: bold;
+  background: linear-gradient(90deg, #d2cec0 0%, #d2cec0 50%, #48463d 50%, #48463d 100%);
+  background-size: 200%;
+  min-width: 200px;
+  transition: background 0.3s cubic-bezier(0.15, 0.79, 0, 1); }
+
+.nier-option-container.nier-option-selected .nier-button-hover label {
+  background-position: -100%;
+  transition: background 0.3s cubic-bezier(0.15, 0.79, 0, 1); }
+
+.nier-option-container {
+  margin: 0px; }
+  .nier-option-container * {
+    all: unset; }
+  .nier-option-container .nier-button label {
+    background: linear-gradient(90deg, #f4f0e1 0%, #f4f0e1 50%, #48463d 50%, #48463d 100%);
+    background-size: 200%;
+    min-width: 200px;
+    transition: background 0.3s cubic-bezier(0.15, 0.79, 0, 1); }
+  .nier-option-container .nier-button-hover label {
+    background-position: -100%;
+    transition: background 0.3s cubic-bezier(0.15, 0.79, 0, 1); }
+  .nier-option-container .nier-button-hover-icon-hidden {
+    opacity: 0;
+    transition: opacity 0.1s ease-out; }
+  .nier-option-container .nier-button-hover-icon-visible {
+    opacity: 1;
+    transition: opacity 0.1s ease-out; }
+  .nier-option-container .nier-button-hover-icon {
+    margin-left: 20px; }
+
+.heading {
+  font-size: 3.5rem;
+  text-shadow: 10px 10px 1px rgba(72, 70, 61, 0.25);
+  color: #48463d; }
 
 .nier-toggle-on {
   opacity: 1;
@@ -442,3 +595,52 @@ label {
 
 .under-workspaces {
   margin-top: -1px; }
+
+.nier-settings-container {
+  background: rgba(194, 189, 166, 0.05); }
+
+.nier-settings-container.closing {
+  background: rgba(194, 189, 166, 0.05);
+  margin-right: 2560px;
+  margin-left: calc(-1 * 2560px);
+  transition: margin 0.3s ease-out; }
+
+.nier-settings-1-container {
+  background: #c2bda6;
+  transition: margin 0.2s cubic-bezier(0.15, 0.79, 0, 1); }
+
+.nier-settings-2-container {
+  background: rgba(194, 189, 166, 0.8);
+  transition: margin 0.2s cubic-bezier(0.15, 0.79, 0, 1); }
+
+.nier-settings-3-container {
+  background: rgba(194, 189, 166, 0.6);
+  transition: margin 0.2s cubic-bezier(0.15, 0.79, 0, 1); }
+
+.nier-settings-4-container {
+  background: rgba(194, 189, 166, 0.4);
+  transition: margin 0.2s cubic-bezier(0.15, 0.79, 0, 1); }
+
+.nier-settings-1-container.closing {
+  margin-right: calc(2560px / 4);
+  margin-left: calc(-1 * 2560px / 4);
+  opacity: 0;
+  transition: margin 0.2s cubic-bezier(0.15, 0.79, 0, 1), opacity 0.2s ease; }
+
+.nier-settings-2-container.closing {
+  margin-right: calc(2560px/ 4);
+  margin-left: calc(-1 * 2560px/ 4);
+  opacity: 0;
+  transition: margin 0.4s cubic-bezier(0.15, 0.79, 0, 1), opacity 0.4s ease; }
+
+.nier-settings-3-container.closing {
+  margin-right: calc(2560px / 4);
+  margin-left: calc(-1 * 2560px / 4);
+  opacity: 0;
+  transition: margin 0.6s cubic-bezier(0.15, 0.79, 0, 1), opacity 0.6s ease; }
+
+.nier-settings-4-container.closing {
+  margin-right: calc(2560px / 4);
+  margin-left: calc(-1 * 2560px / 4);
+  opacity: 0;
+  transition: margin 0.8s cubic-bezier(0.15, 0.79, 0, 1), opacity 0.8s ease; }

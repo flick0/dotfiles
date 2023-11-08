@@ -1,0 +1,3 @@
+#!/usr/bin/bash
+sleep 1
+swww clear c2bda6 &

@@ -19,10 +19,11 @@ import { Workspaces } from "./widgets/workspace.js";
 import { Info } from "./widgets/info.js";
 import { NierSliderButton } from "./nier/slider.js";
 import { NierDropDownButton } from "./nier/dropdown.js";
+import { NierSettingPane } from "./windows/settings.js";
 // import { NierDropDownButton } from "./nier/dropdown.js";
 
 const { exec, subprocess, execAsync } = Utils;
-const { Box, Window, Label } = Widget;
+const { Box, Window, Label, Revealer } = Widget;
 
 exec(`sassc ${scss} ${css}`);
 
@@ -48,40 +49,17 @@ const top = () =>
     className: ["top"],
     children: [
       Box({
+        spacing: 20,
         children: [
-          NierDropDownButton({
-            label: "drop",
+          NierSliderButton({
+            label: "test",
+            boxes: 50,
+            value: 0.5,
           }),
-          NierDropDownButton({
-            label: "drop",
-          }),
-          NierDropDownButton({
-            label: "drop",
-          }),
-          NierDropDownButton({
-            label: "drop",
-          }),
-          NierDropDownButton({
-            label: "drop",
-          }),
-        ],
-      }),
-      Box({
-        children: [
-          NierDropDownButton({
-            label: "drop",
-          }),
-          NierDropDownButton({
-            label: "drop",
-          }),
-          NierDropDownButton({
-            label: "drop",
-          }),
-          NierDropDownButton({
-            label: "drop",
-          }),
-          NierDropDownButton({
-            label: "drop",
+          NierButton({
+            handleClick: async (self, event) => {
+              App.toggleWindow("settings");
+            },
           }),
         ],
       }),
@@ -111,10 +89,14 @@ const Bar = ({ monitor } = {}) => {
   });
 };
 export default {
+  closeWindowDelay: {
+    settings: 300, // milliseconds
+  },
   style: css,
   windows: [
     // BottomBar()
     Bar(),
+    NierSettingPane(),
     // you can call it, for each monitor
     // Bar({ monitor: 0 }),
     // Bar({ monitor: 1 })

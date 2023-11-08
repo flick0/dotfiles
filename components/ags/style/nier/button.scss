@@ -16,6 +16,7 @@ $border_dist: 3px;
   }
 
   .nier-button {
+    min-width: 200px;
     margin-top: 0px;
     margin-bottom: 0px;
     padding-top: 0px;
@@ -41,6 +42,7 @@ $border_dist: 3px;
   }
 
   .nier-button {
+    min-width: 200px;
     margin-top: 0px;
     margin-bottom: 0px;
     padding-top: 0px;
@@ -130,6 +132,7 @@ $border_dist: 3px;
 }
 
 .nier-button {
+  min-width: 200px;
   margin-top: calc(0px - #{$border_size} - #{$border_dist});
   margin-bottom: calc(0px - #{$border_size} - #{$border_dist});
   padding-top: calc(#{$border_size} + #{$border_dist});

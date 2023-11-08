@@ -1,9 +1,86 @@
 @import "../color";
+@import "./button";
 
-.nier-option-menu {
-  background: rgba(red, 0.7);
-  border: blue 2px solid;
-  min-width: 200px;
-  min-height: 200px;
-  margin-left: 200px;
+$border_size: 4px;
+$border_dist: 3px;
+
+.nier-option-item {
+  // border: red 2px solid;
+  // text-shadow: 2px 2px white;
+  // color: white;
+  // transition: text-shadow 0.3s ease;
+}
+.nier-option-item-changed {
+  // border: blue 2px solid;
+  // color: red;
+  // transition: text-shadow s ease;
+}
+
+.nier-option-header {
+  margin: 0px;
+  min-height: 3px;
+  background: $highlight;
+  padding: 8px;
+  .nier-option-header-inner {
+    background: $brown;
+    min-height: 1px;
+    min-width: 200px;
+  }
+}
+
+.nier-option-container.nier-option-selected {
+  .nier-button label {
+    font-weight: bold;
+    background: linear-gradient(
+      90deg,
+      mix($highlight, $brown, 80%) 0%,
+      mix($highlight, $brown, 80%) 50%,
+      $brown 50%,
+      $brown 100%
+    );
+    background-size: 200%;
+    min-width: 200px;
+    transition: background 0.3s cubic-bezier(0.15, 0.79, 0, 1);
+  }
+  .nier-button-hover label {
+    background-position: -100%;
+    transition: background 0.3s cubic-bezier(0.15, 0.79, 0, 1);
+  }
+}
+
+.nier-option-container {
+  //   border: 1px solid red;
+  * {
+    all: unset;
+  }
+
+  //   margin-top: calc(#{$border_size} + #{$border_dist});
+  margin: 0px;
+  .nier-button label {
+    background: linear-gradient(
+      90deg,
+      $highlight 0%,
+      $highlight 50%,
+      $brown 50%,
+      $brown 100%
+    );
+    background-size: 200%;
+    min-width: 200px;
+    transition: background 0.3s cubic-bezier(0.15, 0.79, 0, 1);
+  }
+  .nier-button-hover label {
+    background-position: -100%;
+    transition: background 0.3s cubic-bezier(0.15, 0.79, 0, 1);
+  }
+  .nier-button-hover-icon-hidden {
+    opacity: 0;
+    transition: opacity 0.1s ease-out;
+  }
+  .nier-button-hover-icon-visible {
+    opacity: 1;
+    transition: opacity 0.1s ease-out;
+  }
+  .nier-button-hover-icon {
+    margin-left: 20px;
+  }
 }
