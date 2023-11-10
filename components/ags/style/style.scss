@@ -2,13 +2,14 @@
   all: unset;
 }
 
-label {
-  font-family: Arial, sans-serif;
+* {
+  font-family: FOT-Rodin Pro M, Roboto, sans-serif;
 }
 
 @import "nier";
 
 @import "widgets/workspace.scss";
 @import "widgets/top.scss";
+@import "widgets/imagematrix.scss";
 
 @import "windows/settings.scss";

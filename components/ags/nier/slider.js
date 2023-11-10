@@ -23,7 +23,6 @@ const handle_value = (segments, boxes, value, active) => {
   }
   for (let segment of segments) {
     if (segment.className.includes(`nier-slider-boxes-${segment_index}`)) {
-      console.log("active????????? ", active);
       if (active) {
         segment.className = arradd(segment.className, "focus");
       } else {
@@ -51,6 +50,7 @@ export const NierSliderButton = ({
   hovering = false,
   size = 35,
   font_size = 20,
+  ...props
 }) =>
   NierButton({
     label,
@@ -61,6 +61,7 @@ export const NierSliderButton = ({
     font_size,
     // homogeneous_button: false,
     className: ["nier-slider-button", ...className],
+    ...props,
 
     passedOnHover: async (self) => {
       hovering = true;
@@ -106,7 +107,6 @@ export const NierSliderButton = ({
         let value = rawPos / boxes;
 
         ratio.setValue(value);
-        console.log("bar click is setting volume", ratio.value);
       }
     },
     handleClickRelease: async (self) => {
@@ -131,7 +131,6 @@ export const NierSliderButton = ({
           [
             ratio,
             (self) => {
-              console.log("ratio changed", ratio.value);
               handle_value(self.children, boxes, ratio.value, hovering);
             },
           ],

@@ -3,6 +3,7 @@ import { arradd, arrremove } from "../util.js";
 const { Button, Label, Overlay, EventBox, Box, Scrollable, Icon, CenterBox } =
   Widget;
 const { GObject } = imports.gi;
+const Pango = imports.gi.Pango;
 
 export const NierButton = ({
   label = "",
@@ -14,17 +15,28 @@ export const NierButton = ({
   size = 35,
   font_size = 20,
   homogeneous_button = true,
-  padding_right = size,
   passedParent = null,
+  select_on_click = false,
+  siblings = null,
+  multiple_selected_siblings = false,
+  max_label_chars = 20,
+  container_style = "",
 
-  labelOveride = (label, font_size) =>
+  labelOveride = (label, font_size, max_label_chars) =>
     Label({
       className: ["nier-button-label"],
       style: `font-size: ${font_size}px;`,
       label: "⬛ " + label,
       xalign: 0,
       justification: "left",
+      wrap: true,
+      max_width_chars: max_label_chars,
+      setup: (self) => {
+        self.set_line_wrap_mode(Pango.WrapMode.WORD_CHAR);
+        self.set_ellipsize(Pango.EllipsizeMode.END);
+      },
     }),
+
   passedOnHoverLost = async (self) => {
     return true;
   },
@@ -40,14 +52,13 @@ export const NierButton = ({
 }) =>
   Overlay({
     setup: (self) => {
-      self._eventbox = self.child.children[1];
-      self._centerbox = self._eventbox.child;
-      self._button = self._centerbox.centerWidget;
       self.passedParent = passedParent;
     },
+
     className: ["nier-button-container", ...containerClassName],
     connections: [...containerConnections],
     child: Box({
+      style: container_style,
       // homogeneous: false,
       // halign: "center",
       valign: "center",
@@ -130,6 +141,24 @@ export const NierButton = ({
           setup: (self) => {
             setup(self);
             self.connect("button-press-event", (self, event) => {
+              if (select_on_click) {
+                if (siblings && !multiple_selected_siblings) {
+                  for (let button of siblings) {
+                    if (button.className.includes("nier-button-container")) {
+                      let child = button.child.children[1];
+                      child.className = arrremove(
+                        child.className,
+                        "nier-button-box-selected"
+                      );
+                    }
+                  }
+                }
+                self.child.className = arradd(
+                  self.child.className,
+                  "nier-button-box-selected"
+                );
+              }
+
               handleClick(self, event).catch((e) => {
                 console.log(e);
               });
@@ -159,17 +188,16 @@ export const NierButton = ({
               // halign: "justified",
               homogeneous: homogeneous_button,
               className: ["nier-button", ...className],
-              children: [labelOveride(label, font_size), ...children],
+              children: [
+                labelOveride(label, font_size, max_label_chars),
+                ...children,
+              ],
               ...props,
             }),
             endWidget: Box({
               className: ["nier-button-bottom"],
             }),
           }),
-        }),
-        Box({
-          className: ["nier-button-right-padding"],
-          style: `min-width: ${padding_right}px;`,
         }),
       ],
     }),
@@ -182,6 +210,7 @@ export const NierButtonGroup = ({
   containerClassName = [],
   buttons = [],
   style = "",
+  spacing = 10,
   // homogeneous_buttons = true,
   horizontal = false,
   min_scale = 200,
@@ -227,6 +256,7 @@ export const NierButtonGroup = ({
             ...className,
           ],
           style: style,
+          spacing,
           children: [...buttons],
         }),
       ],

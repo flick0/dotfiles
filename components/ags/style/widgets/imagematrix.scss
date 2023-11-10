@@ -1,0 +1,48 @@
+@import "../color";
+
+.image-matrix-row.nohover {
+  margin: 0px;
+  transition: margin 0.1s cubic-bezier(1, -0.01, 1, 0.1);
+}
+
+.image-matrix-row.hover {
+  margin-left: -15px;
+  // margin-right: -50px;
+
+  // padding-left: 1px;
+  // margin-right: -10px;
+}
+
+.image-matrix-col {
+  border: $brown 20px solid;
+  padding: 10px;
+}
+
+.image-matrix-cell {
+  // background: $tan;
+  transition: opacity 1s ease;
+}
+
+@for $i from 0 through 10 {
+  .image-matrix-cell.shade-#{$i} {
+    background: rgba($brown, $i * 0.1);
+    transition: background 0s ease;
+    transition-delay: calc(#{$i}s * 0.5);
+
+    animation: glow-#{$i} 0.5s cubic-bezier(0, 1.02, 1, 0.02) forwards;
+    animation-delay: calc(#{$i}s * 0.5);
+  }
+
+  @keyframes glow-#{$i} {
+    0% {
+      background: $highlight;
+    }
+    100% {
+      background: rgba($brown, $i * 0.1);
+    }
+  }
+}
+
+@mixin glow($time) {
+  animation: glow $time ease;
+}

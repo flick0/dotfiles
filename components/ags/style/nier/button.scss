@@ -8,6 +8,7 @@ $border_dist: 3px;
 .nier-button-container {
   margin-bottom: 20px;
 }
+
 .nier-button-box-hover-from-selected {
   .nier-button-top,
   .nier-button-bottom {
@@ -34,12 +35,19 @@ $border_dist: 3px;
   }
 }
 
+.nier-button-box {
+  margin-right: 20px;
+  transition: margin 0.1s ease-out;
+}
+
 .nier-button-box-selected {
   .nier-button-top,
   .nier-button-bottom {
     opacity: 1;
     animation: from_border 0.5s ease-out forwards;
   }
+  margin-right: 0px;
+  transition: margin 0.1s ease-out;
 
   .nier-button {
     min-width: 200px;
@@ -56,7 +64,7 @@ $border_dist: 3px;
     background-position: -100%;
 
     // transition: background 0s cubic-bezier(0.15, 0.79, 0, 1),
-    transition: padding 0.1s ease-out;
+    transition: padding 0.1s ease-out, margin 0.1s ease-out;
   }
 }
 
@@ -181,6 +189,6 @@ $border_dist: 3px;
   transition: opacity 0.3s ease-in-out;
 }
 .nier-button-hover-icon-hidden {
-  opacity: 1;
+  opacity: 0;
   transition: opacity 0.3s ease-in-out;
 }

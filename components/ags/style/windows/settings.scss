@@ -1,39 +1,115 @@
 @import "../color";
 @import "../data";
 
-.nier-settings-container {
-  background: rgba($tan, 0.05);
+// .nier-settings-container .selected {
+//   .nier-button-box {
+//     background: $brown;
+//     label {
+//       color: $tan;
+//     }
+//   }
+//   .nier-button-hover-icon-hidden {
+//     opacity: 1;
+//   }
+//   margin-right: 100px;
+//   // animation: selected 0.5s ease forwards;
+// }
+
+@keyframes selected {
+  0% {
+    margin-right: 35px;
+  }
+  100% {
+    margin-right: 0px;
+  }
+}
+
+.nier-settings-container.opening {
+  animation: container_enter 0.5s cubic-bezier(0.15, 0.79, 0, 1) forwards;
   // margin-right: 500px;
 }
 .nier-settings-container.closing {
-  background: rgba($tan, 0.05);
+  // background: rgba($brown, 0.05);
   margin-right: $screen_width;
   margin-left: calc(-1 * #{$screen_width});
-  transition: margin 0.3s ease-out;
+  transition: margin 0.5s cubic-bezier(0.15, 0.79, 0, 1);
+  // transition-delay: 0.2s;
+}
+
+.nier-settings-container {
+  background: rgba($brown, 0.3);
+  .nier-button-box {
+    margin-right: 60px;
+    // transition: margin 0.1s ease-out;
+  }
+
+  .nier-button-box-selected {
+    margin-right: 0px;
+    // transition: margin 0.1s ease-out;
+  }
+}
+
+.nier-settings-1-container .heading {
+  font-size: 100px;
+  margin-top: 100px;
+  margin-bottom: 50px;
+  padding-left: 45px;
+}
+
+.nier-settings-2-container .heading {
+  font-size: 70px;
+  margin-top: 130px;
+  margin-bottom: 50px;
+  padding-left: 35px;
+}
+
+.nier-settings-3-container .heading {
+  font-size: 50px;
+  margin-top: 150px;
+  margin-bottom: 50px;
+  padding-left: 35px;
+}
+
+.nier-settings-1-container,
+.nier-settings-2-container,
+.nier-settings-3-container,
+.nier-settings-4-container {
+  min-width: calc(#{$screen_width} / 4);
+}
+
+@keyframes container_enter {
+  0% {
+    margin-right: $screen_width;
+    margin-left: calc(-1 * #{$screen_width});
+  }
+  100% {
+    margin-right: 0px;
+    margin-left: 0px;
+  }
 }
 
 .nier-settings-1-container {
   background: $tan;
-  transition: margin 0.2s cubic-bezier(0.15, 0.79, 0, 1);
+  // transition: margin 0.2s cubic-bezier(0.15, 0.79, 0, 1), opacity 1s ease;
 }
 .nier-settings-2-container {
   background: rgba($tan, 0.8);
-  transition: margin 0.2s cubic-bezier(0.15, 0.79, 0, 1);
+  transition: margin 0.2s cubic-bezier(0.15, 0.79, 0, 1), opacity 1s ease;
 }
 .nier-settings-3-container {
   background: rgba($tan, 0.6);
-  transition: margin 0.2s cubic-bezier(0.15, 0.79, 0, 1);
+  transition: margin 0.2s cubic-bezier(0.15, 0.79, 0, 1), opacity 1s ease;
 }
 .nier-settings-4-container {
   background: rgba($tan, 0.4);
-  transition: margin 0.2s cubic-bezier(0.15, 0.79, 0, 1);
+  transition: margin 0.2s cubic-bezier(0.15, 0.79, 0, 1), opacity 1s ease;
 }
 
 .nier-settings-1-container.closing {
-  margin-right: calc(#{$screen_width} / 4);
-  margin-left: calc(-1 * #{$screen_width} / 4);
-  opacity: 0;
-  transition: margin 0.2s cubic-bezier(0.15, 0.79, 0, 1), opacity 0.2s ease;
+  // margin-right: calc(#{$screen_width} / 4);
+  // margin-left: calc(-1 * #{$screen_width} / 4);
+  // opacity: 0;
+  // transition: margin 0.2s cubic-bezier(0.15, 0.79, 0, 1), opacity 0.2s ease;
 }
 .nier-settings-2-container.closing {
   margin-right: calc(#{$screen_width}/ 4);

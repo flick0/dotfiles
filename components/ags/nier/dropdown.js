@@ -1,4 +1,4 @@
-import { Widget, App } from "../imports.js";
+import { Widget, App, Variable } from "../imports.js";
 import { arradd, arrremove } from "../util.js";
 import { NierButton } from "./buttons.js";
 const { Gdk } = imports.gi;
@@ -15,12 +15,13 @@ export const NierDropDownButton = ({
   passedOnHover = async (self) => {
     return true;
   },
-  options = [],
+  options = Variable([], {}),
   size = 35,
-  current = "test",
+  current = Variable("", {}),
   popup_window = null,
   in_focus = false,
   popup_in_focus = false,
+  popup_x_offset = 0,
   ...props
 }) =>
   NierButton({
@@ -51,9 +52,10 @@ export const NierDropDownButton = ({
         setTimeout(resolve, 200);
       });
       popup_window = NierSelectMenu({
-        coord_x: alloc.x + alloc.width + 20,
+        coord_x: alloc.x + alloc.width + popup_x_offset,
         coord_y: alloc.y,
         button: self,
+        current,
         options,
       });
     },
@@ -61,18 +63,20 @@ export const NierDropDownButton = ({
       Label({
         className: ["nier-option-item"],
         halign: "end",
-        label: current,
+        binds: [["label", current, "value"]],
       }),
     ],
+    ...props,
   });
 
 export const NierSelectMenu = ({
   coord_x = 0,
   coord_y = 0,
-  options = [],
   size = 35,
   spacing = 20,
   button = null,
+  current,
+  options,
 }) =>
   Window({
     exclusive: false,
@@ -107,37 +111,45 @@ export const NierSelectMenu = ({
     child: Box({
       vertical: true,
       className: ["nier-option-menu"],
-      children: [
-        Box({
-          children: [
-            Box({
-              spacing,
-              children: [
-                Box({
-                  className: ["nier-option-header"],
-                  child: Box({
-                    className: ["nier-option-header-inner"],
+      connections: [
+        [
+          options,
+          (self) => {
+            self.children = [
+              Box({
+                children: [
+                  Box({
+                    spacing,
+                    children: [
+                      Box({
+                        className: ["nier-option-header"],
+                        child: Box({
+                          className: ["nier-option-header-inner"],
+                        }),
+                      }),
+                      Icon({
+                        icon: App.configDir + "/assets/nier-pointer-rev.svg",
+                        size: size,
+                        style: "opacity: 0;",
+                        className: ["nier-button-hover-icon"],
+                      }),
+                    ],
                   }),
-                }),
-                Icon({
-                  icon: App.configDir + "/assets/nier-pointer-rev.svg",
-                  size: size,
-                  style: "opacity: 0;",
-                  className: ["nier-button-hover-icon"],
-                }),
-              ],
-            }),
-          ],
-        }),
+                ],
+              }),
 
-        ...Array.from(options, (option) => {
-          return NierOptionItem({
-            label: option,
-            size,
-            spacing,
-            button,
-          });
-        }),
+              ...Array.from(options.value, (option) => {
+                return NierOptionItem({
+                  label: option,
+                  size,
+                  spacing,
+                  button,
+                  current,
+                });
+              }),
+            ];
+          },
+        ],
       ],
       style: `margin-left: ${coord_x}px; margin-top: ${coord_y}px;`,
     }),
@@ -148,6 +160,7 @@ export const NierOptionItem = ({
   size = 35,
   spacing = 20,
   button,
+  current,
 }) =>
   Box({
     className: ["nier-button-container", "nier-option-container"],
@@ -179,24 +192,8 @@ export const NierOptionItem = ({
           return true;
         },
         onPrimaryClick: async (self) => {
-          console.log("clicked");
-          let label = button.child.centerWidget.children[1];
-          let child_label = self.child.children[0];
-          label.label = child_label.label;
+          current.setValue(label);
           self.parent.parent.parent.destroy();
-          label.className = arradd(label.className, "nier-option-item-changed");
-          console.log(label.className);
-          await new Promise((resolve) => {
-            setTimeout(resolve, 1000);
-          });
-
-          label.className = arrremove(
-            label.className,
-            "nier-option-item-changed"
-          );
-          console.log("destroyed");
-          console.log(label.className);
-
           return true;
         },
         onHoverLost: async (self) => {

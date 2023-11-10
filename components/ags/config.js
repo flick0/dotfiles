@@ -20,6 +20,7 @@ import { Info } from "./widgets/info.js";
 import { NierSliderButton } from "./nier/slider.js";
 import { NierDropDownButton } from "./nier/dropdown.js";
 import { NierSettingPane } from "./windows/settings.js";
+import { NowPlaying } from "./widgets/nowplaying.js";
 // import { NierDropDownButton } from "./nier/dropdown.js";
 
 const { exec, subprocess, execAsync } = Utils;
@@ -51,10 +52,10 @@ const top = () =>
       Box({
         spacing: 20,
         children: [
-          NierSliderButton({
+          NierDropDownButton({
             label: "test",
-            boxes: 50,
-            value: 0.5,
+            current: Variable("YES", {}),
+            options: Variable(["hello", "no"], {}),
           }),
           NierButton({
             handleClick: async (self, event) => {
@@ -70,6 +71,7 @@ const top = () =>
         }") repeat-x;min-width: ${SCREEN_WIDTH}px;background-size: 80px 20px;min-height: 80px;`,
         child: Label(""),
       }),
+      // NowPlaying({}),
     ],
   });
 
@@ -88,15 +90,30 @@ const Bar = ({ monitor } = {}) => {
     }),
   });
 };
+
+const Side = () =>
+  Window({
+    name: "side",
+    margin: [10, 10],
+    anchor: ["right", "top", "bottom"],
+    exclusive: false,
+    layer: "bottom",
+    child: Box({
+      valign: "center",
+      halign: "center",
+      child: NowPlaying({}),
+    }),
+  });
 export default {
   closeWindowDelay: {
-    settings: 300, // milliseconds
+    settings: 500, // milliseconds
   },
   style: css,
   windows: [
     // BottomBar()
     Bar(),
     NierSettingPane(),
+    Side(),
     // you can call it, for each monitor
     // Bar({ monitor: 0 }),
     // Bar({ monitor: 1 })
