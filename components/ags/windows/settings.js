@@ -39,6 +39,10 @@ const ensure_only_selected = async (button, page_button) => {
       button.child.className,
       "nier-button-box-selected"
     );
+    button.parent.className = arradd(
+      button.parent.className,
+      "nier-button-container-selected"
+    );
   }
   if (page_button) {
     remove_selected(page_button).catch((e) => {
@@ -55,9 +59,17 @@ const remove_selected = async (button) => {
       button.child.className,
       "nier-button-box-selected"
     );
+    button.parent.className = arrremove(
+      button.parent.className,
+      "nier-button-container-selected"
+    );
     button.child.className = arradd(
       button.child.className,
       "nier-button-box-hover-from-selected"
+    );
+    button.parent.className = arradd(
+      button.parent.className,
+      "nier-button-container-hover-from-selected"
     );
     await new Promise((resolve) => {
       setTimeout(resolve, 500);
@@ -65,6 +77,10 @@ const remove_selected = async (button) => {
     button.child.className = arrremove(
       button.child.className,
       "nier-button-box-hover-from-selected"
+    );
+    button.parent.className = arrremove(
+      button.parent.className,
+      "nier-button-container-hover-from-selected"
     );
   }
 };
@@ -214,8 +230,7 @@ export const NierSettingPane = (
           buttons: [
             Label({ halign: "start", label: "SYSTEM", className: ["heading"] }),
             NierButton({
-              size: 50,
-              font_size: 50,
+              font_size: 30,
               label: "sound",
               handleClick: async (self, event) => {
                 page1_selected = await ensure_only_selected(
@@ -228,8 +243,7 @@ export const NierSettingPane = (
               },
             }),
             NierButton({
-              size: 50,
-              font_size: 50,
+              font_size: 30,
               label: "wifi",
               handleClick: async (self, event) => {
                 await go_page2(wifi_page(), self).catch((e) => {
@@ -238,8 +252,7 @@ export const NierSettingPane = (
               },
             }),
             NierButton({
-              size: 50,
-              font_size: 50,
+              font_size: 30,
               label: "bluetooth",
               handleClick: async (self, event) => {
                 await go_page2(bluetooth_page(go_page3), self).catch((e) => {

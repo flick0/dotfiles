@@ -14,7 +14,7 @@ export const BluetoothGroup = (
   return [
     Label({ halign: "start", label: "BLUETOOTH", className: ["heading"] }),
     NierDropDownButton({
-      font_size: 40,
+      font_size: 30,
       label: "enabled",
       current: enabled,
       options: Variable(["YES", "NO"], {}),
@@ -29,7 +29,7 @@ export const BluetoothGroup = (
       ],
     }),
     NierButton({
-      font_size: 40,
+      font_size: 30,
       label: "devices",
       handleClick: async (self, event) => {
         go_to(

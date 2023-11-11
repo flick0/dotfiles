@@ -14,7 +14,7 @@ import {
 
 import { NierButton, NierButtonGroup, NierLongButton } from "./nier/buttons.js";
 
-import { css, scss } from "./util.js";
+import { arradd, arrremove, css, scss } from "./util.js";
 import { Workspaces } from "./widgets/workspace.js";
 import { Info } from "./widgets/info.js";
 import { NierSliderButton } from "./nier/slider.js";
@@ -61,11 +61,26 @@ const top = () =>
             className: ["settings-button"],
             child: Icon({
               size: 40,
-              icon: App.configDir + "/assets/yorha-light.png",
+              icon: App.configDir + "/assets/yorha.png",
             }),
             onClicked: () => {
               App.toggleWindow("settings");
             },
+            onHover: (button) => {
+              let right = button.parent.children[2];
+              button.className = arradd(button.className, "hover");
+              right.className = arradd(right.className, "hover");
+            },
+            onHoverLost: (button) => {
+              let right = button.parent.children[2];
+              button.className = arrremove(button.className, "hover");
+              right.className = arrremove(right.className, "hover");
+            },
+          }),
+          Box({
+            // vexpand: true,
+            halign: "start",
+            className: ["yorha-right"],
           }),
         ],
       }),
@@ -74,7 +89,6 @@ const top = () =>
         style: `background: url("${
           App.configDir + "/assets/nier-border.svg"
         }") repeat-x;min-width: ${SCREEN_WIDTH}px;background-size: 100px 25px;min-height: 100px;`,
-        child: Label(""),
       }),
       // NowPlaying({}),
     ],

@@ -16,7 +16,7 @@ export const WifiGroup = (
   return [
     Label({ halign: "start", label: "WIFI", className: ["heading"] }),
     NierDropDownButton({
-      font_size: 40,
+      font_size: 30,
       label: "enabled",
       current: enabled,
       options: Variable(["YES", "NO"], {}),
@@ -31,7 +31,7 @@ export const WifiGroup = (
       ],
     }),
     NierDropDownButton({
-      font_size: 40,
+      font_size: 30,
       label: "connect",
       current: current_ssid,
       options: current_networks,

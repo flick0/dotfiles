@@ -108,12 +108,22 @@ export const NowPlaying = ({
             className: ["player-buttons"],
             // hexpand: true,
             child: Label({
-              label: "⏸",
+              label: Mpris.players
+                ? Mpris.players[0].play_back_status === "Playing"
+                  ? "⏸"
+                  : "▪"
+                : "▪",
               className: ["heading"],
             }),
             onClicked: async (self) => {
               const player = Mpris.players[0];
               player.playPause();
+
+              if (player.play_back_status === "Playing") {
+                self.child.label = "▪";
+              } else {
+                self.child.label = "⏸";
+              }
 
               self.className = arradd(self.className, "pressed");
               console.log(self.className);

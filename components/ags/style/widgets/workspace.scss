@@ -4,6 +4,7 @@
 .workspace-button-container.active-no-hover {
   .nier-long-button {
     @include long-button-hover;
+    //
     // padding-bottom: 0px;
     label {
       transition: background 0.3s cubic-bezier(0.15, 0.79, 0, 1);

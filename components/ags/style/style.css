@@ -484,11 +484,30 @@
   color: #48463d; }
 
 .settings-button {
-  background: #cd664d;
-  margin-right: 20px;
+  background: linear-gradient(90deg, #cd664d 50%, rgba(205, 102, 76, 0.5) 50%);
+  background-size: 200%;
+  background-position: -100%;
   margin-bottom: 10px;
   padding-left: 12px;
-  padding-right: 12px; }
+  padding-right: 12px;
+  transition: background-position 0.2s cubic-bezier(0.15, 0.79, 0, 1); }
+
+.settings-button.hover {
+  background-position: 0%;
+  transition: background-position 0.2s cubic-bezier(0.15, 0.79, 0, 1); }
+
+.yorha-right.hover {
+  background: #cd664d;
+  margin-left: -15px;
+  transition: margin 0.2s cubic-bezier(0.15, 0.79, 0, 1), background 0.2s cubic-bezier(0.15, 0.79, 0, 1); }
+
+.yorha-right {
+  background: transparent;
+  min-width: 8px;
+  margin-right: 20px;
+  margin-left: -28px;
+  margin-bottom: 10px;
+  transition: margin 0.2s cubic-bezier(0.15, 0.79, 0, 1), background 0.2s cubic-bezier(0.15, 0.79, 0, 1); }
 
 .nier-toggle-on {
   opacity: 1;
@@ -638,13 +657,15 @@
   transition: padding 0.3s cubic-bezier(0, 1, 0, 1), margin 0.3s cubic-bezier(0, 1, 0, 1), text-shadow 0.3s cubic-bezier(0, 1, 0, 1); }
 
 .player-buttons .heading {
-  margin-right: 5px;
+  font-size: 3.5rem;
   margin-bottom: -10px;
   margin-top: 5px;
   text-shadow: 5px 5px 1px rgba(72, 70, 61, 0.25);
   transition: padding 0.3s cubic-bezier(0, 1, 0, 1), margin 0.3s cubic-bezier(0, 1, 0, 1), text-shadow 0.3s cubic-bezier(0, 1, 0, 1); }
 
 .image-matrix-container {
+  padding-right: 10px;
+  border-right: #48463d 5px solid;
   margin-right: 20px; }
 
 .image-matrix-row.nohover {
@@ -847,17 +868,19 @@
   transition: margin 0.5s cubic-bezier(0.15, 0.79, 0, 1); }
 
 .nier-settings-container {
-  background: rgba(72, 70, 61, 0.3), url("../assets/yorha-light.png") no-repeat bottom right; }
+  background: rgba(72, 70, 61, 0.3), url("../assets/glory-tan-ghost.png") no-repeat center; }
   .nier-settings-container .nier-button-box {
     margin-right: 60px; }
   .nier-settings-container .nier-button-box-selected {
     margin-right: 0px; }
+  .nier-settings-container .nier-button-container-selected .nier-button-hover-icon {
+    opacity: 1; }
 
 .nier-settings-1-container .heading {
-  font-size: 100px;
-  margin-top: 100px;
+  font-size: 70px;
+  margin-top: 130px;
   margin-bottom: 50px;
-  padding-left: 45px; }
+  padding-left: 35px; }
 
 .nier-settings-2-container .heading {
   font-size: 70px;

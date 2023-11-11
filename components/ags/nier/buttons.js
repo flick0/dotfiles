@@ -281,6 +281,7 @@ export const NierLongButton = ({
   containerClassName = [],
   containerConnections = [],
   label = "",
+  label_prefix = "⬛",
   passedOnHoverLost = async (self) => {},
   passedOnHover = async (self) => {},
 
@@ -301,7 +302,7 @@ export const NierLongButton = ({
       Button({
         name,
         child: Label({
-          label: "⬛ " + label,
+          label: `${label_prefix} ` + label,
           xalign: 0,
           justification: "left",
         }),
