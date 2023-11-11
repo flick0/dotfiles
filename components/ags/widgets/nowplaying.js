@@ -21,13 +21,13 @@ import {
   themedir,
 } from "../util.js";
 
-const { Box, Label, Button, EventBox } = Widget;
+const { Box, Label, Button, EventBox, Revealer } = Widget;
 const { execAsync } = Utils;
-const { GdkPixbuf } = imports.gi;
+const { GdkPixbuf, Pango } = imports.gi;
 
 const opacity_map = [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1];
 
-const image_to_matrix = (inputPath, imagedat, threshold = 128) => {
+const image_to_matrix = async (inputPath, imagedat, threshold = 128) => {
   // Load the image from file
   const resizedPixbuf = GdkPixbuf.Pixbuf.new_from_file(inputPath);
 
@@ -68,7 +68,7 @@ const image_to_matrix = (inputPath, imagedat, threshold = 128) => {
 };
 
 export const NowPlaying = ({
-  rows = 32,
+  rows = 64,
   imagedat = Variable(
     Array.from({ length: rows }, (_, i) =>
       Array.from({ length: rows }, (_, i) => 1)
@@ -83,6 +83,64 @@ export const NowPlaying = ({
     vertical: true,
     className: ["nowplaying-container"],
     children: [
+      Box({
+        style: `min-width: ${rows * cell_width + 30 + 30 - 20}px;`,
+        halign: "end",
+        children: [
+          Button({
+            halign: "end",
+            className: ["player-buttons"],
+            hexpand: true,
+            child: Label({
+              label: "⏮",
+              className: ["heading"],
+            }),
+            onClicked: async (self) => {
+              const player = Mpris.players[0];
+              player.previous();
+              self.className = arradd(self.className, "pressed");
+              await new Promise((r) => setTimeout(r, 100));
+              self.className = arrremove(self.className, "pressed");
+            },
+          }),
+          Button({
+            halign: "end",
+            className: ["player-buttons"],
+            // hexpand: true,
+            child: Label({
+              label: "⏸",
+              className: ["heading"],
+            }),
+            onClicked: async (self) => {
+              const player = Mpris.players[0];
+              player.playPause();
+
+              self.className = arradd(self.className, "pressed");
+              console.log(self.className);
+              await new Promise((r) => setTimeout(r, 100));
+              self.className = arrremove(self.className, "pressed");
+              console.log(self.className);
+            },
+          }),
+          Button({
+            halign: "end",
+            className: ["player-buttons"],
+            style: "margin-right: 15px;",
+            // hexpand: true,
+            child: Label({
+              label: "⏭",
+              className: ["heading"],
+            }),
+            onClicked: async (self) => {
+              const player = Mpris.players[0];
+              player.next();
+              self.className = arradd(self.className, "pressed");
+              await new Promise((r) => setTimeout(r, 100));
+              self.className = arrremove(self.className, "pressed");
+            },
+          }),
+        ],
+      }),
       Box({
         className: ["image-matrix-container"],
         halign: "center",
@@ -190,9 +248,12 @@ export const NowPlaying = ({
                       ])
                         .then((out) => {
                           console.log("cover prepared");
-                          image_to_matrix("/tmp/bg.png", imagedat, rows);
-                          preparing_cover = false;
-                          imagedat.emit("changed");
+                          Promise.resolve(
+                            image_to_matrix("/tmp/bg.png", imagedat, rows)
+                          ).then(() => {
+                            preparing_cover = false;
+                            imagedat.emit("changed");
+                          });
                         })
                         .catch((e) => {
                           preparing_cover = false;
@@ -210,7 +271,50 @@ export const NowPlaying = ({
         ],
       }),
       Box({
-        children: [Label("<"), Label("||"), Label(">")],
+        className: ["nowplaying-info-container"],
+        children: [
+          Revealer({
+            revealChild: false,
+            transitionDuration: 1000,
+            child: Label({
+              label: "woa",
+              className: "heading",
+              style: `min-width: ${rows * cell_width + 15 + 15 - 20}px;`,
+              halign: "start",
+              xalign: 0,
+              wrap: true,
+              max_width_chars: 20,
+              setup: (self) => {
+                self.set_line_wrap_mode(Pango.WrapMode.WORD_CHAR);
+                self.set_ellipsize(Pango.EllipsizeMode.END);
+              },
+            }),
+            transition: "slide_left",
+            connections: [
+              [
+                Mpris,
+                async (self) => {
+                  const player = Mpris.players[0];
+                  if (player.track_title !== self.child.label) {
+                    let cursor = self.parent.children[1];
+                    await new Promise((r) => setTimeout(r, 1500));
+                    cursor.className = arrremove(cursor.className, "hidden");
+                    await new Promise((r) => setTimeout(r, 1500));
+                    self.revealChild = false;
+                    await new Promise((r) => setTimeout(r, 1500));
+                    self.child.label = player.track_title;
+                    self.revealChild = true;
+                    await new Promise((r) => setTimeout(r, 1500));
+                    cursor.className = arradd(cursor.className, "hidden");
+                  }
+                },
+              ],
+            ],
+          }),
+          Box({
+            className: ["nowplaying-info-cursor"],
+          }),
+        ],
       }),
     ],
     connections: [],

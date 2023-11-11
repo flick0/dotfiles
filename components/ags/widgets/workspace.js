@@ -21,25 +21,25 @@ const { execAsync } = Utils;
 const int_to_string = (i) => {
   switch (i) {
     case 1:
-      return "one";
+      return "いち";
     case 2:
-      return "two";
+      return "に";
     case 3:
-      return "three";
+      return "さん";
     case 4:
-      return "four";
+      return "し";
     case 5:
-      return "five";
+      return "ご";
     case 6:
-      return "six";
+      return "ろく";
     case 7:
-      return "seven";
+      return "しち";
     case 8:
-      return "eight";
+      return "はちt";
     case 9:
-      return "nine";
+      return "きゅう";
     case 10:
-      return "ten";
+      return "じゅう";
   }
 };
 

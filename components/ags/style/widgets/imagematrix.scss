@@ -1,5 +1,49 @@
 @import "../color";
 
+.player-buttons.pressed:hover {
+  .heading {
+    text-shadow: 5px 5px 1px rgba($brown, 0.25);
+    padding-bottom: 0px;
+    padding-right: 0px;
+    margin-right: 5px;
+    margin-top: 5px;
+    transition: padding 0.3s cubic-bezier(0, 1, 0, 1),
+      margin 0.3s cubic-bezier(0, 1, 0, 1),
+      text-shadow 0.3s cubic-bezier(0, 1, 0, 1);
+  }
+}
+
+.player-buttons:hover {
+  .heading {
+    text-shadow: 10px 10px 1px rgba($brown, 0.25);
+    padding-bottom: 5px;
+    padding-right: 5px;
+    margin-right: 0px;
+    margin-top: 0px;
+    transition: padding 0.3s cubic-bezier(0, 1, 0, 1),
+      margin 0.3s cubic-bezier(0, 1, 0, 1),
+      text-shadow 0.3s cubic-bezier(0, 1, 0, 1);
+  }
+}
+
+.player-buttons {
+  .heading {
+    margin-right: 5px;
+    margin-bottom: -10px;
+    margin-top: 5px;
+    text-shadow: 5px 5px 1px rgba($brown, 0.25);
+    transition: padding 0.3s cubic-bezier(0, 1, 0, 1),
+      margin 0.3s cubic-bezier(0, 1, 0, 1),
+      text-shadow 0.3s cubic-bezier(0, 1, 0, 1);
+
+    // text-shadow: 5px 5px 1px rgba($brown, 0.25);
+  }
+}
+
+.image-matrix-container {
+  margin-right: 20px;
+}
+
 .image-matrix-row.nohover {
   margin: 0px;
   transition: margin 0.1s cubic-bezier(1, -0.01, 1, 0.1);
@@ -14,8 +58,8 @@
 }
 
 .image-matrix-col {
-  border: $brown 20px solid;
-  padding: 10px;
+  border: $brown 10px solid;
+  padding: 5px;
 }
 
 .image-matrix-cell {
@@ -29,7 +73,7 @@
     transition: background 0s ease;
     transition-delay: calc(#{$i}s * 0.5);
 
-    animation: glow-#{$i} 0.5s cubic-bezier(0, 1.02, 1, 0.02) forwards;
+    animation: glow-#{$i} 0.5s cubic-bezier(1, 0.01, 0.33, 0.4) forwards;
     animation-delay: calc(#{$i}s * 0.5);
   }
 
@@ -45,4 +89,48 @@
 
 @mixin glow($time) {
   animation: glow $time ease;
+}
+
+.nowplaying-info-container .heading {
+  font-size: 2rem;
+  margin-top: 5px;
+  font-family: FOT-Rodin Pro B, sans-serif;
+  text-shadow: 5px 5px 1px rgba($brown, 0.25);
+}
+
+.nowplaying-info-cursor.hidden {
+  animation: cursor-exit 1s cubic-bezier(0, 0.86, 0, 1) forwards;
+}
+
+.nowplaying-info-cursor {
+  background: linear-gradient(
+    180deg,
+    $brown 80%,
+    transparent 80%,
+    transparent 90%,
+    $brown 100%
+  );
+  min-width: 20px;
+  animation: cursor-enter 1s cubic-bezier(0, 0.86, 0, 1) forwards;
+}
+
+@keyframes cursor-enter {
+  0% {
+    // margin-top: 7px;
+    margin-bottom: calc(2rem + 7px);
+  }
+  100% {
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+}
+@keyframes cursor-exit {
+  0% {
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+  100% {
+    // margin-top: -2rem;
+    margin-bottom: calc(2rem + 7px);
+  }
 }

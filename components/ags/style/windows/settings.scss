@@ -15,6 +15,14 @@
 //   // animation: selected 0.5s ease forwards;
 // }
 
+// `..      `..          `.......    `..     `..
+//  `..    `..           `..    `..  `..     `..
+//   `.. `..      `..    `..    `..  `..     `..   `..
+//     `..      `..  `.. `. `..      `...... `.. `..  `..
+//     `..     `..    `..`..  `..    `..     `..`..   `..
+//     `..      `..  `.. `..    `..  `..     `..`..   `..
+//     `..        `..    `..      `..`..     `..  `.. `...
+
 @keyframes selected {
   0% {
     margin-right: 35px;
@@ -37,7 +45,8 @@
 }
 
 .nier-settings-container {
-  background: rgba($brown, 0.3);
+  background: rgba($brown, 0.3),
+    url("../assets/yorha-light.png") no-repeat bottom right;
   .nier-button-box {
     margin-right: 60px;
     // transition: margin 0.1s ease-out;

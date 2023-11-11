@@ -27,11 +27,11 @@ if [ -z "$size" ]; then
 fi
 
 # grayscale
-# convert /tmp/bg.png -colorspace Gray /tmp/bg.png
+convert /tmp/bg.png -colorspace Gray /tmp/bg.png
 #remove bars
 magick mogrify -fuzz 4% -trim +repage -shave 7x7 -format png /tmp/bg.png
-#resize
-convert /tmp/bg.png -resize ${size}x${size}^ -gravity center -extent ${size}x${size} /tmp/bg.png
+
+magick mogrify -resize "$size"x"$size"^ -gravity center -extent "$size"x"$size" -format png /tmp/bg.png
 
 
 

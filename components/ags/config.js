@@ -24,7 +24,7 @@ import { NowPlaying } from "./widgets/nowplaying.js";
 // import { NierDropDownButton } from "./nier/dropdown.js";
 
 const { exec, subprocess, execAsync } = Utils;
-const { Box, Window, Label, Revealer } = Widget;
+const { Box, Window, Label, Button, Revealer, Icon } = Widget;
 
 exec(`sassc ${scss} ${css}`);
 
@@ -51,14 +51,19 @@ const top = () =>
     children: [
       Box({
         spacing: 20,
+        halign: "fill",
+        style: `min-width: ${SCREEN_WIDTH}px;`,
         children: [
-          NierDropDownButton({
-            label: "test",
-            current: Variable("YES", {}),
-            options: Variable(["hello", "no"], {}),
-          }),
-          NierButton({
-            handleClick: async (self, event) => {
+          Workspaces({}),
+          Button({
+            halign: "end",
+            hexpand: true,
+            className: ["settings-button"],
+            child: Icon({
+              size: 40,
+              icon: App.configDir + "/assets/yorha-light.png",
+            }),
+            onClicked: () => {
               App.toggleWindow("settings");
             },
           }),
@@ -68,7 +73,7 @@ const top = () =>
         className: ["under-workspaces"],
         style: `background: url("${
           App.configDir + "/assets/nier-border.svg"
-        }") repeat-x;min-width: ${SCREEN_WIDTH}px;background-size: 80px 20px;min-height: 80px;`,
+        }") repeat-x;min-width: ${SCREEN_WIDTH}px;background-size: 100px 25px;min-height: 100px;`,
         child: Label(""),
       }),
       // NowPlaying({}),
@@ -77,7 +82,7 @@ const top = () =>
 
 const Bar = ({ monitor } = {}) => {
   return Window({
-    name: `bar-${monitor}`, // name has to be unique
+    name: `bar`, // name has to be unique
     className: "bar",
     monitor,
     margin: [0, 0],
@@ -104,6 +109,23 @@ const Side = () =>
       child: NowPlaying({}),
     }),
   });
+
+const BottomBar = () =>
+  Window({
+    name: "bottombar",
+    margin: [0, 0],
+    anchor: ["bottom", "left", "right"],
+    exclusive: false,
+    layer: "bottom",
+    child: Box({
+      className: ["under-workspaces"],
+      style: `background: url("${
+        App.configDir + "/assets/nier-border.svg"
+      }") repeat-x;min-width: ${SCREEN_WIDTH}px;background-size: 100px 25px;min-height: 100px;`,
+      child: Label(""),
+    }),
+  });
+
 export default {
   closeWindowDelay: {
     settings: 500, // milliseconds
@@ -114,6 +136,7 @@ export default {
     Bar(),
     NierSettingPane(),
     Side(),
+    BottomBar(),
     // you can call it, for each monitor
     // Bar({ monitor: 0 }),
     // Bar({ monitor: 1 })

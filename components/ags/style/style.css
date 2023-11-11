@@ -13,7 +13,8 @@
   transition: opacity 0.3s ease-in-out; }
 
 .nier-long-button label {
-  font-size: 1.5rem;
+  font-size: 2rem;
+  font-family: FOT-Rodin Pro M, sans-serif;
   background: linear-gradient(90deg, rgba(72, 70, 61, 0.25) 0%, rgba(72, 70, 61, 0.25) 50%, #48463d 50%, #48463d 100%);
   background-size: 200%;
   color: #48463d;
@@ -34,7 +35,7 @@
   border: none;
   border-top: transparent 3px solid;
   border-bottom: transparent 3px solid;
-  min-width: 150px;
+  min-width: 190px;
   transition: border 0.3s ease-in-out; }
 
 .nier-long-button-hover {
@@ -46,6 +47,7 @@
     padding-top: calc(8px - 4px);
     padding-bottom: calc(7px - 4px);
     background-position: -100%;
+    font-family: FOT-Rodin Pro B, sans-serif;
     color: #c2bda6; }
   .nier-long-button-hover label {
     transition: background 1s cubic-bezier(0.15, 0.79, 0, 1); }
@@ -481,6 +483,13 @@
   text-shadow: 10px 10px 1px rgba(72, 70, 61, 0.25);
   color: #48463d; }
 
+.settings-button {
+  background: #cd664d;
+  margin-right: 20px;
+  margin-bottom: 10px;
+  padding-left: 12px;
+  padding-right: 12px; }
+
 .nier-toggle-on {
   opacity: 1;
   transition: opacity 0.3s ease-in-out; }
@@ -490,7 +499,8 @@
   transition: opacity 0.3s ease-in-out; }
 
 .nier-long-button label {
-  font-size: 1.5rem;
+  font-size: 2rem;
+  font-family: FOT-Rodin Pro M, sans-serif;
   background: linear-gradient(90deg, rgba(72, 70, 61, 0.25) 0%, rgba(72, 70, 61, 0.25) 50%, #48463d 50%, #48463d 100%);
   background-size: 200%;
   color: #48463d;
@@ -511,7 +521,7 @@
   border: none;
   border-top: transparent 3px solid;
   border-bottom: transparent 3px solid;
-  min-width: 150px;
+  min-width: 190px;
   transition: border 0.3s ease-in-out; }
 
 .nier-long-button-hover {
@@ -523,6 +533,7 @@
     padding-top: calc(8px - 4px);
     padding-bottom: calc(7px - 4px);
     background-position: -100%;
+    font-family: FOT-Rodin Pro B, sans-serif;
     color: #c2bda6; }
   .nier-long-button-hover label {
     transition: background 1s cubic-bezier(0.15, 0.79, 0, 1); }
@@ -555,6 +566,7 @@
     padding-top: calc(8px - 4px);
     padding-bottom: calc(7px - 4px);
     background-position: -100%;
+    font-family: FOT-Rodin Pro B, sans-serif;
     color: #c2bda6; }
   .workspace-button-container.active-no-hover .nier-long-button label {
     transition: background 0.3s cubic-bezier(0.15, 0.79, 0, 1);
@@ -609,6 +621,32 @@
 .under-workspaces {
   margin-top: -1px; }
 
+.player-buttons.pressed:hover .heading {
+  text-shadow: 5px 5px 1px rgba(72, 70, 61, 0.25);
+  padding-bottom: 0px;
+  padding-right: 0px;
+  margin-right: 5px;
+  margin-top: 5px;
+  transition: padding 0.3s cubic-bezier(0, 1, 0, 1), margin 0.3s cubic-bezier(0, 1, 0, 1), text-shadow 0.3s cubic-bezier(0, 1, 0, 1); }
+
+.player-buttons:hover .heading {
+  text-shadow: 10px 10px 1px rgba(72, 70, 61, 0.25);
+  padding-bottom: 5px;
+  padding-right: 5px;
+  margin-right: 0px;
+  margin-top: 0px;
+  transition: padding 0.3s cubic-bezier(0, 1, 0, 1), margin 0.3s cubic-bezier(0, 1, 0, 1), text-shadow 0.3s cubic-bezier(0, 1, 0, 1); }
+
+.player-buttons .heading {
+  margin-right: 5px;
+  margin-bottom: -10px;
+  margin-top: 5px;
+  text-shadow: 5px 5px 1px rgba(72, 70, 61, 0.25);
+  transition: padding 0.3s cubic-bezier(0, 1, 0, 1), margin 0.3s cubic-bezier(0, 1, 0, 1), text-shadow 0.3s cubic-bezier(0, 1, 0, 1); }
+
+.image-matrix-container {
+  margin-right: 20px; }
+
 .image-matrix-row.nohover {
   margin: 0px;
   transition: margin 0.1s cubic-bezier(1, -0.01, 1, 0.1); }
@@ -617,8 +655,8 @@
   margin-left: -15px; }
 
 .image-matrix-col {
-  border: #48463d 20px solid;
-  padding: 10px; }
+  border: #48463d 10px solid;
+  padding: 5px; }
 
 .image-matrix-cell {
   transition: opacity 1s ease; }
@@ -627,7 +665,7 @@
   background: rgba(72, 70, 61, 0);
   transition: background 0s ease;
   transition-delay: calc(0s * 0.5);
-  animation: glow-0 0.5s cubic-bezier(0, 1.02, 1, 0.02) forwards;
+  animation: glow-0 0.5s cubic-bezier(1, 0.01, 0.33, 0.4) forwards;
   animation-delay: calc(0s * 0.5); }
 
 @keyframes glow-0 {
@@ -640,7 +678,7 @@
   background: rgba(72, 70, 61, 0.1);
   transition: background 0s ease;
   transition-delay: calc(1s * 0.5);
-  animation: glow-1 0.5s cubic-bezier(0, 1.02, 1, 0.02) forwards;
+  animation: glow-1 0.5s cubic-bezier(1, 0.01, 0.33, 0.4) forwards;
   animation-delay: calc(1s * 0.5); }
 
 @keyframes glow-1 {
@@ -653,7 +691,7 @@
   background: rgba(72, 70, 61, 0.2);
   transition: background 0s ease;
   transition-delay: calc(2s * 0.5);
-  animation: glow-2 0.5s cubic-bezier(0, 1.02, 1, 0.02) forwards;
+  animation: glow-2 0.5s cubic-bezier(1, 0.01, 0.33, 0.4) forwards;
   animation-delay: calc(2s * 0.5); }
 
 @keyframes glow-2 {
@@ -666,7 +704,7 @@
   background: rgba(72, 70, 61, 0.3);
   transition: background 0s ease;
   transition-delay: calc(3s * 0.5);
-  animation: glow-3 0.5s cubic-bezier(0, 1.02, 1, 0.02) forwards;
+  animation: glow-3 0.5s cubic-bezier(1, 0.01, 0.33, 0.4) forwards;
   animation-delay: calc(3s * 0.5); }
 
 @keyframes glow-3 {
@@ -679,7 +717,7 @@
   background: rgba(72, 70, 61, 0.4);
   transition: background 0s ease;
   transition-delay: calc(4s * 0.5);
-  animation: glow-4 0.5s cubic-bezier(0, 1.02, 1, 0.02) forwards;
+  animation: glow-4 0.5s cubic-bezier(1, 0.01, 0.33, 0.4) forwards;
   animation-delay: calc(4s * 0.5); }
 
 @keyframes glow-4 {
@@ -692,7 +730,7 @@
   background: rgba(72, 70, 61, 0.5);
   transition: background 0s ease;
   transition-delay: calc(5s * 0.5);
-  animation: glow-5 0.5s cubic-bezier(0, 1.02, 1, 0.02) forwards;
+  animation: glow-5 0.5s cubic-bezier(1, 0.01, 0.33, 0.4) forwards;
   animation-delay: calc(5s * 0.5); }
 
 @keyframes glow-5 {
@@ -705,7 +743,7 @@
   background: rgba(72, 70, 61, 0.6);
   transition: background 0s ease;
   transition-delay: calc(6s * 0.5);
-  animation: glow-6 0.5s cubic-bezier(0, 1.02, 1, 0.02) forwards;
+  animation: glow-6 0.5s cubic-bezier(1, 0.01, 0.33, 0.4) forwards;
   animation-delay: calc(6s * 0.5); }
 
 @keyframes glow-6 {
@@ -718,7 +756,7 @@
   background: rgba(72, 70, 61, 0.7);
   transition: background 0s ease;
   transition-delay: calc(7s * 0.5);
-  animation: glow-7 0.5s cubic-bezier(0, 1.02, 1, 0.02) forwards;
+  animation: glow-7 0.5s cubic-bezier(1, 0.01, 0.33, 0.4) forwards;
   animation-delay: calc(7s * 0.5); }
 
 @keyframes glow-7 {
@@ -731,7 +769,7 @@
   background: rgba(72, 70, 61, 0.8);
   transition: background 0s ease;
   transition-delay: calc(8s * 0.5);
-  animation: glow-8 0.5s cubic-bezier(0, 1.02, 1, 0.02) forwards;
+  animation: glow-8 0.5s cubic-bezier(1, 0.01, 0.33, 0.4) forwards;
   animation-delay: calc(8s * 0.5); }
 
 @keyframes glow-8 {
@@ -744,7 +782,7 @@
   background: rgba(72, 70, 61, 0.9);
   transition: background 0s ease;
   transition-delay: calc(9s * 0.5);
-  animation: glow-9 0.5s cubic-bezier(0, 1.02, 1, 0.02) forwards;
+  animation: glow-9 0.5s cubic-bezier(1, 0.01, 0.33, 0.4) forwards;
   animation-delay: calc(9s * 0.5); }
 
 @keyframes glow-9 {
@@ -757,7 +795,7 @@
   background: #48463d;
   transition: background 0s ease;
   transition-delay: calc(10s * 0.5);
-  animation: glow-10 0.5s cubic-bezier(0, 1.02, 1, 0.02) forwards;
+  animation: glow-10 0.5s cubic-bezier(1, 0.01, 0.33, 0.4) forwards;
   animation-delay: calc(10s * 0.5); }
 
 @keyframes glow-10 {
@@ -765,6 +803,34 @@
     background: #f4f0e1; }
   100% {
     background: #48463d; } }
+
+.nowplaying-info-container .heading {
+  font-size: 2rem;
+  margin-top: 5px;
+  font-family: FOT-Rodin Pro B, sans-serif;
+  text-shadow: 5px 5px 1px rgba(72, 70, 61, 0.25); }
+
+.nowplaying-info-cursor.hidden {
+  animation: cursor-exit 1s cubic-bezier(0, 0.86, 0, 1) forwards; }
+
+.nowplaying-info-cursor {
+  background: linear-gradient(180deg, #48463d 80%, transparent 80%, transparent 90%, #48463d 100%);
+  min-width: 20px;
+  animation: cursor-enter 1s cubic-bezier(0, 0.86, 0, 1) forwards; }
+
+@keyframes cursor-enter {
+  0% {
+    margin-bottom: calc(2rem + 7px); }
+  100% {
+    margin-top: 0px;
+    margin-bottom: 0px; } }
+
+@keyframes cursor-exit {
+  0% {
+    margin-top: 0px;
+    margin-bottom: 0px; }
+  100% {
+    margin-bottom: calc(2rem + 7px); } }
 
 @keyframes selected {
   0% {
@@ -781,7 +847,7 @@
   transition: margin 0.5s cubic-bezier(0.15, 0.79, 0, 1); }
 
 .nier-settings-container {
-  background: rgba(72, 70, 61, 0.3); }
+  background: rgba(72, 70, 61, 0.3), url("../assets/yorha-light.png") no-repeat bottom right; }
   .nier-settings-container .nier-button-box {
     margin-right: 60px; }
   .nier-settings-container .nier-button-box-selected {
