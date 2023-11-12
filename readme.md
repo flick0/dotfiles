@@ -2,6 +2,9 @@
 
 :0
 
+> you need the base configs installed from the master branch, this is only a theme (no keybinds, etc )
+
+
 ## these stuff helped
 
 https://github.com/Beinsezii/NieR-Cursors
