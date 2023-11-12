@@ -2,9 +2,11 @@ import { Widget, App, Audio } from "../imports.js";
 import { NierButtonGroup, NierButton } from "../nier/buttons.js";
 import { SCREEN_WIDTH, arradd, arrremove } from "../util.js";
 import { BluetoothGroup } from "../widgets/bluetooth_group.js";
+import { Info } from "../widgets/info.js";
 import { NowPlaying } from "../widgets/nowplaying.js";
 import { VolumeGroup } from "../widgets/volume_group.js";
 import { WifiGroup } from "../widgets/wifi_group.js";
+import { AppLauncher } from "./applauncher.js";
 
 const { Window, Label, EventBox, Box, Icon, Revealer } = Widget;
 
@@ -30,7 +32,7 @@ const bluetooth_page = (
   return BluetoothGroup(go_to);
 };
 
-const ensure_only_selected = async (button, page_button) => {
+const ensure_only_selected = (button, page_button) => {
   if (button == page_button) {
     return button;
   }
@@ -45,9 +47,11 @@ const ensure_only_selected = async (button, page_button) => {
     );
   }
   if (page_button) {
-    remove_selected(page_button).catch((e) => {
-      console.log(e);
-    });
+    Promise.resolve(
+      remove_selected(page_button).catch((e) => {
+        console.log(e);
+      })
+    );
   }
   return button;
 };
@@ -102,7 +106,7 @@ export const NierSettingPane = (
     focusable: true,
     visible: false,
     setup: (self) => {
-      self.connect("key-press-event", async (widget, event) => {
+      self.connect("key-press-event", (widget, event) => {
         if (event.get_keyval()[1] == Gdk.KEY_Escape) {
           try {
             if (current_page == 0) {
@@ -110,29 +114,18 @@ export const NierSettingPane = (
             } else {
               let next_page = self.child.children[current_page].child;
               let now_page = self.child.children[current_page - 1].child;
-
               // let next_buttons = next_page.children[1].children;
               let now_buttons = now_page.children[1].children;
-
               next_page.className = arradd(next_page.className, "closing");
               switch (current_page) {
                 case 1:
-                  page1_selected = await ensure_only_selected(
-                    null,
-                    page1_selected
-                  );
+                  page1_selected = ensure_only_selected(null, page1_selected);
                   break;
                 case 2:
-                  page2_selected = await ensure_only_selected(
-                    null,
-                    page2_selected
-                  );
+                  page2_selected = ensure_only_selected(null, page2_selected);
                   break;
                 case 3:
-                  page3_selected = await ensure_only_selected(
-                    null,
-                    page3_selected
-                  );
+                  page3_selected = ensure_only_selected(null, page3_selected);
                   break;
               }
               now_buttons.forEach(async (_button) => {
@@ -143,7 +136,6 @@ export const NierSettingPane = (
                   });
                 }
               });
-
               current_page = current_page - 1;
             }
           } catch (e) {
@@ -151,6 +143,7 @@ export const NierSettingPane = (
             App.toggleWindow("settings");
           }
         }
+        return false;
       });
     },
     child: Box({
@@ -189,10 +182,7 @@ export const NierSettingPane = (
         });
 
         let go_page2 = async (buttons, parent_button) => {
-          page1_selected = await ensure_only_selected(
-            parent_button,
-            page1_selected
-          );
+          page1_selected = ensure_only_selected(parent_button, page1_selected);
           page2.child.children[1].children = buttons;
           page4.child.className = arradd(page4.child.className, "closing");
           page3.child.className = arradd(page3.child.className, "closing");
@@ -201,10 +191,7 @@ export const NierSettingPane = (
           current_page = 1;
         };
         let go_page3 = async (buttons, parent_button) => {
-          page2_selected = await ensure_only_selected(
-            parent_button,
-            page2_selected
-          );
+          page2_selected = ensure_only_selected(parent_button, page2_selected);
           page3.child.children[1].children = buttons;
           page4.child.className = arradd(page4.child.className, "closing");
           page3.child.className = arrremove(page3.child.className, "closing");
@@ -212,10 +199,7 @@ export const NierSettingPane = (
           current_page = 2;
         };
         let go_page4 = async (buttons, parent_button) => {
-          page3_selected = await ensure_only_selected(
-            parent_button,
-            page3_selected
-          );
+          page3_selected = ensure_only_selected(parent_button, page3_selected);
           page4.child.children[1].children = buttons;
           page4.child.className = arrremove(page4.child.className, "closing");
 
@@ -233,10 +217,7 @@ export const NierSettingPane = (
               font_size: 30,
               label: "sound",
               handleClick: async (self, event) => {
-                page1_selected = await ensure_only_selected(
-                  self,
-                  page1_selected
-                );
+                page1_selected = ensure_only_selected(self, page1_selected);
                 await go_page2(volume_page(go_page3), self).catch((e) => {
                   console.log(e);
                 });
@@ -260,6 +241,9 @@ export const NierSettingPane = (
                 });
               },
             }),
+            Label({ halign: "start", label: "APPS", className: ["heading"] }),
+            AppLauncher(),
+            Info(),
             // NowPlaying({}),
           ],
         });

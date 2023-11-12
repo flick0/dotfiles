@@ -853,6 +853,44 @@
   100% {
     margin-bottom: calc(2rem + 7px); } }
 
+.app-launcher-search {
+  margin-left: 35px;
+  margin-right: 60px;
+  margin-bottom: 20px;
+  font-size: 2rem;
+  /* Change to your preferred font size */
+  color: #48463d;
+  /* Change to your preferred text color */
+  background-color: #f4f0e1;
+  /* Change to your preferred background color */
+  padding: 6px;
+  /* Adjust padding as needed */ }
+
+.app-launcher {
+  margin-bottom: 100px; }
+  .app-launcher .nier-long-button-group-ruler {
+    all: unset; }
+
+.nier-button .app-launcher-icon {
+  margin-left: 20px;
+  margin-right: 20px;
+  opacity: 0.5; }
+
+.nier-button-hover .app-launcher-icon {
+  margin-left: 20px;
+  margin-right: 20px;
+  opacity: 1; }
+
+.info {
+  margin-bottom: 10px; }
+
+.time {
+  font-size: 1.7rem;
+  color: #48463d; }
+
+.sys-tray {
+  background: #48463d; }
+
 @keyframes selected {
   0% {
     margin-right: 35px; }
@@ -909,10 +947,10 @@
     margin-left: 0px; } }
 
 .nier-settings-1-container {
-  background: #c2bda6; }
+  background: url("../../../wallpapers/nier.png"); }
 
 .nier-settings-2-container {
-  background: rgba(194, 189, 166, 0.8);
+  background: rgba(194, 189, 166, 0.9);
   transition: margin 0.2s cubic-bezier(0.15, 0.79, 0, 1), opacity 1s ease; }
 
 .nier-settings-3-container {

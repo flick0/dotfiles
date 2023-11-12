@@ -21,6 +21,7 @@ import { NierSliderButton } from "./nier/slider.js";
 import { NierDropDownButton } from "./nier/dropdown.js";
 import { NierSettingPane } from "./windows/settings.js";
 import { NowPlaying } from "./widgets/nowplaying.js";
+import { AppLauncher } from "./windows/applauncher.js";
 // import { NierDropDownButton } from "./nier/dropdown.js";
 
 const { exec, subprocess, execAsync } = Utils;
@@ -124,6 +125,21 @@ const Side = () =>
     }),
   });
 
+// const LSide = () =>
+//   Window({
+//     name: "lside",
+//     margin: [10, 10],
+//     anchor: ["left", "top", "bottom"],
+//     exclusive: false,
+//     focusable: true,
+//     layer: "bottom",
+//     child: Box({
+//       valign: "center",
+//       halign: "center",
+//       child: AppLauncher(),
+//     }),
+//   });
+
 const BottomBar = () =>
   Window({
     name: "bottombar",
@@ -148,6 +164,7 @@ export default {
   windows: [
     // BottomBar()
     Bar(),
+    // LSide(),
     NierSettingPane(),
     Side(),
     BottomBar(),

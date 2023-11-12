@@ -15,12 +15,50 @@ import { NierButton, NierButtonGroup } from "../nier/buttons.js";
 
 import { SCREEN_HEIGHT, SCREEN_WIDTH, arradd, arrremove } from "../util.js";
 
-const { Box, Label } = Widget;
+const { Box, Label, Icon, Button } = Widget;
 const { execAsync } = Utils;
 
-let HOVERING = false;
-let REALLY_HOVERING = false;
+const SysTray = () =>
+  Box({
+    halign: "end",
+    hexpand: true,
+    className: ["sys-tray"],
+    connections: [
+      [
+        SystemTray,
+        (self) => {
+          self.children = SystemTray.items.map((item) =>
+            Button({
+              className: ["sys-tray-item"],
+
+              child: Icon({ binds: [["icon", item, "icon"]], size: 32 }),
+              onPrimaryClick: (_, event) => item.activate(event),
+              onSecondaryClick: (_, event) => item.openMenu(event),
+              binds: [["tooltip-markup", item, "tooltip-markup"]],
+            })
+          );
+        },
+      ],
+    ],
+  });
+
 export const Info = () =>
   Box({
-    child: Label("hlo"),
+    className: ["info"],
+    children: [
+      Label({
+        className: ["time"],
+        label: "00:00",
+        connections: [
+          [
+            1000,
+            (self) =>
+              execAsync(["date", "+%I:%M"])
+                .then((date) => (self.label = date))
+                .catch(console.error),
+          ],
+        ],
+      }),
+      SysTray(),
+    ],
   });

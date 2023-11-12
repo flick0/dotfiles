@@ -108,15 +108,30 @@ export const NowPlaying = ({
             className: ["player-buttons"],
             // hexpand: true,
             child: Label({
-              label: Mpris.players
-                ? Mpris.players[0].play_back_status === "Playing"
-                  ? "⏸"
-                  : "▪"
-                : "▪",
+              label: "▪",
               className: ["heading"],
+              connections: [
+                [
+                  Mpris,
+                  (self) => {
+                    const player = Mpris.players[0];
+                    if (!player) {
+                      return;
+                    }
+                    if (player.play_back_status === "Playing") {
+                      self.label = "⏸";
+                    } else {
+                      self.label = "▪";
+                    }
+                  },
+                ],
+              ],
             }),
             onClicked: async (self) => {
               const player = Mpris.players[0];
+              if (!player) {
+                return;
+              }
               player.playPause();
 
               if (player.play_back_status === "Playing") {
@@ -243,6 +258,9 @@ export const NowPlaying = ({
                 Mpris,
                 (self) => {
                   const player = Mpris.players[0];
+                  if (!player) {
+                    return;
+                  }
                   if (preparing_cover) {
                     console.log("skipping mpris");
                     return;
@@ -305,6 +323,9 @@ export const NowPlaying = ({
                 Mpris,
                 async (self) => {
                   const player = Mpris.players[0];
+                  if (!player) {
+                    return;
+                  }
                   if (player.track_title !== self.child.label) {
                     let cursor = self.parent.children[1];
                     await new Promise((r) => setTimeout(r, 1500));

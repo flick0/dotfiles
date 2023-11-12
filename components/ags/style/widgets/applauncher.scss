@@ -1,0 +1,46 @@
+@import "../color";
+
+// .app-launcher-search {
+//   background: black;
+//   color: white;
+//   min-height: 200px;
+// }
+
+.app-launcher-search {
+  margin-left: 35px;
+  margin-right: 60px;
+  margin-bottom: 20px;
+  font-size: 2rem; /* Change to your preferred font size */
+  color: $brown; /* Change to your preferred text color */
+  background-color: $highlight; /* Change to your preferred background color */
+  //   border: 4px solid $brown; /* Change to your preferred border color */
+  padding: 6px; /* Adjust padding as needed */
+}
+
+.app-launcher-search:focus {
+  //   border-width: 7px; /* Change to your preferred border color on focus */
+  //   background-color: $highlight; /* Change to your preferred background color on focus */
+}
+
+.app-launcher {
+  .nier-long-button-group-ruler {
+    all: unset;
+  }
+  margin-bottom: 100px;
+}
+
+.nier-button {
+  .app-launcher-icon {
+    margin-left: 20px;
+    margin-right: 20px;
+    opacity: 0.5;
+  }
+}
+
+.nier-button-hover {
+  .app-launcher-icon {
+    margin-left: 20px;
+    margin-right: 20px;
+    opacity: 1;
+  }
+}
