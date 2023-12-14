@@ -1,17 +1,27 @@
-import { App, Utils } from "./imports.js";
+import { App, Utils, Hyprland } from "./imports.js";
 
 function arrremove(arr, value) {
+  // arr = arr.split(" ");
   return arr.filter(function (ele) {
     return ele != value;
   });
+  // .join(" ");
 }
 
 function arradd(arr, value) {
+  // arr = arr.split(" ");
   if (arr.includes(value)) {
     return arr;
   }
   arr.push(value);
-  return arr;
+  return arr; //.join(" ");
+}
+
+async function get_cursor() {
+  return Hyprland.sendMessage("cursorpos").then((res) => {
+    print("res ", res);
+    return res.split(",").map((n) => Number(n));
+  });
 }
 
 const home = `/home/${Utils.exec("whoami")}`;
@@ -44,4 +54,5 @@ export {
   css,
   SCREEN_HEIGHT,
   SCREEN_WIDTH,
+  get_cursor,
 };

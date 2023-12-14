@@ -81,35 +81,35 @@ export const NowPlaying = ({
 }) =>
   Box({
     vertical: true,
-    className: ["nowplaying-container"],
+    classNames: ["nowplaying-container"],
     children: [
       Box({
-        style: `min-width: ${rows * cell_width + 30 + 30 - 20}px;`,
-        halign: "end",
+        css: `min-width: ${rows * cell_width + 30 + 30 - 20}px;`,
+        hpack: "end",
         children: [
           Button({
-            halign: "end",
-            className: ["player-buttons"],
+            hpack: "end",
+            classNames: ["player-buttons"],
             hexpand: true,
             child: Label({
               label: "⏮",
-              className: ["heading"],
+              classNames: ["heading"],
             }),
             onClicked: async (self) => {
               const player = Mpris.players[0];
               player.previous();
-              self.className = arradd(self.className, "pressed");
+              self.classNames = arradd(self.classNames, "pressed");
               await new Promise((r) => setTimeout(r, 100));
-              self.className = arrremove(self.className, "pressed");
+              self.classNames = arrremove(self.classNames, "pressed");
             },
           }),
           Button({
-            halign: "end",
-            className: ["player-buttons"],
+            hpack: "end",
+            classNames: ["player-buttons"],
             // hexpand: true,
             child: Label({
               label: "▪",
-              className: ["heading"],
+              classNames: ["heading"],
               connections: [
                 [
                   Mpris,
@@ -140,80 +140,81 @@ export const NowPlaying = ({
                 self.child.label = "⏸";
               }
 
-              self.className = arradd(self.className, "pressed");
-              console.log(self.className);
+              self.classNames = arradd(self.classNames, "pressed");
+              console.log(self.classNames);
               await new Promise((r) => setTimeout(r, 100));
-              self.className = arrremove(self.className, "pressed");
-              console.log(self.className);
+              self.classNames = arrremove(self.classNames, "pressed");
+              console.log(self.classNames);
             },
           }),
           Button({
-            halign: "end",
-            className: ["player-buttons"],
-            style: "margin-right: 15px;",
+            hpack: "end",
+            classNames: ["player-buttons"],
+            css: "margin-right: 15px;",
             // hexpand: true,
             child: Label({
               label: "⏭",
-              className: ["heading"],
+              classNames: ["heading"],
             }),
             onClicked: async (self) => {
               const player = Mpris.players[0];
               player.next();
-              self.className = arradd(self.className, "pressed");
+              self.classNames = arradd(self.classNames, "pressed");
               await new Promise((r) => setTimeout(r, 100));
-              self.className = arrremove(self.className, "pressed");
+              self.classNames = arrremove(self.classNames, "pressed");
             },
           }),
         ],
       }),
       Box({
-        className: ["image-matrix-container"],
-        halign: "center",
+        classNames: ["image-matrix-container"],
+        hpack: "center",
         children: [
           Box({
-            className: "image-matrix-col",
+            classNames: ["image-matrix-col"],
             vertical: true,
             children: [
               ...Array.from({ length: rows }, (_, i) =>
                 EventBox({
                   child: Box({
-                    className: ["image-matrix-row", `image-matrix-row-${i}`],
+                    classNames: ["image-matrix-row", `image-matrix-row-${i}`],
                     children: [
                       ...Array.from({ length: rows }, (_, j) =>
                         Box({
-                          className: [
+                          classNames: [
                             "image-matrix-cell",
                             `image-matrix-cell-${i}-${j}`,
                           ],
 
-                          style: `min-width: ${cell_width}px; min-height: ${cell_height}px;`,
+                          css: `min-width: ${cell_width}px; min-height: ${cell_height}px;`,
                         })
                       ),
                     ],
                   }),
-                  setup: (self) => {
-                    //hover
-                    self.connect("enter-notify-event", () => {
-                      self.child.className = arrremove(
-                        self.child.className,
-                        "nohover"
-                      );
-                      self.child.className = arradd(
-                        self.child.className,
-                        "hover"
-                      );
-                    });
-                    self.connect("leave-notify-event", () => {
-                      self.child.className = arrremove(
-                        self.child.className,
-                        "hover"
-                      );
-                      self.child.className = arradd(
-                        self.child.className,
-                        "nohover"
-                      );
-                    });
-                  },
+                  setup: (self) =>
+                    Utils.timeout(1, () => {
+                      //hover
+                      self.connect("enter-notify-event", () => {
+                        self.child.classNames = arrremove(
+                          self.child.classNames,
+                          "nohover"
+                        );
+                        self.child.classNames = arradd(
+                          self.child.classNames,
+                          "hover"
+                        );
+                      });
+                      self.connect("leave-notify-event", () => {
+                        self.child.classNames = arrremove(
+                          self.child.classNames,
+                          "hover"
+                        );
+                        self.child.classNames = arradd(
+                          self.child.classNames,
+                          "nohover"
+                        );
+                      });
+                    }),
                 })
               ),
             ],
@@ -239,13 +240,13 @@ export const NowPlaying = ({
                           )
                         ];
                       for (let op of opacity_map) {
-                        cell.className = arrremove(
-                          cell.className,
+                        cell.classNames = arrremove(
+                          cell.classNames,
                           `shade-${Math.round(op * 10)}`
                         );
                       }
-                      cell.className = arradd(
-                        cell.className,
+                      cell.classNames = arradd(
+                        cell.classNames,
                         `shade-${Math.round(opacity * 10)}`
                       );
                     }
@@ -299,23 +300,24 @@ export const NowPlaying = ({
         ],
       }),
       Box({
-        className: ["nowplaying-info-container"],
+        classNames: ["nowplaying-info-container"],
         children: [
           Revealer({
             revealChild: false,
             transitionDuration: 1000,
             child: Label({
               label: "woa",
-              className: "heading",
-              style: `min-width: ${rows * cell_width + 15 + 15 - 20}px;`,
-              halign: "start",
+              classNames: ["heading"],
+              css: `min-width: ${rows * cell_width + 15 + 15 - 20}px;`,
+              hpack: "start",
               xalign: 0,
               wrap: true,
               max_width_chars: 20,
-              setup: (self) => {
-                self.set_line_wrap_mode(Pango.WrapMode.WORD_CHAR);
-                self.set_ellipsize(Pango.EllipsizeMode.END);
-              },
+              setup: (self) =>
+                Utils.timeout(1, () => {
+                  self.set_line_wrap_mode(Pango.WrapMode.WORD_CHAR);
+                  self.set_ellipsize(Pango.EllipsizeMode.END);
+                }),
             }),
             transition: "slide_left",
             connections: [
@@ -329,21 +331,21 @@ export const NowPlaying = ({
                   if (player.track_title !== self.child.label) {
                     let cursor = self.parent.children[1];
                     await new Promise((r) => setTimeout(r, 1500));
-                    cursor.className = arrremove(cursor.className, "hidden");
+                    cursor.classNames = arrremove(cursor.classNames, "hidden");
                     await new Promise((r) => setTimeout(r, 1500));
                     self.revealChild = false;
                     await new Promise((r) => setTimeout(r, 1500));
                     self.child.label = player.track_title;
                     self.revealChild = true;
                     await new Promise((r) => setTimeout(r, 1500));
-                    cursor.className = arradd(cursor.className, "hidden");
+                    cursor.classNames = arradd(cursor.classNames, "hidden");
                   }
                 },
               ],
             ],
           }),
           Box({
-            className: ["nowplaying-info-cursor"],
+            classNames: ["nowplaying-info-cursor"],
           }),
         ],
       }),

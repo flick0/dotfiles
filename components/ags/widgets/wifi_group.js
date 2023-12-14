@@ -14,13 +14,13 @@ export const WifiGroup = (
   go_to = (buttons, self) => {}
 ) => {
   return [
-    Label({ halign: "start", label: "WIFI", className: ["heading"] }),
+    Label({ hpack: "start", label: "WIFI", classNames: ["heading"] }),
     NierDropDownButton({
       font_size: 30,
       label: "enabled",
       current: enabled,
       options: Variable(["YES", "NO"], {}),
-      popup_x_offset: SCREEN_WIDTH / 4 + 20,
+      popup_x_offset: SCREEN_WIDTH / 4,
       connections: [
         [
           enabled,
@@ -35,8 +35,8 @@ export const WifiGroup = (
       label: "connect",
       current: current_ssid,
       options: current_networks,
-      popup_x_offset: SCREEN_WIDTH / 4 + 20,
-      setup: (self) => {},
+      popup_x_offset: SCREEN_WIDTH / 4,
+      // setup: (self) => {},
       connections: [
         [
           10000,

@@ -1,4 +1,4 @@
-import { Widget, App } from "../imports.js";
+import { Widget, App, Utils } from "../imports.js";
 import { arradd, arrremove } from "../util.js";
 const { Button, Label, Overlay, EventBox, Box, Scrollable, Icon, CenterBox } =
   Widget;
@@ -7,8 +7,8 @@ const Pango = imports.gi.Pango;
 
 export const NierButton = ({
   label = "",
-  className = [],
-  containerClassName = [],
+  classNames = [],
+  containerClassNames = [],
   containerConnections = [],
   children = [],
   label_no_box = false,
@@ -24,17 +24,18 @@ export const NierButton = ({
 
   labelOveride = (label, font_size, max_label_chars) =>
     Label({
-      className: ["nier-button-label"],
-      style: `font-size: ${font_size}px;`,
+      classNames: ["nier-button-label"],
+      css: `font-size: ${font_size}px;`,
       label: "⬛ " + label,
       xalign: 0,
       justification: "left",
       wrap: true,
       max_width_chars: max_label_chars,
-      setup: (self) => {
-        self.set_line_wrap_mode(Pango.WrapMode.WORD_CHAR);
-        self.set_ellipsize(Pango.EllipsizeMode.END);
-      },
+      setup: (self) =>
+        Utils.timeout(1, () => {
+          self.set_line_wrap_mode(Pango.WrapMode.WORD_CHAR);
+          self.set_ellipsize(Pango.EllipsizeMode.END);
+        }),
     }),
 
   passedOnHoverLost = async (self) => {
@@ -51,22 +52,22 @@ export const NierButton = ({
   ...props
 }) =>
   Overlay({
-    setup: (self) => {
-      self.passedParent = passedParent;
-    },
+    // setup: (self) => Utils.timeout(1, () => {
+    //   self.passedParent = passedParent;
+    // }),
 
-    className: ["nier-button-container", ...containerClassName],
+    classNames: ["nier-button-container", ...containerClassNames],
     connections: [...containerConnections],
     child: Box({
-      style: container_style,
+      css: container_style,
       // homogeneous: false,
-      // halign: "center",
-      valign: "center",
+      // hpack: "center",
+      vpack: "center",
       children: [
         Icon({
           icon: App.configDir + "/assets/nier-pointer.svg",
           size: size,
-          className: [
+          classNames: [
             "nier-button-hover-icon",
             "nier-button-hover-icon-hidden",
           ],
@@ -86,19 +87,22 @@ export const NierButton = ({
               let cursor = self.parent.children[0];
               let container = self.parent;
 
-              button.className = arradd(button.className, "nier-button-hover");
-              box.className = arradd(box.className, "nier-button-box-hover");
-              cursor.className = [
+              button.classNames = arradd(
+                button.classNames,
+                "nier-button-hover"
+              );
+              box.classNames = arradd(box.classNames, "nier-button-box-hover");
+              cursor.classNames = [
                 "nier-long-button-hover-icon",
                 "nier-long-button-hover-icon-visible",
               ];
-              top.className = arradd(top.className, "nier-button-top-hover");
-              bottom.className = arradd(
-                bottom.className,
+              top.classNames = arradd(top.classNames, "nier-button-top-hover");
+              bottom.classNames = arradd(
+                bottom.classNames,
                 "nier-button-bottom-hover"
               );
-              container.className = arradd(
-                container.className,
+              container.classNames = arradd(
+                container.classNames,
                 "nier-button-container-hover"
               );
             }
@@ -117,77 +121,84 @@ export const NierButton = ({
               let cursor = self.parent.children[0];
               let container = self.parent;
 
-              button.className = arrremove(
-                button.className,
+              button.classNames = arrremove(
+                button.classNames,
                 "nier-button-hover"
               );
-              box.className = arrremove(box.className, "nier-button-box-hover");
-              cursor.className = [
+              box.classNames = arrremove(
+                box.classNames,
+                "nier-button-box-hover"
+              );
+              cursor.classNames = [
                 "nier-button-hover-icon",
                 "nier-button-hover-icon-hidden",
               ];
-              top.className = arrremove(top.className, "nier-button-top-hover");
-              bottom.className = arrremove(
-                bottom.className,
+              top.classNames = arrremove(
+                top.classNames,
+                "nier-button-top-hover"
+              );
+              bottom.classNames = arrremove(
+                bottom.classNames,
                 "nier-button-bottom-hover"
               );
-              container.className = arrremove(
-                container.className,
+              container.classNames = arrremove(
+                container.classNames,
                 "nier-button-container-hover"
               );
             }
             return true;
           },
-          setup: (self) => {
-            setup(self);
-            self.connect("button-press-event", (self, event) => {
-              if (select_on_click) {
-                if (siblings && !multiple_selected_siblings) {
-                  for (let button of siblings) {
-                    if (button.className.includes("nier-button-container")) {
-                      let child = button.child.children[1];
-                      child.className = arrremove(
-                        child.className,
-                        "nier-button-box-selected"
-                      );
+          setup: (self) =>
+            Utils.timeout(1, () => {
+              setup(self);
+              self.connect("button-press-event", (self, event) => {
+                if (select_on_click) {
+                  if (siblings && !multiple_selected_siblings) {
+                    for (let button of siblings) {
+                      if (button.classNames.includes("nier-button-container")) {
+                        let child = button.child.children[1];
+                        child.classNames = arrremove(
+                          child.classNames,
+                          "nier-button-box-selected"
+                        );
+                      }
                     }
                   }
+                  self.child.classNames = arradd(
+                    self.child.classNames,
+                    "nier-button-box-selected"
+                  );
                 }
-                self.child.className = arradd(
-                  self.child.className,
-                  "nier-button-box-selected"
-                );
-              }
 
-              handleClick(self, event).catch((e) => {
-                console.log(e);
+                handleClick(self, event).catch((e) => {
+                  console.log(e);
+                });
               });
-            });
-            self.connect("button-release-event", (self) => {
-              handleClickRelease(self).catch((e) => {
-                console.log(e);
+              self.connect("button-release-event", (self) => {
+                handleClickRelease(self).catch((e) => {
+                  console.log(e);
+                });
               });
-            });
-            self.connect("motion-notify-event", (self, event) => {
-              handleMotion(self, event).catch((e) => {
-                console.log(e);
+              self.connect("motion-notify-event", (self, event) => {
+                handleMotion(self, event).catch((e) => {
+                  console.log(e);
+                });
               });
-            });
-          },
+            }),
 
           child: CenterBox({
             // homogeneous: true,
-            // halign: "fill",
+            // hpack: "fill",
             hexpand: true,
             vertical: true,
-            className: ["nier-button-box"],
+            classNames: ["nier-button-box"],
             startWidget: Box({
-              className: ["nier-button-top"],
+              classNames: ["nier-button-top"],
             }),
             centerWidget: Box({
-              // halign: "justified",
+              // hpack: "justified",
               homogeneous: homogeneous_button,
-              className: ["nier-button", ...className],
+              classNames: ["nier-button", ...classNames],
               children: [
                 labelOveride(label, font_size, max_label_chars),
                 ...children,
@@ -195,7 +206,7 @@ export const NierButton = ({
               ...props,
             }),
             endWidget: Box({
-              className: ["nier-button-bottom"],
+              classNames: ["nier-button-bottom"],
             }),
           }),
         }),
@@ -206,8 +217,8 @@ export const NierButton = ({
 export const NierButtonGroup = ({
   heading = "",
   scrollable = false,
-  className = [],
-  containerClassName = [],
+  classNames = [],
+  containerClassNames = [],
   buttons = [],
   style = "",
   spacing = 10,
@@ -236,26 +247,23 @@ export const NierButtonGroup = ({
       });
       return true;
     },
-    setup: (self) => {
-      self.passedParent = passedParent;
-    },
     child: Box({
-      className: ["nier-long-button-group-container", ...containerClassName],
+      classNames: ["nier-long-button-group-container", ...containerClassNames],
       children: [
         Box({
-          className: ["nier-long-button-group-ruler"],
+          classNames: ["nier-long-button-group-ruler"],
         }),
         Box({
           // homogeneous: homogeneous_buttons,
-          // halign: "fill",
+          // hpack: "fill",
           vertical: !horizontal,
-          className: [
+          classNames: [
             horizontal
               ? "nier-long-button-group"
               : "nier-long-button-group-vertical",
-            ...className,
+            ...classNames,
           ],
-          style: style,
+          css: style,
           spacing,
           children: [...buttons],
         }),
@@ -267,7 +275,7 @@ export const NierButtonGroup = ({
     return Scrollable({
       hscroll: horizontal ? "always" : "never",
       vscroll: horizontal ? "never" : "always",
-      style: `${horizontal ? "min-width" : "min-height"}: ${min_scale}px;`,
+      css: `${horizontal ? "min-width" : "min-height"}: ${min_scale}px;`,
       child: inner,
     });
   } else {
@@ -277,8 +285,8 @@ export const NierButtonGroup = ({
 
 export const NierLongButton = ({
   name = "",
-  className = [],
-  containerClassName = [],
+  classNames = [],
+  containerClassNames = [],
   containerConnections = [],
   label = "",
   label_prefix = "⬛",
@@ -288,13 +296,13 @@ export const NierLongButton = ({
   ...props
 }) =>
   Box({
-    className: ["nier-long-button-container", ...containerClassName],
+    classNames: ["nier-long-button-container", ...containerClassNames],
     connections: [...containerConnections],
     children: [
       Icon({
         icon: App.configDir + "/assets/nier-pointer.svg",
         size: 35,
-        className: [
+        classNames: [
           "nier-long-button-hover-icon",
           "nier-long-button-hover-icon-hidden",
         ],
@@ -308,21 +316,24 @@ export const NierLongButton = ({
         }),
         onHover: (self) => {
           passedOnHover(self);
-          self.className = arradd(self.className, "nier-long-button-hover");
-          self.parent.children[0].className = [
+          self.classNames = arradd(self.classNames, "nier-long-button-hover");
+          self.parent.children[0].classNames = [
             "nier-long-button-hover-icon",
             "nier-long-button-hover-icon-visible",
           ];
         },
         onHoverLost: (self) => {
           passedOnHoverLost(self);
-          self.className = arrremove(self.className, "nier-long-button-hover");
-          self.parent.children[0].className = [
+          self.classNames = arrremove(
+            self.classNames,
+            "nier-long-button-hover"
+          );
+          self.parent.children[0].classNames = [
             "nier-long-button-hover-icon",
             "nier-long-button-hover-icon-hidden",
           ];
         },
-        className: ["nier-long-button", ...className],
+        classNames: ["nier-long-button", ...classNames],
         ...props,
       }),
     ],

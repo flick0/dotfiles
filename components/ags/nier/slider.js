@@ -5,9 +5,9 @@ const { Box } = Widget;
 
 const handle_value = (segments, boxes, value, active) => {
   for (let segment of segments) {
-    segment.className = arrremove(segment.className, "focus");
-    segment.className = arrremove(segment.className, "filled");
-    segment.className = arrremove(segment.className, "focus-on-hold");
+    segment.classNames = arrremove(segment.classNames, "focus");
+    segment.classNames = arrremove(segment.classNames, "filled");
+    segment.classNames = arrremove(segment.classNames, "focus-on-hold");
   }
   let segment_index = Math.floor(value * boxes) - 1;
   if (segment_index < 0) {
@@ -18,28 +18,28 @@ const handle_value = (segments, boxes, value, active) => {
   }
 
   for (let segment of segments) {
-    segment.className = arrremove(segment.className, "focus");
-    segment.className = arrremove(segment.className, "filled");
+    segment.classNames = arrremove(segment.classNames, "focus");
+    segment.classNames = arrremove(segment.classNames, "filled");
   }
   for (let segment of segments) {
-    if (segment.className.includes(`nier-slider-boxes-${segment_index}`)) {
+    if (segment.classNames.includes(`nier-slider-boxes-${segment_index}`)) {
       if (active) {
-        segment.className = arradd(segment.className, "focus");
+        segment.classNames = arradd(segment.classNames, "focus");
       } else {
-        segment.className = arradd(segment.className, "filled");
-        segment.className = arradd(segment.className, "focus-on-hold");
+        segment.classNames = arradd(segment.classNames, "filled");
+        segment.classNames = arradd(segment.classNames, "focus-on-hold");
       }
 
       break;
     }
-    segment.className = arradd(segment.className, "filled");
+    segment.classNames = arradd(segment.classNames, "filled");
   }
 };
 
 export const NierSliderButton = ({
   label = "",
-  className = [],
-  containerClassName = [],
+  classNames = [],
+  containerClassNames = [],
   containerConnections = [],
   connections = [],
   ratio = Variable(0, {}),
@@ -55,12 +55,12 @@ export const NierSliderButton = ({
   NierButton({
     label,
     homogeneous_button: true,
-    containerClassName,
-    containerConnections,
+    containerClassNames: [],
+    containerConnections: [],
     size,
     font_size,
     // homogeneous_button: false,
-    className: ["nier-slider-button", ...className],
+    classNames: ["nier-slider-button", ...classNames],
     ...props,
 
     passedOnHover: async (self) => {
@@ -68,10 +68,10 @@ export const NierSliderButton = ({
       let slider = self.child.centerWidget.children[1];
       let segments = slider.children;
       for (let segment of segments) {
-        if (segment.className.includes("focus-on-hold")) {
-          segment.className = arradd(segment.className, "focus");
-          segment.className = arrremove(segment.className, "filled");
-          segment.className = arrremove(segment.className, "focus-on-hold");
+        if (segment.classNames.includes("focus-on-hold")) {
+          segment.classNames = arradd(segment.classNames, "focus");
+          segment.classNames = arrremove(segment.classNames, "filled");
+          segment.classNames = arrremove(segment.classNames, "focus-on-hold");
           break;
         }
       }
@@ -85,10 +85,10 @@ export const NierSliderButton = ({
       let slider = self.child.centerWidget.children[1];
       let segments = slider.children;
       for (let segment of segments) {
-        if (segment.className.includes("focus")) {
-          segment.className = arradd(segment.className, "filled");
-          segment.className = arradd(segment.className, "focus-on-hold");
-          segment.className = arrremove(segment.className, "focus");
+        if (segment.classNames.includes("focus")) {
+          segment.classNames = arradd(segment.classNames, "filled");
+          segment.classNames = arradd(segment.classNames, "focus-on-hold");
+          segment.classNames = arrremove(segment.classNames, "focus");
           break;
         }
       }
@@ -146,20 +146,20 @@ export const NierInertSlider = ({
   connections = [],
 }) =>
   Box({
-    className: ["nier-slider"],
+    classNames: ["nier-slider"],
     homogeneous: false,
-    halign: "end",
-    valign: "center",
-    style: `padding-right: ${slider_padding}px;padding-left: 0px;`,
+    hpack: "end",
+    vpack: "center",
+    css: `padding-right: ${slider_padding}px;padding-left: 0px;`,
     children: [
       ...Array.from({ length: boxes }, (_, i) => i).map((i) => {
         return Box({
-          child: Box({ className: ["inner"] }),
-          className: ["nier-slider-boxes", `nier-slider-boxes-${i}`],
+          child: Box({ classNames: ["inner"] }),
+          classNames: ["nier-slider-boxes", `nier-slider-boxes-${i}`],
         });
       }),
-      Box({ className: ["nier-slider-end"] }),
-      Box({ className: ["nier-slider-size"] }),
+      Box({ classNames: ["nier-slider-end"] }),
+      Box({ classNames: ["nier-slider-size"] }),
     ],
     connections: [...connections],
   });

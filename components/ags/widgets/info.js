@@ -20,16 +20,16 @@ const { execAsync } = Utils;
 
 const SysTray = () =>
   Box({
-    halign: "end",
+    hpack: "end",
     hexpand: true,
-    className: ["sys-tray"],
+    classNames: ["sys-tray"],
     connections: [
       [
         SystemTray,
         (self) => {
           self.children = SystemTray.items.map((item) =>
             Button({
-              className: ["sys-tray-item"],
+              classNames: ["sys-tray-item"],
 
               child: Icon({ binds: [["icon", item, "icon"]], size: 32 }),
               onPrimaryClick: (_, event) => item.activate(event),
@@ -44,10 +44,10 @@ const SysTray = () =>
 
 export const Info = () =>
   Box({
-    className: ["info"],
+    classNames: ["info"],
     children: [
       Label({
-        className: ["time"],
+        classNames: ["time"],
         label: "00:00",
         connections: [
           [

@@ -22,6 +22,7 @@ import { NierDropDownButton } from "./nier/dropdown.js";
 import { NierSettingPane } from "./windows/settings.js";
 import { NowPlaying } from "./widgets/nowplaying.js";
 import { AppLauncher } from "./windows/applauncher.js";
+// import { NierGeom } from "./windows/geom.js";
 // import { NierDropDownButton } from "./nier/dropdown.js";
 
 const { exec, subprocess, execAsync } = Utils;
@@ -48,18 +49,18 @@ subprocess(
 const top = () =>
   Box({
     vertical: true,
-    className: ["top"],
+    classNames: ["top"],
     children: [
       Box({
         spacing: 20,
-        halign: "fill",
-        style: `min-width: ${SCREEN_WIDTH}px;`,
+        hpack: "fill",
+        css: `min-width: ${SCREEN_WIDTH}px;`,
         children: [
           Workspaces({}),
           Button({
-            halign: "end",
+            hpack: "end",
             hexpand: true,
-            className: ["settings-button"],
+            classNames: ["settings-button"],
             child: Icon({
               size: 40,
               icon: App.configDir + "/assets/yorha.png",
@@ -69,25 +70,25 @@ const top = () =>
             },
             onHover: (button) => {
               let right = button.parent.children[2];
-              button.className = arradd(button.className, "hover");
-              right.className = arradd(right.className, "hover");
+              button.classNames = arradd(button.classNames, "hover");
+              right.classNames = arradd(right.classNames, "hover");
             },
             onHoverLost: (button) => {
               let right = button.parent.children[2];
-              button.className = arrremove(button.className, "hover");
-              right.className = arrremove(right.className, "hover");
+              button.classNames = arrremove(button.classNames, "hover");
+              right.classNames = arrremove(right.classNames, "hover");
             },
           }),
           Box({
             // vexpand: true,
-            halign: "start",
-            className: ["yorha-right"],
+            hpack: "start",
+            classNames: ["yorha-right"],
           }),
         ],
       }),
       Box({
-        className: ["under-workspaces"],
-        style: `background: url("${
+        classNames: ["under-workspaces"],
+        css: `background: url("${
           App.configDir + "/assets/nier-border.svg"
         }") repeat-x;min-width: ${SCREEN_WIDTH}px;background-size: 100px 25px;min-height: 100px;`,
       }),
@@ -98,14 +99,14 @@ const top = () =>
 const Bar = ({ monitor } = {}) => {
   return Window({
     name: `bar`, // name has to be unique
-    className: "bar",
+    classNames: ["bar"],
     monitor,
     margin: [0, 0],
     anchor: ["top", "left", "right"],
-    exclusive: false,
+    exclusivity: "ignore",
     layer: "top",
     child: Box({
-      style: "margin-top: 10px;",
+      css: "margin-top: 10px;",
       children: [top()],
     }),
   });
@@ -116,11 +117,11 @@ const Side = () =>
     name: "side",
     margin: [10, 10],
     anchor: ["right", "top", "bottom"],
-    exclusive: false,
+    exclusivity: "ignore",
     layer: "bottom",
     child: Box({
-      valign: "center",
-      halign: "center",
+      vpack: "center",
+      hpack: "center",
       child: NowPlaying({}),
     }),
   });
@@ -130,12 +131,12 @@ const Side = () =>
 //     name: "lside",
 //     margin: [10, 10],
 //     anchor: ["left", "top", "bottom"],
-//     exclusive: false,
+//     exclusivity: "ignore",
 //     focusable: true,
 //     layer: "bottom",
 //     child: Box({
-//       valign: "center",
-//       halign: "center",
+//       vpack: "center",
+//       hpack: "center",
 //       child: AppLauncher(),
 //     }),
 //   });
@@ -145,11 +146,11 @@ const BottomBar = () =>
     name: "bottombar",
     margin: [0, 0],
     anchor: ["bottom", "left", "right"],
-    exclusive: false,
+    exclusivity: "ignore",
     layer: "bottom",
     child: Box({
-      className: ["under-workspaces"],
-      style: `background: url("${
+      classNames: ["under-workspaces"],
+      css: `background: url("${
         App.configDir + "/assets/nier-border.svg"
       }") repeat-x;min-width: ${SCREEN_WIDTH}px;background-size: 100px 25px;min-height: 100px;`,
       child: Label(""),
@@ -158,11 +159,12 @@ const BottomBar = () =>
 
 export default {
   closeWindowDelay: {
-    settings: 500, // milliseconds
+    settings: 0, // milliseconds
   },
   style: css,
   windows: [
     // BottomBar()
+    // NierGeom({}),
     Bar(),
     // LSide(),
     NierSettingPane(),

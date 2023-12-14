@@ -12,13 +12,13 @@ export const BluetoothGroup = (
   enabled = Variable(Bluetooth.enabled ? "YES" : "NO", {})
 ) => {
   return [
-    Label({ halign: "start", label: "BLUETOOTH", className: ["heading"] }),
+    Label({ hpack: "start", label: "BLUETOOTH", classNames: ["heading"] }),
     NierDropDownButton({
       font_size: 30,
       label: "enabled",
       current: enabled,
       options: Variable(["YES", "NO"], {}),
-      popup_x_offset: SCREEN_WIDTH / 4 + 20,
+      popup_x_offset: SCREEN_WIDTH / 4,
       connections: [
         [
           enabled,
@@ -35,9 +35,9 @@ export const BluetoothGroup = (
         go_to(
           [
             Label({
-              halign: "start",
+              hpack: "start",
               label: "DEVICES",
-              className: ["heading"],
+              classNames: ["heading"],
             }),
             ...Array.from(Bluetooth.devices).map((device) => {
               let device_options = Variable(["CONNECTED", "DISCONNECTED"], {});
@@ -49,7 +49,7 @@ export const BluetoothGroup = (
                 label: device.name,
                 current: device_current,
                 options: device_options,
-                popup_x_offset: (SCREEN_WIDTH / 4) * 2 + 40,
+                popup_x_offset: (SCREEN_WIDTH / 4) * 2,
                 connections: [
                   [
                     device_current,

@@ -978,3 +978,12 @@
   margin-left: calc(-1 * 2560px / 4);
   opacity: 0;
   transition: margin 0.8s cubic-bezier(0.15, 0.79, 0, 1), opacity 0.8s ease; }
+
+.nier-geom-container {
+  background: #c2bda6;
+  opacity: 0.3; }
+
+.nier-geom-select {
+  background: transparent;
+  border: 5px #48463d solid;
+  border-radius: 8px; }

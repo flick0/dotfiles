@@ -18,28 +18,28 @@ import { SCREEN_HEIGHT, SCREEN_WIDTH, arradd, arrremove } from "../util.js";
 const { Box, Label } = Widget;
 const { execAsync } = Utils;
 
-const int_to_string = (i) => {
+const int_to_string = ({ i, jap = true }) => {
   switch (i) {
     case 1:
-      return "いち";
+      return jap ? "いち" : "ONE";
     case 2:
-      return "に";
+      return jap ? "に" : "TWO";
     case 3:
-      return "さん";
+      return jap ? "さん" : "THREE";
     case 4:
-      return "し";
+      return jap ? "よん" : "FOUR";
     case 5:
-      return "ご";
+      return jap ? "ご" : "FIVE";
     case 6:
-      return "ろく";
+      return jap ? "ろく" : "SIX";
     case 7:
-      return "しち";
+      return jap ? "なな" : "SEVEN";
     case 8:
-      return "はちt";
+      return jap ? "はち" : "EIGHT";
     case 9:
-      return "きゅう";
+      return jap ? "きゅう" : "NINE";
     case 10:
-      return "じゅう";
+      return jap ? "じゅう" : "TEN";
   }
 };
 
@@ -49,23 +49,23 @@ export const Workspaces = () =>
   NierButtonGroup({
     horizontal: true,
     min_scale: SCREEN_WIDTH,
-    className: ["workspaces"],
+    classNames: ["workspaces"],
     buttons: Array.from({ length: 10 }, (_, i) => i + 1).map((i) => {
       return NierLongButton({
-        className: ["workspace-button"],
-        containerClassName: [
+        classNames: ["workspace-button"],
+        containerClassNames: [
           "workspace-button-container",
           `workspace-button-${i}`,
         ],
-        label: `${int_to_string(i).toUpperCase()}`,
+        label: `${int_to_string({ i, jap: false }).toUpperCase()}`,
         onClicked: () => {
           execAsync(`hyprctl dispatch workspace ${i}`);
         },
         passedOnHover: async (self) => {
           if (
             !(
-              self.parent.className.includes("active") ||
-              self.parent.className.includes("active-no-hover")
+              self.parent.classNames.includes("active") ||
+              self.parent.classNames.includes("active-no-hover")
             )
           ) {
             HOVERING = true;
@@ -74,16 +74,16 @@ export const Workspaces = () =>
           if (HOVERING) {
             for (let button of self.parent.parent.children) {
               if (
-                button.className.includes("active") ||
-                button.className.includes("active-no-hover")
+                button.classNames.includes("active") ||
+                button.classNames.includes("active-no-hover")
               ) {
-                button.className = arrremove(
-                  button.className,
+                button.classNames = arrremove(
+                  button.classNames,
                   "active-no-hover"
                 );
-                button.className = arrremove(button.className, "active");
-                button.className = arradd(
-                  button.className,
+                button.classNames = arrremove(button.classNames, "active");
+                button.classNames = arradd(
+                  button.classNames,
                   "active-no-hover-on-hold"
                 );
               }
@@ -91,7 +91,7 @@ export const Workspaces = () =>
           }
         },
         passedOnHoverLost: async (self) => {
-          if (!self.className.includes("active")) {
+          if (!self.classNames.includes("active")) {
             HOVERING = false;
             await new Promise((r) => setTimeout(r, 300));
             if (!HOVERING && REALLY_HOVERING) {
@@ -100,19 +100,22 @@ export const Workspaces = () =>
           }
           if (!HOVERING) {
             for (let button of self.parent.parent.children) {
-              if (button.className.includes("active-on-hold")) {
-                button.className = arrremove(
-                  button.className,
+              if (button.classNames.includes("active-on-hold")) {
+                button.classNames = arrremove(
+                  button.classNames,
                   "active-on-hold"
                 );
-                button.className = arradd(button.className, "active");
+                button.classNames = arradd(button.classNames, "active");
               }
-              if (button.className.includes("active-no-hover-on-hold")) {
-                button.className = arrremove(
-                  button.className,
+              if (button.classNames.includes("active-no-hover-on-hold")) {
+                button.classNames = arrremove(
+                  button.classNames,
                   "active-no-hover-on-hold"
                 );
-                button.className = arradd(button.className, "active-no-hover");
+                button.classNames = arradd(
+                  button.classNames,
+                  "active-no-hover"
+                );
               }
             }
           }
@@ -122,35 +125,37 @@ export const Workspaces = () =>
             Hyprland.active.workspace,
 
             async (self) => {
-              console.log(
-                "workspacec changed to :: ",
-                Hyprland.active.workspace.id
-              );
+              // console.log(
+              //   "workspacec changed to :: ",
+              //   Hyprland.active.workspace.id
+              // );
               if (
-                !self.className.includes(
+                !self.classNames.includes(
                   `workspace-button-${Hyprland.active.workspace.id}`
                 )
               ) {
-                self.className = arrremove(self.className, "active-on-hold");
-                self.className = arrremove(
-                  self.className,
+                self.classNames = arrremove(self.classNames, "active-on-hold");
+                self.classNames = arrremove(
+                  self.classNames,
                   "active-no-hover-on-hold"
                 );
-                self.className = arrremove(self.className, "active");
-                self.className = arrremove(self.className, "active-no-hover");
+                self.classNames = arrremove(self.classNames, "active");
+                self.classNames = arrremove(self.classNames, "active-no-hover");
                 self.children[0].icon =
                   App.configDir + "/assets/nier-pointer.svg";
               } else {
                 if (
-                  !self.children[1].className.includes("nier-long-button-hover")
+                  !self.children[1].classNames.includes(
+                    "nier-long-button-hover"
+                  )
                 ) {
-                  self.className = arradd(self.className, "active-no-hover");
+                  self.classNames = arradd(self.classNames, "active-no-hover");
                 } else {
-                  self.children[1].className = arrremove(
-                    self.children[1].className,
+                  self.children[1].classNames = arrremove(
+                    self.children[1].classNames,
                     "nier-long-button-hover"
                   );
-                  self.className = arradd(self.className, "active");
+                  self.classNames = arradd(self.classNames, "active");
                 }
                 await new Promise((r) => setTimeout(r, 300));
                 self.children[0].icon =

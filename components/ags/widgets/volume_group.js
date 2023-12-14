@@ -48,18 +48,18 @@ export const VolumeGroup = (
   mic_volume_ratio = Variable(0.0, {})
 ) => {
   return [
-    Label({ halign: "start", label: "VOLUME", className: ["heading"] }),
+    Label({ hpack: "start", label: "VOLUME", classNames: ["heading"] }),
     volume_slider({ type: "speaker", volume_ratio: volume_ratio }),
     volume_slider({ type: "microphone", volume_ratio: mic_volume_ratio }),
     NierButton({
       container_style: "padding-top: 40px;",
       label: "Applications",
       font_size: 30,
-      valign: "end",
+      vpack: "end",
       handleClick: async (self, event) => {
         await go_to(
           [
-            Label({ halign: "start", label: "APPS", className: ["heading"] }),
+            Label({ hpack: "start", label: "APPS", classNames: ["heading"] }),
             ...Array.from(Audio.apps).map((stream) => {
               console.log(stream);
               return volume_slider({
@@ -73,7 +73,7 @@ export const VolumeGroup = (
         );
       },
     }),
-    Label({ halign: "start", label: "OUTPUT", className: ["heading"] }),
+    Label({ hpack: "start", label: "OUTPUT", classNames: ["heading"] }),
     ...Array.from(Audio.speakers).map((stream) => {
       console.log(stream);
       return volume_slider({
@@ -82,7 +82,7 @@ export const VolumeGroup = (
       });
     }),
 
-    Label({ halign: "start", label: "INPUT", className: ["heading"] }),
+    Label({ hpack: "start", label: "INPUT", classNames: ["heading"] }),
     ...Array.from(Audio.microphones).map((stream) => {
       console.log(stream);
       return volume_slider({
@@ -90,6 +90,6 @@ export const VolumeGroup = (
         volume_ratio: Variable(stream.volume || 0, {}),
       });
     }),
-    // Label({ halign: "start", label: "", className: ["heading"] }),
+    // Label({ hpack: "start", label: "", className: ["heading"] }),
   ];
 };

@@ -50,10 +50,10 @@ function searchAppInfo(searchString) {
 export const AppLauncher = (allApps = Variable(Gio.app_info_get_all(), {})) =>
   Box({
     vertical: true,
-    className: ["app-launcher"],
+    classNames: ["app-launcher"],
     children: [
       Widget.Entry({
-        className: ["app-launcher-search"],
+        classNames: ["app-launcher-search"],
         placeholderText: "search apps",
         text: "",
         visibility: true, // set to false for passwords
@@ -71,11 +71,9 @@ export const AppLauncher = (allApps = Variable(Gio.app_info_get_all(), {})) =>
         hscroll: "never",
         vexpand: true,
         hexpand: true,
-        halign: "fill",
-        valign: "fill",
-        className: ["app-launcher-scroll"],
-
-        setup: (self) => {},
+        hpack: "fill",
+        vpack: "fill",
+        classNames: ["app-launcher-scroll"],
 
         child: Box({
           vertical: true,
@@ -95,45 +93,46 @@ export const AppLauncher = (allApps = Variable(Gio.app_info_get_all(), {})) =>
                         labelOveride: (label, font_size, max_label_chars) =>
                           Box({
                             children: [
-                              Icon({
-                                className: ["app-launcher-icon"],
-                                size: 20,
-                                icon: app.get_icon()?.to_string(),
-                              }),
+                              // Icon({
+                              //   classNames: ["app-launcher-icon"],
+                              //   size: 20,
+                              //   icon: app.get_icon()?.to_string(),
+                              // }),
                               Label({
-                                className: ["app-launcher-label"],
-                                style: `font-size: ${font_size}px;`,
+                                classNames: ["app-launcher-label"],
+                                css: `font-size: ${font_size}px;`,
                                 wrap: true,
                                 label: label,
-                                setup: (self) => {
-                                  self.set_ellipsize(Pango.EllipsizeMode.END);
-                                  self.set_line_wrap(true);
-                                },
+                                setup: (self) =>
+                                  Utils.timeout(1, () => {
+                                    self.set_ellipsize(Pango.EllipsizeMode.END);
+                                    self.set_line_wrap(true);
+                                  }),
                               }),
                             ],
                           }),
                         handleClick: async (button, event) => {
                           app.launch([], null);
-                          button.className = arradd(
-                            button.className,
+                          button.classNames = arradd(
+                            button.classNames,
                             "nier-button-box-selected"
                           );
                           await new Promise((resolve) => {
                             setTimeout(resolve, 500);
                           });
-                          button.className = arrremove(
-                            button.className,
+                          button.classNames = arrremove(
+                            button.classNames,
                             "nier-button-box-selected"
                           );
-                          button.className = arradd(
-                            button.className,
+                          button.classNames = arradd(
+                            button.classNames,
                             "nier-button-box-hover-from-selected"
                           );
                           await new Promise((resolve) => {
                             setTimeout(resolve, 500);
                           });
-                          button.className = arrremove(
-                            button.className,
+                          button.classNames = arrremove(
+                            button.classNames,
                             "nier-button-box-hover-from-selected"
                           );
                         },
@@ -143,61 +142,63 @@ export const AppLauncher = (allApps = Variable(Gio.app_info_get_all(), {})) =>
                   },
                 ],
               ],
-              setup: (self) => {
-                let buttons = self.children[1];
-                buttons.children = allApps.value.map((app) => {
-                  return NierButton({
-                    font_size: 40,
-                    //   icon: app.get_icon().to_string(),
-                    label: app.get_display_name(),
-                    labelOveride: (label, font_size, max_label_chars) =>
-                      Box({
-                        children: [
-                          Icon({
-                            className: ["app-launcher-icon"],
-                            size: 20,
-                            icon: app.get_icon()?.to_string(),
-                          }),
-                          Label({
-                            className: ["app-launcher-label"],
-                            wrap: true,
-                            label: label,
-                            setup: (self) => {
-                              self.set_ellipsize(Pango.EllipsizeMode.END);
-                              self.set_line_wrap(true);
-                            },
-                          }),
-                        ],
-                      }),
-                    handleClick: async (button, event) => {
-                      app.launch([], null);
-                      button.className = arradd(
-                        button.className,
-                        "nier-button-box-selected"
-                      );
-                      await new Promise((resolve) => {
-                        setTimeout(resolve, 500);
-                      });
-                      button.className = arrremove(
-                        button.className,
-                        "nier-button-box-selected"
-                      );
-                      button.className = arradd(
-                        button.className,
-                        "nier-button-box-hover-from-selected"
-                      );
-                      await new Promise((resolve) => {
-                        setTimeout(resolve, 500);
-                      });
-                      button.className = arrremove(
-                        button.className,
-                        "nier-button-box-hover-from-selected"
-                      );
-                    },
-                    //   handleClick: async (self, event) => {},
+              setup: (self) =>
+                Utils.timeout(1, () => {
+                  let buttons = self.children[1];
+                  buttons.children = allApps.value.map((app) => {
+                    return NierButton({
+                      font_size: 40,
+                      //   icon: app.get_icon().to_string(),
+                      label: app.get_display_name(),
+                      labelOveride: (label, font_size, max_label_chars) =>
+                        Box({
+                          children: [
+                            // Icon({
+                            //   classNames: ["app-launcher-icon"],
+                            //   size: 20,
+                            //   icon: app.get_icon()?.to_string(),
+                            // }),
+                            Label({
+                              classNames: ["app-launcher-label"],
+                              wrap: true,
+                              label: label,
+                              setup: (self) =>
+                                Utils.timeout(1, () => {
+                                  self.set_ellipsize(Pango.EllipsizeMode.END);
+                                  self.set_line_wrap(true);
+                                }),
+                            }),
+                          ],
+                        }),
+                      handleClick: async (button, event) => {
+                        app.launch([], null);
+                        button.classNames = arradd(
+                          button.classNames,
+                          "nier-button-box-selected"
+                        );
+                        await new Promise((resolve) => {
+                          setTimeout(resolve, 500);
+                        });
+                        button.classNames = arrremove(
+                          button.classNames,
+                          "nier-button-box-selected"
+                        );
+                        button.classNames = arradd(
+                          button.classNames,
+                          "nier-button-box-hover-from-selected"
+                        );
+                        await new Promise((resolve) => {
+                          setTimeout(resolve, 500);
+                        });
+                        button.classNames = arrremove(
+                          button.classNames,
+                          "nier-button-box-hover-from-selected"
+                        );
+                      },
+                      //   handleClick: async (self, event) => {},
+                    });
                   });
-                });
-              },
+                }),
             }),
           ],
         }),
