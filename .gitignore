@@ -1,2 +1,3 @@
 fish_variables
-themes/*
+config/hypr/themes/*
+!config/hypr/themes/base
