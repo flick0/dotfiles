@@ -70,14 +70,18 @@
 [![cherry-blossom](https://raw.githubusercontent.com/flick0/dotfiles/cherry-blossom/assets/workflow.png)](https://github.com/flick0/dotfiles/tree/cherry-blossom)
 </details>
 
+<hr>
+
 > [!WARNING]
 > - archived rices are not maintained and may not work
 
 <hr>
 <!--###################################################################################################################-->
 
-<hr>
 
+<div align=center>
+    <img align="center" src="./assets/stars.svg">
+</div>
 <img alt="" align="center" width="100%" src="https://api.star-history.com/svg?repos=flick0/dotfiles&type=Date"/>
 
 
