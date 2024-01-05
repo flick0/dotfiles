@@ -19,34 +19,40 @@
 }
 
 .nier-settings-container.opening {
-  animation: container_enter 0.5s cubic-bezier(0.15, 0.79, 0, 1) forwards;
-  // margin-right: 500px;
+  opacity: 1;
+  transition: opacity 0.3s ease;
 }
 .nier-settings-container.closing {
-  // background: rgba($brown, 0.05);
-  margin-right: $screen_width;
-  margin-left: calc(-1 * #{$screen_width});
-  transition: margin 0.5s cubic-bezier(0.15, 0.79, 0, 1);
-  // transition-delay: 0.2s;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.nier-geom-bg-cell {
+  opacity: 0;
+}
+
+.nier-geom-bg-cell-enter {
+  opacity: 0.6;
+  transition: opacity 0.4s cubic-bezier(.26,1.22,.37,1.94);
+}
+
+.nier-geom-bg-cell-leave {
+  opacity: 0;
+  transition: opacity 0.4s cubic-bezier(.55,-0.55,1,.39);
 }
 
 .nier-settings-container {
-  background: rgba($brown, 0.3),
-    url("../assets/glory-tan-ghost.png") no-repeat center;
   .nier-button-box {
     margin-right: 60px;
-    // transition: margin 0.1s ease-out;
   }
 
   .nier-button-box-selected {
     margin-right: 0px;
-    // transition: margin 0.1s ease-out;
   }
   .nier-button-container-selected {
     .nier-button-hover-icon {
       opacity: 1;
     }
-    // transition: margin 0.1s ease-out;
   }
 }
 
@@ -91,7 +97,7 @@
 
 .nier-settings-1-container {
   background: url("../../../wallpapers/nier.png");
-  // transition: margin 0.2s cubic-bezier(0.15, 0.79, 0, 1), opacity 1s ease;
+  transition: margin 0.2s cubic-bezier(0.15, 0.79, 0, 1), opacity 1s ease;
 }
 .nier-settings-2-container {
   background: rgba($tan, 0.9);
@@ -107,10 +113,10 @@
 }
 
 .nier-settings-1-container.closing {
-  // margin-right: calc(#{$screen_width} / 4);
-  // margin-left: calc(-1 * #{$screen_width} / 4);
-  // opacity: 0;
-  // transition: margin 0.2s cubic-bezier(0.15, 0.79, 0, 1), opacity 0.2s ease;
+  margin-right: calc(#{$screen_width} / 4);
+  margin-left: calc(-1 * #{$screen_width} / 4);
+  opacity: 0;
+  transition: margin 0.2s cubic-bezier(0.15, 0.79, 0, 1), opacity 0.2s ease;
 }
 .nier-settings-2-container.closing {
   margin-right: calc(#{$screen_width}/ 4);
@@ -130,10 +136,3 @@
   opacity: 0;
   transition: margin 0.8s cubic-bezier(0.15, 0.79, 0, 1), opacity 0.8s ease;
 }
-
-// .nier-settings-1-container {
-//   background: $tan;
-//   min-width: 500px;
-//   // transition: margin 0.3s ease;
-//   //   padding-right: 40px;
-// }

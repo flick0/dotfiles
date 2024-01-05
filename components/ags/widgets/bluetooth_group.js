@@ -1,19 +1,19 @@
-import { Widget, App, Utils, Bluetooth, Variable } from "../imports.js";
-import { NierButtonGroup, NierButton } from "../nier/buttons.js";
-import { NierSliderButton } from "../nier/slider.js";
+import { Widget, Bluetooth, Variable } from "../imports.js";
+import { NierButton } from "../nier/buttons.js";
 import { NierDropDownButton } from "../nier/dropdown.js";
-import { SCREEN_WIDTH, arradd, arrremove } from "../util.js";
+import { SCREEN_WIDTH } from "../util.js";
 
-const { Window, Label, EventBox, Box, Icon, Revealer } = Widget;
-const { execAsync } = Utils;
+const { Label } = Widget;
 
-export const BluetoothGroup = (
+export const BluetoothGroup = ({
   go_to = async (buttons, parent_button) => {},
-  enabled = Variable(Bluetooth.enabled ? "YES" : "NO", {})
-) => {
+  enabled = Variable(Bluetooth.enabled ? "YES" : "NO", {}),
+  passAssetsDir = assetsDir
+}) => {
   return [
     Label({ hpack: "start", label: "BLUETOOTH", classNames: ["heading"] }),
     NierDropDownButton({
+      useAssetsDir: passAssetsDir,
       font_size: 30,
       label: "enabled",
       current: enabled,
@@ -29,6 +29,7 @@ export const BluetoothGroup = (
       ],
     }),
     NierButton({
+      useAssetsDir: passAssetsDir,
       font_size: 30,
       label: "devices",
       handleClick: async (self, event) => {

@@ -1,21 +1,11 @@
-// importing
 import {
   Hyprland,
-  Notifications,
-  Mpris,
-  Audio,
-  Battery,
-  SystemTray,
-  App,
-  Widget,
   Utils,
-  Variable,
 } from "../imports.js";
 import { NierLongButton, NierButtonGroup } from "../nier/buttons.js";
 
-import { SCREEN_HEIGHT, SCREEN_WIDTH, arradd, arrremove } from "../util.js";
+import { SCREEN_WIDTH, arradd, arrremove, assetsDir } from "../util.js";
 
-const { Box, Label } = Widget;
 const { execAsync } = Utils;
 
 const int_to_string = ({ i, jap = true }) => {
@@ -125,10 +115,6 @@ export const Workspaces = () =>
             Hyprland.active.workspace,
 
             async (self) => {
-              // console.log(
-              //   "workspacec changed to :: ",
-              //   Hyprland.active.workspace.id
-              // );
               if (
                 !self.classNames.includes(
                   `workspace-button-${Hyprland.active.workspace.id}`
@@ -142,7 +128,7 @@ export const Workspaces = () =>
                 self.classNames = arrremove(self.classNames, "active");
                 self.classNames = arrremove(self.classNames, "active-no-hover");
                 self.children[0].icon =
-                  App.configDir + "/assets/nier-pointer.svg";
+                assetsDir() + "/nier-pointer.svg";
               } else {
                 if (
                   !self.children[1].classNames.includes(
@@ -159,7 +145,7 @@ export const Workspaces = () =>
                 }
                 await new Promise((r) => setTimeout(r, 300));
                 self.children[0].icon =
-                  App.configDir + "/assets/nier-pointer-white.svg";
+                assetsDir() + "/nier-pointer-select.svg";
               }
             },
           ],

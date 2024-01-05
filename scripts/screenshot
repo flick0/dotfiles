@@ -1,0 +1,6 @@
+#!/usr/bin/bash
+
+themedir=$1
+grim -g "$(ags -b h -c $themedir/components/ags/windows/geom/geom.js)" /tmp/scrn.png && \
+ wl-copy < /tmp/scrn.png && \
+ notify-send "Screenshot copied to clipboard" -a "ss" -i /tmp/scrn.png

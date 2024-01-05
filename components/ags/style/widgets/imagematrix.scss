@@ -1,5 +1,53 @@
 @import "../color";
 
+.nowplaying-hider {
+  background: $brown;
+  min-width: 1px;
+}
+
+.cava-vis {
+  background: transparent;
+  margin-right: 0px;
+  margin-top: calc(3.5rem + 5px);
+  margin-bottom: calc(2rem + 5px);
+  margin-left: -5px;
+  transition: background 1s ease;
+}
+
+.cava-vis.hiding {
+  background: rgba($brown,0.5);
+  transition: background 1s ease;
+}
+
+.cava-bar-thick {
+  background: linear-gradient(
+    120deg,
+    $brown 0%,
+    $brown 40%,
+    rgba($brown, 0.25) 40%,
+    rgba($brown, 0.25) 60%,
+    $brown 60%,
+    $brown 100%,
+  );
+  background-size: 100% 10%;
+  min-width: 25px;
+}
+
+.cava-bar-thin {
+  background: linear-gradient(
+    250deg,
+    $brown 0%,
+    $brown 40%,
+    rgba($brown, 0.25) 40%,
+    rgba($brown, 0.25) 60%,
+    $brown 60%,
+    $brown 100%,
+  );
+  background-size: 100% 10%;
+  min-width: 15px;
+  margin-right: 5px;
+}
+
 .player-buttons.pressed:hover {
   .heading {
     text-shadow: 5px 5px 1px rgba($brown, 0.25);
@@ -29,22 +77,13 @@
 .player-buttons {
   .heading {
     font-size: 3.5rem;
-    // margin-rigsht: 5px;
     margin-bottom: -10px;
     margin-top: 5px;
     text-shadow: 5px 5px 1px rgba($brown, 0.25);
     transition: padding 0.3s cubic-bezier(0, 1, 0, 1),
       margin 0.3s cubic-bezier(0, 1, 0, 1),
       text-shadow 0.3s cubic-bezier(0, 1, 0, 1);
-
-    // text-shadow: 5px 5px 1px rgba($brown, 0.25);
   }
-}
-
-.image-matrix-container {
-  padding-right: 10px;
-  border-right: $brown 5px solid;
-  margin-right: 20px;
 }
 
 .image-matrix-row.nohover {
@@ -54,41 +93,11 @@
 
 .image-matrix-row.hover {
   margin-left: -15px;
-  // margin-right: -50px;
-
-  // padding-left: 1px;
-  // margin-right: -10px;
 }
 
-.image-matrix-col {
+.image-matrix-container {
   border: $brown 10px solid;
-  padding: 5px;
-}
-
-.image-matrix-cell {
-  // background: $tan;
-  transition: opacity 1s ease;
-}
-
-@for $i from 0 through 10 {
-  .image-matrix-cell.shade-#{$i} {
-    background: rgba($brown, $i * 0.1);
-    transition: background 0s ease;
-    transition-delay: calc(#{$i}s * 0.5);
-
-    animation: glow-#{$i} 0.5s cubic-bezier(1, 0.01, 0.33, 0.4) forwards;
-    animation-delay: calc(#{$i}s * 0.5);
-  }
-
-  @keyframes glow-#{$i} {
-    0% {
-      background: $highlight;
-    }
-    100% {
-      // box-shadow: 0px 0px 5px transparent;
-      background: rgba($brown, $i * 0.1);
-    }
-  }
+  margin-right: 10px;
 }
 
 @mixin glow($time) {
@@ -120,7 +129,6 @@
 
 @keyframes cursor-enter {
   0% {
-    // margin-top: 7px;
     margin-bottom: calc(2rem + 7px);
   }
   100% {
@@ -134,7 +142,6 @@
     margin-bottom: 0px;
   }
   100% {
-    // margin-top: -2rem;
     margin-bottom: calc(2rem + 7px);
   }
 }

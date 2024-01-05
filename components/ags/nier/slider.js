@@ -1,5 +1,5 @@
 import { Widget, Variable } from "../imports.js";
-import { arradd, arrremove } from "../util.js";
+import { arradd, arrremove, assetsDir } from "../util.js";
 import { NierButton } from "./buttons.js";
 const { Box } = Widget;
 
@@ -50,9 +50,11 @@ export const NierSliderButton = ({
   hovering = false,
   size = 35,
   font_size = 20,
+  useAssetsDir = assetsDir,
   ...props
 }) =>
   NierButton({
+    useAssetsDir,
     label,
     homogeneous_button: true,
     containerClassNames: [],

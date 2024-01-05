@@ -1,19 +1,12 @@
-// importing
 import {
-  Hyprland,
-  Notifications,
-  Mpris,
-  Audio,
-  Battery,
   SystemTray,
   App,
   Widget,
   Utils,
-  Variable,
 } from "../imports.js";
-import { NierButton, NierButtonGroup } from "../nier/buttons.js";
+import { NierButton } from "../nier/buttons.js";
 
-import { SCREEN_HEIGHT, SCREEN_WIDTH, arradd, arrremove } from "../util.js";
+import { assetsDir,dark } from "../util.js";
 
 const { Box, Label, Icon, Button } = Widget;
 const { execAsync } = Utils;
@@ -42,11 +35,18 @@ const SysTray = () =>
     ],
   });
 
-export const Info = () =>
+export const Info = ({
+  useAssetsDir = assetsDir,
+  parentDir = App.configDir
+}) =>
   Box({
+    vpack: "end",
+    vexpand: true,
     classNames: ["info"],
+    css: `margin-bottom: 30px;`,
     children: [
       Label({
+        css: "margin-left:35px;margin-right:50px;",
         classNames: ["time"],
         label: "00:00",
         connections: [
@@ -59,6 +59,15 @@ export const Info = () =>
           ],
         ],
       }),
-      SysTray(),
+      NierButton({
+        useAssetsDir,
+        label:dark.value?"dark":"light",
+        handleClick: async (self,event) => {
+          execAsync(`ags -b settings -t settings`)
+          await new Promise((r) => {setTimeout(r,1000)})
+          execAsync(`ags -b banner -c ${parentDir + "/windows/banner/banner.js"}`)
+        }
+      })
+      // SysTray(),
     ],
   });

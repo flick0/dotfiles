@@ -47,21 +47,6 @@ $border_dist: 3px;
   }
 }
 
-// .nier-slider-button-box {
-//   padding-top: 0px;
-//   padding-bottom: 0px;
-//   //   border: none;
-//   border-top: transparent $accent_border solid;
-//   border-bottom: transparent $accent_border solid;
-//   min-width: 150px;
-// }
-
-// .nier-slider-button-box-hover {
-//   padding-top: $accent_border_dist;
-//   padding-bottom: $accent_border_dist;
-//   border-top: $brown $accent_border solid;
-//   border-bottom: $brown $accent_border solid;
-// }
 
 .nier-slider-button {
   padding-top: 0px;
@@ -79,7 +64,6 @@ $border_dist: 3px;
     font-size: 1.5rem;
     color: $brown;
     padding: 8px 8px 7px;
-    // transition: color 0.3s ease-in-out;
   }
   transition: background 0.1s cubic-bezier(0.15, 0.79, 0, 1),
     border-color 0.3s ease-in-out, color 0.3s ease-in-out,
@@ -94,7 +78,6 @@ $border_dist: 3px;
     font-size: 1.5rem;
     padding: 8px 8px 7px;
     color: $tan;
-    // transition: color 0.3s ease-in-out;
   }
   background-position: -100%;
 

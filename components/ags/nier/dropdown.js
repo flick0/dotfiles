@@ -1,5 +1,5 @@
-import { Widget, App, Variable, Utils } from "../imports.js";
-import { arradd, arrremove } from "../util.js";
+import { Widget, Variable, Utils } from "../imports.js";
+import { arradd, arrremove, assetsDir } from "../util.js";
 import { NierButton } from "./buttons.js";
 const { Gdk } = imports.gi;
 const { Window, Label, EventBox, Box, Icon } = Widget;
@@ -22,9 +22,11 @@ export const NierDropDownButton = ({
   in_focus = false,
   popup_in_focus = false,
   popup_x_offset = 0,
+  useAssetsDir = assetsDir,
   ...props
 }) =>
   NierButton({
+    useAssetsDir,
     label,
     classNames: ["nier-dropdown-button", ...classNames],
     containerClassNames: [
@@ -62,6 +64,7 @@ export const NierDropDownButton = ({
         button: self,
         current,
         options,
+        useAssetsDir
       });
     },
     children: [
@@ -82,13 +85,13 @@ export const NierSelectMenu = ({
   button = null,
   current,
   options,
+  useAssetsDir,
 }) =>
   Window({
-    exclusive: false,
+    exclusivity: "ignore",
     focusable: true,
     layer: "overlay",
     anchor: ["top", "left"],
-    // popup: true,
     setup: (self) =>
       Utils.timeout(1, () => {
         self.connect("destroy", async (self) => {
@@ -134,7 +137,7 @@ export const NierSelectMenu = ({
                         }),
                       }),
                       Icon({
-                        icon: App.configDir + "/assets/nier-pointer-rev.svg",
+                        icon: useAssetsDir() + "/nier-pointer-rev.svg",
                         size: size,
                         css: "opacity: 0;",
                         classNames: ["nier-button-hover-icon"],
@@ -151,6 +154,7 @@ export const NierSelectMenu = ({
                   spacing,
                   button,
                   current,
+                  useAssetsDir
                 });
               }),
             ];
@@ -167,6 +171,7 @@ export const NierOptionItem = ({
   spacing = 20,
   button,
   current,
+  useAssetsDir,
 }) =>
   Box({
     classNames: ["nier-button-container", "nier-option-container"],
@@ -226,7 +231,7 @@ export const NierOptionItem = ({
         }),
       }),
       Icon({
-        icon: App.configDir + "/assets/nier-pointer-rev.svg",
+        icon: useAssetsDir() + "/nier-pointer-rev.svg",
         size: size,
         classNames: ["nier-button-hover-icon", "nier-button-hover-icon-hidden"],
       }),

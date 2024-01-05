@@ -4,18 +4,6 @@
 $border_size: 4px;
 $border_dist: 3px;
 
-.nier-option-item {
-  // border: red 2px solid;
-  // text-shadow: 2px 2px white;
-  // color: white;
-  // transition: text-shadow 0.3s ease;
-}
-.nier-option-item-changed {
-  // border: blue 2px solid;
-  // color: red;
-  // transition: text-shadow s ease;
-}
-
 .nier-option-header {
   margin: 0px;
   min-height: 3px;
@@ -49,12 +37,10 @@ $border_dist: 3px;
 }
 
 .nier-option-container {
-  //   border: 1px solid red;
   * {
     all: unset;
   }
 
-  //   margin-top: calc(#{$border_size} + #{$border_dist});
   margin: 0px;
   .nier-button label {
     background: linear-gradient(

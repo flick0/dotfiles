@@ -3,8 +3,6 @@
 $border_size: 4px;
 $border_dist: 3px;
 
-// top-down borders
-
 .nier-button-container {
   margin-bottom: 20px;
 }
@@ -22,11 +20,9 @@ $border_dist: 3px;
     margin-bottom: 0px;
     padding-top: 0px;
     padding-bottom: 0px;
-    // padding-right: 20px;
 
     label {
       color: $tan;
-      // transition: color 0.3s ease-in-out;
     }
     background-position: -100%;
 
@@ -59,11 +55,9 @@ $border_dist: 3px;
 
     label {
       color: $tan;
-      // transition: color 0.3s ease-in-out;
     }
     background-position: -100%;
 
-    // transition: background 0s cubic-bezier(0.15, 0.79, 0, 1),
     transition: padding 0.1s ease-out, margin 0.1s ease-out;
   }
 }
@@ -83,7 +77,6 @@ $border_dist: 3px;
   );
   background-size: 300%;
   background-position: 0%;
-  // animation: from_border 0.1s ease forwards;
 }
 
 .nier-button-bottom {
@@ -101,13 +94,11 @@ $border_dist: 3px;
   );
   background-size: 300%;
   background-position: 0%;
-  // animation: from_border 0.1s ease forwards;
 }
 
 .nier-button-top-hover,
 .nier-button-bottom-hover {
   opacity: 1;
-  // animation: to_border 0.1s ease forwards;
   background-position: -100%;
   transition: opacity 0.3s ease;
 }
@@ -157,7 +148,6 @@ $border_dist: 3px;
     font-size: 1.5rem;
     color: $brown;
     padding: 8px 8px 7px;
-    // transition: color 0.3s ease-in-out;
   }
   transition: background 0.1s cubic-bezier(0.15, 0.79, 0, 1);
 }
@@ -170,15 +160,13 @@ $border_dist: 3px;
 
   label {
     color: $tan;
-    // transition: color 0.3s ease-in-out;
   }
+  
   background-position: -100%;
 
   transition: background 1s cubic-bezier(0.15, 0.79, 0, 1);
 }
 
-// cursor
-// pointer thing
 .nier-button-hover-icon {
   margin: 0;
   margin-left: -14px;

@@ -1,8 +1,7 @@
-import { Widget, App, Utils } from "../imports.js";
-import { arradd, arrremove } from "../util.js";
+import { Widget, Utils } from "../imports.js";
+import { arradd, arrremove, assetsDir } from "../util.js";
 const { Button, Label, Overlay, EventBox, Box, Scrollable, Icon, CenterBox } =
   Widget;
-const { GObject } = imports.gi;
 const Pango = imports.gi.Pango;
 
 export const NierButton = ({
@@ -21,6 +20,7 @@ export const NierButton = ({
   multiple_selected_siblings = false,
   max_label_chars = 20,
   container_style = "",
+  useAssetsDir = assetsDir,
 
   labelOveride = (label, font_size, max_label_chars) =>
     Label({
@@ -52,20 +52,14 @@ export const NierButton = ({
   ...props
 }) =>
   Overlay({
-    // setup: (self) => Utils.timeout(1, () => {
-    //   self.passedParent = passedParent;
-    // }),
-
     classNames: ["nier-button-container", ...containerClassNames],
     connections: [...containerConnections],
     child: Box({
       css: container_style,
-      // homogeneous: false,
-      // hpack: "center",
       vpack: "center",
       children: [
         Icon({
-          icon: App.configDir + "/assets/nier-pointer.svg",
+          icon: useAssetsDir() + "/nier-pointer.svg",
           size: size,
           classNames: [
             "nier-button-hover-icon",
@@ -73,7 +67,6 @@ export const NierButton = ({
           ],
         }),
         EventBox({
-          // homogeneous: true,
           onHover: async (self) => {
             let continutehover = passedOnHover(self).catch((e) => {
               console.log(e);
@@ -187,8 +180,6 @@ export const NierButton = ({
             }),
 
           child: CenterBox({
-            // homogeneous: true,
-            // hpack: "fill",
             hexpand: true,
             vertical: true,
             classNames: ["nier-button-box"],
@@ -196,7 +187,6 @@ export const NierButton = ({
               classNames: ["nier-button-top"],
             }),
             centerWidget: Box({
-              // hpack: "justified",
               homogeneous: homogeneous_button,
               classNames: ["nier-button", ...classNames],
               children: [
@@ -222,7 +212,6 @@ export const NierButtonGroup = ({
   buttons = [],
   style = "",
   spacing = 10,
-  // homogeneous_buttons = true,
   horizontal = false,
   min_scale = 200,
   passedParent = null,
@@ -254,8 +243,6 @@ export const NierButtonGroup = ({
           classNames: ["nier-long-button-group-ruler"],
         }),
         Box({
-          // homogeneous: homogeneous_buttons,
-          // hpack: "fill",
           vertical: !horizontal,
           classNames: [
             horizontal
@@ -292,7 +279,6 @@ export const NierLongButton = ({
   label_prefix = "⬛",
   passedOnHoverLost = async (self) => {},
   passedOnHover = async (self) => {},
-
   ...props
 }) =>
   Box({
@@ -300,7 +286,7 @@ export const NierLongButton = ({
     connections: [...containerConnections],
     children: [
       Icon({
-        icon: App.configDir + "/assets/nier-pointer.svg",
+        icon: assetsDir() + "/nier-pointer.svg",
         size: 35,
         classNames: [
           "nier-long-button-hover-icon",
@@ -314,24 +300,26 @@ export const NierLongButton = ({
           xalign: 0,
           justification: "left",
         }),
-        onHover: (self) => {
-          passedOnHover(self);
-          self.classNames = arradd(self.classNames, "nier-long-button-hover");
-          self.parent.children[0].classNames = [
-            "nier-long-button-hover-icon",
-            "nier-long-button-hover-icon-visible",
-          ];
-        },
-        onHoverLost: (self) => {
-          passedOnHoverLost(self);
-          self.classNames = arrremove(
-            self.classNames,
-            "nier-long-button-hover"
-          );
-          self.parent.children[0].classNames = [
-            "nier-long-button-hover-icon",
-            "nier-long-button-hover-icon-hidden",
-          ];
+        setup: (self) => {
+          self.connect("enter-notify-event", (self) => {
+            passedOnHover(self);
+            self.classNames = arradd(self.classNames, "nier-long-button-hover");
+            self.parent.children[0].classNames = [
+              "nier-long-button-hover-icon",
+              "nier-long-button-hover-icon-visible",
+            ];
+          });
+          self.connect("leave-notify-event", (self) => {
+            passedOnHoverLost(self);
+            self.classNames = arrremove(
+              self.classNames,
+              "nier-long-button-hover"
+            );
+            self.parent.children[0].classNames = [
+              "nier-long-button-hover-icon",
+              "nier-long-button-hover-icon-hidden",
+            ];
+          });
         },
         classNames: ["nier-long-button", ...classNames],
         ...props,

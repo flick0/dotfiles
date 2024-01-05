@@ -1,21 +1,20 @@
-import { Widget, App, Utils, Network, Variable } from "../imports.js";
-import { NierButtonGroup, NierButton } from "../nier/buttons.js";
-import { NierSliderButton } from "../nier/slider.js";
+import { Widget, Network, Variable } from "../imports.js";
 import { NierDropDownButton } from "../nier/dropdown.js";
-import { SCREEN_WIDTH, arradd, arrremove } from "../util.js";
+import { SCREEN_WIDTH,assetsDir } from "../util.js";
 
-const { Window, Label, EventBox, Box, Icon, Revealer } = Widget;
-const { execAsync } = Utils;
+const { Label } = Widget;
 
-export const WifiGroup = (
+export const WifiGroup = ({
   enabled = Variable(Network.wifi.enabled ? "YES" : "NO", {}),
   current_ssid = Variable("", {}),
   current_networks = Variable(["loading..."], {}),
-  go_to = (buttons, self) => {}
-) => {
+  go_to = (buttons, self) => {},
+  passAssetsDir = assetsDir
+}) => {
   return [
     Label({ hpack: "start", label: "WIFI", classNames: ["heading"] }),
     NierDropDownButton({
+      useAssetsDir: passAssetsDir,
       font_size: 30,
       label: "enabled",
       current: enabled,
@@ -31,12 +30,12 @@ export const WifiGroup = (
       ],
     }),
     NierDropDownButton({
+      useAssetsDir: passAssetsDir,
       font_size: 30,
       label: "connect",
       current: current_ssid,
       options: current_networks,
       popup_x_offset: SCREEN_WIDTH / 4,
-      // setup: (self) => {},
       connections: [
         [
           10000,
