@@ -27,12 +27,12 @@
 </details>
 </div>
 
+<!--###################################################################################################################-->
+<details>
+    <summary>Archive</summary>
 
-
-
-<hr>
-# other branches
-<hr>
+> [!WARNING]
+> - these branches not maintained
 
 [aurora](https://github.com/flick0/dotfiles/tree/aurora)
 <div align="center">
@@ -71,7 +71,8 @@
 
 [![cherry-blossom](https://raw.githubusercontent.com/flick0/dotfiles/cherry-blossom/assets/workflow.png)](https://github.com/flick0/dotfiles/tree/cherry-blossom)
 
-
+</details>
+<!--###################################################################################################################-->
 
 <hr>
 
