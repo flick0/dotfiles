@@ -1,5 +1,5 @@
 <div>
-    <img src="./assets/title.svg" height="100px">
+    <img src="./assets/title.svg" height="50px">
 </dib>
 
 
