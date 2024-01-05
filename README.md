@@ -12,19 +12,19 @@
 
 
 - ### backup previous hypr config
-    > ```sh
-    > cp ~/.config/hypr ~/.config/hypr.bak
-    > ```
+> ```sh
+> cp ~/.config/hypr ~/.config/hypr.bak
+> ```
 
 - ### clone repo
-    > ```sh
-    > git clone https://github.com/flick0/dotfiles /tmp/flick0-dotfiles
-    > ```
+> ```sh
+> git clone https://github.com/flick0/dotfiles /tmp/flick0-dotfiles
+> ```
 
 - ### move config
-    > ```sh
-    > cd /tmp/flick0-dotfiles && cp -r ./config/* ~/.config/
-    > ```
+> ```sh
+> cd /tmp/flick0-dotfiles && cp -r ./config/* ~/.config/
+> ```
 
 <hr>
 
