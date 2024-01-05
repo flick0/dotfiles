@@ -1,7 +1,15 @@
 <div>
     <img src="./assets/title.svg" height="50px">
-</dib>
-
+</div>
+<img src="https://github.com/flick0/dotfiles/assets/77581181/4b94622c-69f4-4f2d-82c4-7032d6e66ca4">
+<div align="right">
+        <a href="https://www.youtube.com/watch?v=zi2Nm5-0PYY">
+            <img alt="Youtube" src="https://img.shields.io/badge/YouTube-%23c2bda6.svg?style=for-the-badge&logo=YouTube&logoColor=48463d">
+        </a>
+        <a href="https://www.reddit.com/r/unixporn/comments/z6s20y/hyprland_aurora_modified_my_previous_rice_to_fit/">
+            <img alt="Reddit" src="https://img.shields.io/badge/Reddit-%23c2bda6.svg?style=for-the-badge&logo=Reddit&logoColor=48463d">
+        </a>
+</div>
 
 ## 📥 Installation
 
@@ -10,13 +18,12 @@
     > ```sh
     > paru -S hyprland-git foot grim swww-git fish theme.sh aylurs-gtk-shell-git sassc starship cava imagemagick hyprbars-git
     > ```
+- ### Clone to theme folder
+  ```sh
+  mkdir ~/.config/hypr/themes && git clone -b hyprland-yorha https://github.com/flick0/dotfiles ~/.config/hypr/themes/YoRHa
+  ```  
 
 
-
-## these stuff helped
-
-https://github.com/Beinsezii/NieR-Cursors
-
-https://github.com/accrazed/YoRHA-UI-BetterDiscord
-
-https://codepen.io/RobotsPlay/pen/bGeNGdx
+## Thanks to
+- https://github.com/accrazed/YoRHA-UI-BetterDiscord (for the wallpapers)
+- https://codepen.io/RobotsPlay/pen/bGeNGdx (few svgs and for reference)
