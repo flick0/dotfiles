@@ -3,12 +3,14 @@
 </dib>
 
 
+## 📥 Installation
 
-# WIP (only readme left )
+- ### Dependancies
+    #### Arch
+    > ```sh
+    > paru -S hyprland-git foot grim swww-git fish theme.sh aylurs-gtk-shell-git sassc starship cava imagemagick hyprbars-git
+    > ```
 
-:0
-
-> you need the base configs installed from the master branch, this is only a theme (no keybinds, etc )
 
 
 ## these stuff helped
