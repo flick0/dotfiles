@@ -10,6 +10,11 @@
                     background-size: 200% 200%;
                     animation: gradient 15s ease infinite;
                 }
+                p {
+                    margin-top: -20px;
+                    color: #ffc78c;
+                    font-weight: bold;
+                }
                 @keyframes gradient {
                     0% {
                         background-position: 0% 50%;
@@ -24,6 +29,7 @@
             </style>
             <div id="title" align="center">
                 <h1> ★ Stars go brrr ★ </h1>
+                <p> ~thanks! </p>
             </div>
         </div>
     </foreignObject>
