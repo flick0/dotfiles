@@ -2,7 +2,7 @@
     <img src="./assets/title.svg">
 </div>
 
-## Installation
+## 📥 Installation
 
 - ### Dependancies
     #### Arch
