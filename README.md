@@ -33,7 +33,7 @@
 </div>
 <div>
 <details open>
-    <summary></summary>
+    <summary>🎨</summary>
     <br>
     <br>
     <a href="https://github.com/flick0/dotfiles/tree/hyprland-yorha" align="center">
