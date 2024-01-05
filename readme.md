@@ -1,5 +1,5 @@
 <div>
-    <img src="./assets/title.svg" height="50px">
+    <img src="./assets/title.svg" height="30px">
 </div>
 <img src="https://github.com/flick0/dotfiles/assets/77581181/4b94622c-69f4-4f2d-82c4-7032d6e66ca4">
 <div align="right">
