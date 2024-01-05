@@ -81,7 +81,7 @@
 
 <div align=center>
     <img align="center" src="./assets/stars.svg">
-    <img src="https://starchart.cc/flick0/dotfiles.svg?background=%23ffffff00&axis=%23bca37f&line=%239f9e58" alt="starchart">
+    <img src="https://starchart.cc/flick0/dotfiles.svg?background=%23101010&axis=%23ffc78c&line=%23ffe97d" alt="starchart">
 </div>
 
                     
