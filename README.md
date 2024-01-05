@@ -4,14 +4,20 @@
 
 <hr>
 
+<div align=center>
+    <img align="center" src="./assets/themes.svg">
+</div>
+<div>
 <details open>
-    <summary align="center"><img align="center" src="./assets/themes.svg"></summary>
+    <summary></summary>
     <a href="https://github.com/flick0/dotfiles/tree/hyprland-yorha" align="center">
         <img src="https://raw.githubusercontent.com/flick0/dotfiles/hyprland-yorha/assets/title.svg" height="30px"><br>
         <img src="https://github.com/flick0/dotfiles/assets/77581181/4b94622c-69f4-4f2d-82c4-7032d6e66ca4">
     </a>
-
 </details>
+</div>
+
+
 
 
 <hr>
