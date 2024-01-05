@@ -1,9 +1,5 @@
 <div>
-    <div style="display: flex; justify-content: left; align-items: center;">
-        <img src="./components/ags/assets/light/nier-pointer.svg" height="50px">
-        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
-        <img src="./assets/title.svg" height="100px">
-    </div>
+    <img src="./assets/title.svg" height="100px">
 </dib>
 
 
