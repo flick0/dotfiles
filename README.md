@@ -28,11 +28,9 @@
 </div>
 
 <!--###################################################################################################################-->
+<hr>
 <details>
-    <summary>Archive</summary>
-
-> [!WARNING]
-> - these branches not maintained
+    <summary><h3>Archive</h3></summary>
 
 [aurora](https://github.com/flick0/dotfiles/tree/aurora)
 <div align="center">
@@ -70,8 +68,12 @@
 </div>
 
 [![cherry-blossom](https://raw.githubusercontent.com/flick0/dotfiles/cherry-blossom/assets/workflow.png)](https://github.com/flick0/dotfiles/tree/cherry-blossom)
-
 </details>
+
+> [!WARNING]
+> - archived rices are not maintained and may not work
+
+<hr>
 <!--###################################################################################################################-->
 
 <hr>
