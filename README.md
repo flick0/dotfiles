@@ -1,12 +1,21 @@
-> coming soon: remake with modular themes [:0](https://github.com/hyprland-community/theme-repo) and maybe [ags](https://github.com/Aylur/ags) too
+<div align=center>
+    <img src="./assets/title.svg">
+</div>
 
+<hr>
+
+<details open>
+    <summary align="center"><img align="center" src="./assets/themes.svg"></summary>
+    <a href="https://github.com/flick0/dotfiles/tree/hyprland-yorha" align="center">
+        <img src="https://raw.githubusercontent.com/flick0/dotfiles/hyprland-yorha/assets/title.svg" height="30px"><br>
+        <img src="https://github.com/flick0/dotfiles/assets/77581181/4b94622c-69f4-4f2d-82c4-7032d6e66ca4">
+    </a>
+
+</details>
+
+
+<hr>
 # other branches
-
-[YoRHa](https://github.com/flick0/dotfiles/tree/hyprland-yorha)(WIP)
-
-[![YoRHa](https://github.com/flick0/dotfiles/assets/77581181/4b94622c-69f4-4f2d-82c4-7032d6e66ca4)](https://github.com/flick0/dotfiles/tree/hyprland-yorha)
-
-
 <hr>
 
 [aurora](https://github.com/flick0/dotfiles/tree/aurora)
