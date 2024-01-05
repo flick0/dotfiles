@@ -120,11 +120,13 @@ const NierGeom = ({
 
   cell_grid_1 = new Gtk.DrawingArea(),
   wait_for_draw_1 = false,
+  wait_for_complete_draw_1 = false,
   draw_t_1 = 0,
   draw_duration_1 = 1000,
   final_draw_1 = true,
   cell_grid_2 = new Gtk.DrawingArea(),
   wait_for_draw_2 = false,
+  wait_for_complete_draw_2 = false,
   draw_t_2 = 0,
   draw_duration_2 = 1000,
   final_draw_2 = true,
@@ -260,7 +262,6 @@ const NierGeom = ({
                 let y = (i-x)/cols;
                 let [c_opacity,t_opacity, c_left,t_left ,c_right,t_right ,c_y,t_y,inited,s_override] = cells_1[i]
                 if (s_override) {
-                  entered = true;
                   return
                 }
                 let dist = dist_from_center(x,y,center_x,center_y,cols,rows)
@@ -339,7 +340,6 @@ const NierGeom = ({
                     await new Promise((r) => setTimeout(r, 1));
                 }
                 if (time_ratio > 1) { // this cud need changing
-                    entered = true;
                     await new Promise((r) => setTimeout(r, 100));
                     await execAsync(`ags -r dark.value=${!dark}`)
                     await new Promise((r) => setTimeout(r, 1500));
@@ -410,7 +410,6 @@ const NierGeom = ({
                         await new Promise((r) => setTimeout(r, 1));
                     }
                     if (time_ratio > 0.5) { // this cud need changing
-                        entered = true;
                         App.quit()
                     }
                     draw_t_2 = Date.now();

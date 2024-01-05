@@ -1,6 +1,6 @@
 import { Widget } from "../imports.js"
 
-import { SCREEN_WIDTH, get_cursor, assetsDir } from "../util.js"
+import { SCREEN_WIDTH, get_cursor, assetsDir, SCREEN_HEIGHT } from "../util.js"
 
 const { Box, Icon,Scrollable } = Widget
 

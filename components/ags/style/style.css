@@ -15,9 +15,9 @@
 .nier-long-button label {
   font-size: 2rem;
   font-family: FOT-Rodin Pro M, sans-serif;
-  background: linear-gradient(90deg, rgba(218, 212, 187, 0.25) 0%, rgba(218, 212, 187, 0.25) 50%, #dad4bb 50%, #dad4bb 100%);
+  background: linear-gradient(90deg, rgba(72, 70, 61, 0.25) 0%, rgba(72, 70, 61, 0.25) 50%, #48463d 50%, #48463d 100%);
   background-size: 200%;
-  color: #dad4bb;
+  color: #48463d;
   padding: 8px 8px 7px;
   transition: background 0.1s cubic-bezier(0.15, 0.79, 0, 1), border-color 0.3s ease-in-out, color 0.3s ease-in-out, box-shadow 0.4s ease-in-out; }
 
@@ -39,8 +39,8 @@
   transition: border 0.3s ease-in-out; }
 
 .nier-long-button-hover {
-  border-top: #dad4bb 3px solid;
-  border-bottom: #dad4bb 3px solid;
+  border-top: #48463d 3px solid;
+  border-bottom: #48463d 3px solid;
   padding-top: 4px;
   padding-bottom: 4px; }
   .nier-long-button-hover label {
@@ -48,13 +48,13 @@
     padding-bottom: calc(7px - 4px);
     background-position: -100%;
     font-family: FOT-Rodin Pro B, sans-serif;
-    color: #57544a; }
+    color: #c2bda6; }
   .nier-long-button-hover label {
     transition: background 1s cubic-bezier(0.15, 0.79, 0, 1); }
 
 .nier-long-button-group-ruler {
   margin-top: 5px;
-  background: linear-gradient(90deg, rgba(218, 212, 187, 0.25) 7px, transparent 0px, transparent 13px, rgba(218, 212, 187, 0.25) 13px, transparent 18px);
+  background: linear-gradient(90deg, rgba(72, 70, 61, 0.25) 7px, transparent 0px, transparent 13px, rgba(72, 70, 61, 0.25) 13px, transparent 18px);
   min-width: 20px; }
 
 .nier-long-button-hover-icon {
@@ -79,13 +79,13 @@
   margin-bottom: calc(0px - 7px);
   margin-left: calc( 0px - 2px - (3px - (3px - 4px) / 2));
   margin-right: calc( 2px + (3px - (3px + 4px) / 2));
-  background: linear-gradient(0deg, #413d34 5%, transparent 5%, transparent 95%, #413d34 95%);
+  background: linear-gradient(0deg, #f4f0e1 5%, transparent 5%, transparent 95%, #f4f0e1 95%);
   min-width: 1px; }
 
 .nier-slider-boxes.focus .inner {
-  background: #413d34;
+  background: #f4f0e1;
   border: none;
-  box-shadow: 0px 0px 2px 1px rgba(65, 61, 52, 0.5);
+  box-shadow: 0px 0px 2px 1px rgba(244, 240, 225, 0.5);
   animation: to_focus 0.5s ease forwards, blink 2s ease infinite 1s; }
 
 .nier-slider-boxes.filled .inner {
@@ -99,19 +99,19 @@
   border: none;
   min-height: 1px;
   min-width: calc(3px);
-  background: #57544a;
+  background: #c2bda6;
   animation: focus_to_normal 0.3s ease forwards; }
 
 @keyframes blink {
   0% {
-    background: #413d34;
-    box-shadow: 0px 0px 2px 1px rgba(65, 61, 52, 0.5); }
+    background: #f4f0e1;
+    box-shadow: 0px 0px 2px 1px rgba(244, 240, 225, 0.5); }
   50% {
-    background: #57544a;
-    box-shadow: 0px 0px 2px 1px rgba(65, 61, 52, 0); }
+    background: #c2bda6;
+    box-shadow: 0px 0px 2px 1px rgba(244, 240, 225, 0); }
   0% {
-    background: #413d34;
-    box-shadow: 0px 0px 2px 1px rgba(65, 61, 52, 0.5); } }
+    background: #f4f0e1;
+    box-shadow: 0px 0px 2px 1px rgba(244, 240, 225, 0.5); } }
 
 @keyframes focus_to_normal {
   0% {
@@ -139,13 +139,13 @@
   0% {
     margin-top: 0;
     margin-bottom: 0;
-    background: #413d34;
-    box-shadow: 0px 0px 5px 2px #413d34; }
+    background: #f4f0e1;
+    box-shadow: 0px 0px 5px 2px #f4f0e1; }
   25% {
     margin-top: calc(10px - 8px);
     margin-bottom: calc(10px - 8px); }
   100% {
-    background: #57544a; } }
+    background: #c2bda6; } }
 
 .nier-slider-button-top,
 .nier-slider-button-bottom {
@@ -153,12 +153,12 @@
   min-height: 0px; }
 
 .nier-slider-button-top-hover {
-  background: #dad4bb;
+  background: #48463d;
   min-height: 3px;
   margin-bottom: 3px; }
 
 .nier-slider-button-bottom-hover {
-  background: #dad4bb;
+  background: #48463d;
   min-height: 3px;
   margin-top: 3px; }
 
@@ -178,13 +178,13 @@
 .nier-slider-button {
   padding-top: 0px;
   padding-bottom: 0px;
-  background: linear-gradient(90deg, rgba(218, 212, 187, 0.25) 0%, rgba(218, 212, 187, 0.25) 50%, #dad4bb 50%, #dad4bb 100%);
+  background: linear-gradient(90deg, rgba(72, 70, 61, 0.25) 0%, rgba(72, 70, 61, 0.25) 50%, #48463d 50%, #48463d 100%);
   background-size: 200%;
   transition: background 1s cubic-bezier(0.15, 0.79, 0, 1);
   transition: background 0.1s cubic-bezier(0.15, 0.79, 0, 1), border-color 0.3s ease-in-out, color 0.3s ease-in-out, box-shadow 0.4s ease-in-out; }
   .nier-slider-button label {
     font-size: 1.5rem;
-    color: #dad4bb;
+    color: #48463d;
     padding: 8px 8px 7px; }
 
 .nier-slider-button-hover {
@@ -195,7 +195,7 @@
   .nier-slider-button-hover label {
     font-size: 1.5rem;
     padding: 8px 8px 7px;
-    color: #57544a; }
+    color: #c2bda6; }
 
 .nier-button-container {
   margin-bottom: 20px; }
@@ -214,7 +214,7 @@
   background-position: -100%;
   transition: background 0.3s cubic-bezier(0.15, 0.79, 0, 1), padding 0.3s ease-out; }
   .nier-button-box-hover-from-selected .nier-button label {
-    color: #57544a; }
+    color: #c2bda6; }
 
 .nier-button-box {
   margin-right: 20px;
@@ -237,13 +237,13 @@
     background-position: -100%;
     transition: padding 0.1s ease-out, margin 0.1s ease-out; }
     .nier-button-box-selected .nier-button label {
-      color: #57544a; }
+      color: #c2bda6; }
 
 .nier-button-top {
   opacity: 0;
   min-height: 4px;
   margin-bottom: 3px;
-  background: linear-gradient(90deg, transparent 0%, transparent 33.33%, #dad4bb 33.33%, #dad4bb 66.66%, transparent 66.66%, transparent 100%);
+  background: linear-gradient(90deg, transparent 0%, transparent 33.33%, #48463d 33.33%, #48463d 66.66%, transparent 66.66%, transparent 100%);
   background-size: 300%;
   background-position: 0%; }
 
@@ -251,7 +251,7 @@
   opacity: 0;
   min-height: 4px;
   margin-top: 3px;
-  background: linear-gradient(90deg, transparent 0%, transparent 33.33%, #dad4bb 33.33%, #dad4bb 66.66%, transparent 66.66%, transparent 100%);
+  background: linear-gradient(90deg, transparent 0%, transparent 33.33%, #48463d 33.33%, #48463d 66.66%, transparent 66.66%, transparent 100%);
   background-size: 300%;
   background-position: 0%; }
 
@@ -285,12 +285,12 @@
   margin-bottom: calc(0px - 4px - 3px);
   padding-top: calc(4px + 3px);
   padding-bottom: calc(4px + 3px);
-  background: linear-gradient(90deg, rgba(218, 212, 187, 0.25) 0%, rgba(218, 212, 187, 0.25) 50%, #dad4bb 50%, #dad4bb 100%);
+  background: linear-gradient(90deg, rgba(72, 70, 61, 0.25) 0%, rgba(72, 70, 61, 0.25) 50%, #48463d 50%, #48463d 100%);
   background-size: 200%;
   transition: background 0.1s cubic-bezier(0.15, 0.79, 0, 1); }
   .nier-button label {
     font-size: 1.5rem;
-    color: #dad4bb;
+    color: #48463d;
     padding: 8px 8px 7px; }
 
 .nier-button-hover {
@@ -301,7 +301,7 @@
   background-position: -100%;
   transition: background 1s cubic-bezier(0.15, 0.79, 0, 1); }
   .nier-button-hover label {
-    color: #57544a; }
+    color: #c2bda6; }
 
 .nier-button-hover-icon {
   margin: 0;
@@ -333,7 +333,7 @@
   background-position: -100%;
   transition: background 0.3s cubic-bezier(0.15, 0.79, 0, 1), padding 0.3s ease-out; }
   .nier-button-box-hover-from-selected .nier-button label {
-    color: #57544a; }
+    color: #c2bda6; }
 
 .nier-button-box {
   margin-right: 20px;
@@ -356,13 +356,13 @@
     background-position: -100%;
     transition: padding 0.1s ease-out, margin 0.1s ease-out; }
     .nier-button-box-selected .nier-button label {
-      color: #57544a; }
+      color: #c2bda6; }
 
 .nier-button-top {
   opacity: 0;
   min-height: 4px;
   margin-bottom: 3px;
-  background: linear-gradient(90deg, transparent 0%, transparent 33.33%, #dad4bb 33.33%, #dad4bb 66.66%, transparent 66.66%, transparent 100%);
+  background: linear-gradient(90deg, transparent 0%, transparent 33.33%, #48463d 33.33%, #48463d 66.66%, transparent 66.66%, transparent 100%);
   background-size: 300%;
   background-position: 0%; }
 
@@ -370,7 +370,7 @@
   opacity: 0;
   min-height: 4px;
   margin-top: 3px;
-  background: linear-gradient(90deg, transparent 0%, transparent 33.33%, #dad4bb 33.33%, #dad4bb 66.66%, transparent 66.66%, transparent 100%);
+  background: linear-gradient(90deg, transparent 0%, transparent 33.33%, #48463d 33.33%, #48463d 66.66%, transparent 66.66%, transparent 100%);
   background-size: 300%;
   background-position: 0%; }
 
@@ -404,12 +404,12 @@
   margin-bottom: calc(0px - 4px - 3px);
   padding-top: calc(4px + 3px);
   padding-bottom: calc(4px + 3px);
-  background: linear-gradient(90deg, rgba(218, 212, 187, 0.25) 0%, rgba(218, 212, 187, 0.25) 50%, #dad4bb 50%, #dad4bb 100%);
+  background: linear-gradient(90deg, rgba(72, 70, 61, 0.25) 0%, rgba(72, 70, 61, 0.25) 50%, #48463d 50%, #48463d 100%);
   background-size: 200%;
   transition: background 0.1s cubic-bezier(0.15, 0.79, 0, 1); }
   .nier-button label {
     font-size: 1.5rem;
-    color: #dad4bb;
+    color: #48463d;
     padding: 8px 8px 7px; }
 
 .nier-button-hover {
@@ -420,7 +420,7 @@
   background-position: -100%;
   transition: background 1s cubic-bezier(0.15, 0.79, 0, 1); }
   .nier-button-hover label {
-    color: #57544a; }
+    color: #c2bda6; }
 
 .nier-button-hover-icon {
   margin: 0;
@@ -438,16 +438,16 @@
 .nier-option-header {
   margin: 0px;
   min-height: 3px;
-  background: #413d34;
+  background: #f4f0e1;
   padding: 8px; }
   .nier-option-header .nier-option-header-inner {
-    background: #dad4bb;
+    background: #48463d;
     min-height: 1px;
     min-width: 200px; }
 
 .nier-option-container.nier-option-selected .nier-button label {
   font-family: FOT-Rodin Pro B, sans-serif;
-  background: linear-gradient(90deg, #605b4f 0%, #605b4f 50%, #dad4bb 50%, #dad4bb 100%);
+  background: linear-gradient(90deg, #d2cec0 0%, #d2cec0 50%, #48463d 50%, #48463d 100%);
   background-size: 200%;
   min-width: 200px;
   transition: background 0.3s cubic-bezier(0.15, 0.79, 0, 1); }
@@ -461,7 +461,7 @@
   .nier-option-container * {
     all: unset; }
   .nier-option-container .nier-button label {
-    background: linear-gradient(90deg, #413d34 0%, #413d34 50%, #dad4bb 50%, #dad4bb 100%);
+    background: linear-gradient(90deg, #f4f0e1 0%, #f4f0e1 50%, #48463d 50%, #48463d 100%);
     background-size: 200%;
     min-width: 200px;
     transition: background 0.3s cubic-bezier(0.15, 0.79, 0, 1); }
@@ -480,8 +480,8 @@
 .heading {
   font-size: 5rem;
   font-weight: lighter;
-  text-shadow: 10px 10px 1px rgba(218, 212, 187, 0.25);
-  color: #dad4bb; }
+  text-shadow: 10px 10px 1px rgba(72, 70, 61, 0.25);
+  color: #48463d; }
 
 .settings-button {
   background: linear-gradient(90deg, #cd664d 50%, rgba(205, 102, 76, 0.5) 50%);
@@ -520,9 +520,9 @@
 .nier-long-button label {
   font-size: 2rem;
   font-family: FOT-Rodin Pro M, sans-serif;
-  background: linear-gradient(90deg, rgba(218, 212, 187, 0.25) 0%, rgba(218, 212, 187, 0.25) 50%, #dad4bb 50%, #dad4bb 100%);
+  background: linear-gradient(90deg, rgba(72, 70, 61, 0.25) 0%, rgba(72, 70, 61, 0.25) 50%, #48463d 50%, #48463d 100%);
   background-size: 200%;
-  color: #dad4bb;
+  color: #48463d;
   padding: 8px 8px 7px;
   transition: background 0.1s cubic-bezier(0.15, 0.79, 0, 1), border-color 0.3s ease-in-out, color 0.3s ease-in-out, box-shadow 0.4s ease-in-out; }
 
@@ -544,8 +544,8 @@
   transition: border 0.3s ease-in-out; }
 
 .nier-long-button-hover {
-  border-top: #dad4bb 3px solid;
-  border-bottom: #dad4bb 3px solid;
+  border-top: #48463d 3px solid;
+  border-bottom: #48463d 3px solid;
   padding-top: 4px;
   padding-bottom: 4px; }
   .nier-long-button-hover label {
@@ -553,13 +553,13 @@
     padding-bottom: calc(7px - 4px);
     background-position: -100%;
     font-family: FOT-Rodin Pro B, sans-serif;
-    color: #57544a; }
+    color: #c2bda6; }
   .nier-long-button-hover label {
     transition: background 1s cubic-bezier(0.15, 0.79, 0, 1); }
 
 .nier-long-button-group-ruler {
   margin-top: 5px;
-  background: linear-gradient(90deg, rgba(218, 212, 187, 0.25) 7px, transparent 0px, transparent 13px, rgba(218, 212, 187, 0.25) 13px, transparent 18px);
+  background: linear-gradient(90deg, rgba(72, 70, 61, 0.25) 7px, transparent 0px, transparent 13px, rgba(72, 70, 61, 0.25) 13px, transparent 18px);
   min-width: 20px; }
 
 .nier-long-button-hover-icon {
@@ -575,8 +575,8 @@
   transition: opacity 0.3s ease-in-out; }
 
 .workspace-button-container.active-no-hover .nier-long-button {
-  border-top: #dad4bb 3px solid;
-  border-bottom: #dad4bb 3px solid;
+  border-top: #48463d 3px solid;
+  border-bottom: #48463d 3px solid;
   padding-top: 4px;
   padding-bottom: 4px;
   animation: active 0.5s cubic-bezier(0.15, 0.79, 0, 1) forwards;
@@ -586,7 +586,7 @@
     padding-bottom: calc(7px - 4px);
     background-position: -100%;
     font-family: FOT-Rodin Pro B, sans-serif;
-    color: #57544a; }
+    color: #c2bda6; }
   .workspace-button-container.active-no-hover .nier-long-button label {
     transition: background 0.3s cubic-bezier(0.15, 0.79, 0, 1);
     animation: active-label 0.5s cubic-bezier(0.15, 0.79, 0, 1) forwards;
@@ -625,7 +625,7 @@
 @keyframes active {
   0% {
     margin-bottom: 10px;
-    border: #dad4bb; }
+    border: #48463d; }
   50% {
     padding-bottom: 0px; }
   100% {
@@ -641,7 +641,7 @@
   margin-bottom: 65px; }
 
 .nowplaying-hider {
-  background: #dad4bb;
+  background: #48463d;
   min-width: 1px; }
 
 .cava-vis {
@@ -653,22 +653,22 @@
   transition: background 1s ease; }
 
 .cava-vis.hiding {
-  background: rgba(218, 212, 187, 0.5);
+  background: rgba(72, 70, 61, 0.5);
   transition: background 1s ease; }
 
 .cava-bar-thick {
-  background: linear-gradient(120deg, #dad4bb 0%, #dad4bb 40%, rgba(218, 212, 187, 0.25) 40%, rgba(218, 212, 187, 0.25) 60%, #dad4bb 60%, #dad4bb 100%);
+  background: linear-gradient(120deg, #48463d 0%, #48463d 40%, rgba(72, 70, 61, 0.25) 40%, rgba(72, 70, 61, 0.25) 60%, #48463d 60%, #48463d 100%);
   background-size: 100% 10%;
   min-width: 25px; }
 
 .cava-bar-thin {
-  background: linear-gradient(250deg, #dad4bb 0%, #dad4bb 40%, rgba(218, 212, 187, 0.25) 40%, rgba(218, 212, 187, 0.25) 60%, #dad4bb 60%, #dad4bb 100%);
+  background: linear-gradient(250deg, #48463d 0%, #48463d 40%, rgba(72, 70, 61, 0.25) 40%, rgba(72, 70, 61, 0.25) 60%, #48463d 60%, #48463d 100%);
   background-size: 100% 10%;
   min-width: 15px;
   margin-right: 5px; }
 
 .player-buttons.pressed:hover .heading {
-  text-shadow: 5px 5px 1px rgba(218, 212, 187, 0.25);
+  text-shadow: 5px 5px 1px rgba(72, 70, 61, 0.25);
   padding-bottom: 0px;
   padding-right: 0px;
   margin-right: 5px;
@@ -676,7 +676,7 @@
   transition: padding 0.3s cubic-bezier(0, 1, 0, 1), margin 0.3s cubic-bezier(0, 1, 0, 1), text-shadow 0.3s cubic-bezier(0, 1, 0, 1); }
 
 .player-buttons:hover .heading {
-  text-shadow: 10px 10px 1px rgba(218, 212, 187, 0.25);
+  text-shadow: 10px 10px 1px rgba(72, 70, 61, 0.25);
   padding-bottom: 5px;
   padding-right: 5px;
   margin-right: 0px;
@@ -687,7 +687,7 @@
   font-size: 3.5rem;
   margin-bottom: -10px;
   margin-top: 5px;
-  text-shadow: 5px 5px 1px rgba(218, 212, 187, 0.25);
+  text-shadow: 5px 5px 1px rgba(72, 70, 61, 0.25);
   transition: padding 0.3s cubic-bezier(0, 1, 0, 1), margin 0.3s cubic-bezier(0, 1, 0, 1), text-shadow 0.3s cubic-bezier(0, 1, 0, 1); }
 
 .image-matrix-row.nohover {
@@ -698,166 +698,20 @@
   margin-left: -15px; }
 
 .image-matrix-container {
-  border: #dad4bb 10px solid;
+  border: #48463d 10px solid;
   margin-right: 10px; }
-
-.image-matrix-cell {
-  transition: opacity 1s ease; }
-
-.image-matrix-cell.shade-0 {
-  background: rgba(218, 212, 187, 0);
-  transition: background 0s ease;
-  transition-delay: calc(0s * 0.5);
-  animation: glow-0 0.5s cubic-bezier(1, 0.01, 0.33, 0.4) forwards;
-  animation-delay: calc(0s * 0.5); }
-
-@keyframes glow-0 {
-  0% {
-    background: #413d34; }
-  100% {
-    background: rgba(218, 212, 187, 0); } }
-
-.image-matrix-cell.shade-1 {
-  background: rgba(218, 212, 187, 0.1);
-  transition: background 0s ease;
-  transition-delay: calc(1s * 0.5);
-  animation: glow-1 0.5s cubic-bezier(1, 0.01, 0.33, 0.4) forwards;
-  animation-delay: calc(1s * 0.5); }
-
-@keyframes glow-1 {
-  0% {
-    background: #413d34; }
-  100% {
-    background: rgba(218, 212, 187, 0.1); } }
-
-.image-matrix-cell.shade-2 {
-  background: rgba(218, 212, 187, 0.2);
-  transition: background 0s ease;
-  transition-delay: calc(2s * 0.5);
-  animation: glow-2 0.5s cubic-bezier(1, 0.01, 0.33, 0.4) forwards;
-  animation-delay: calc(2s * 0.5); }
-
-@keyframes glow-2 {
-  0% {
-    background: #413d34; }
-  100% {
-    background: rgba(218, 212, 187, 0.2); } }
-
-.image-matrix-cell.shade-3 {
-  background: rgba(218, 212, 187, 0.3);
-  transition: background 0s ease;
-  transition-delay: calc(3s * 0.5);
-  animation: glow-3 0.5s cubic-bezier(1, 0.01, 0.33, 0.4) forwards;
-  animation-delay: calc(3s * 0.5); }
-
-@keyframes glow-3 {
-  0% {
-    background: #413d34; }
-  100% {
-    background: rgba(218, 212, 187, 0.3); } }
-
-.image-matrix-cell.shade-4 {
-  background: rgba(218, 212, 187, 0.4);
-  transition: background 0s ease;
-  transition-delay: calc(4s * 0.5);
-  animation: glow-4 0.5s cubic-bezier(1, 0.01, 0.33, 0.4) forwards;
-  animation-delay: calc(4s * 0.5); }
-
-@keyframes glow-4 {
-  0% {
-    background: #413d34; }
-  100% {
-    background: rgba(218, 212, 187, 0.4); } }
-
-.image-matrix-cell.shade-5 {
-  background: rgba(218, 212, 187, 0.5);
-  transition: background 0s ease;
-  transition-delay: calc(5s * 0.5);
-  animation: glow-5 0.5s cubic-bezier(1, 0.01, 0.33, 0.4) forwards;
-  animation-delay: calc(5s * 0.5); }
-
-@keyframes glow-5 {
-  0% {
-    background: #413d34; }
-  100% {
-    background: rgba(218, 212, 187, 0.5); } }
-
-.image-matrix-cell.shade-6 {
-  background: rgba(218, 212, 187, 0.6);
-  transition: background 0s ease;
-  transition-delay: calc(6s * 0.5);
-  animation: glow-6 0.5s cubic-bezier(1, 0.01, 0.33, 0.4) forwards;
-  animation-delay: calc(6s * 0.5); }
-
-@keyframes glow-6 {
-  0% {
-    background: #413d34; }
-  100% {
-    background: rgba(218, 212, 187, 0.6); } }
-
-.image-matrix-cell.shade-7 {
-  background: rgba(218, 212, 187, 0.7);
-  transition: background 0s ease;
-  transition-delay: calc(7s * 0.5);
-  animation: glow-7 0.5s cubic-bezier(1, 0.01, 0.33, 0.4) forwards;
-  animation-delay: calc(7s * 0.5); }
-
-@keyframes glow-7 {
-  0% {
-    background: #413d34; }
-  100% {
-    background: rgba(218, 212, 187, 0.7); } }
-
-.image-matrix-cell.shade-8 {
-  background: rgba(218, 212, 187, 0.8);
-  transition: background 0s ease;
-  transition-delay: calc(8s * 0.5);
-  animation: glow-8 0.5s cubic-bezier(1, 0.01, 0.33, 0.4) forwards;
-  animation-delay: calc(8s * 0.5); }
-
-@keyframes glow-8 {
-  0% {
-    background: #413d34; }
-  100% {
-    background: rgba(218, 212, 187, 0.8); } }
-
-.image-matrix-cell.shade-9 {
-  background: rgba(218, 212, 187, 0.9);
-  transition: background 0s ease;
-  transition-delay: calc(9s * 0.5);
-  animation: glow-9 0.5s cubic-bezier(1, 0.01, 0.33, 0.4) forwards;
-  animation-delay: calc(9s * 0.5); }
-
-@keyframes glow-9 {
-  0% {
-    background: #413d34; }
-  100% {
-    background: rgba(218, 212, 187, 0.9); } }
-
-.image-matrix-cell.shade-10 {
-  background: #dad4bb;
-  transition: background 0s ease;
-  transition-delay: calc(10s * 0.5);
-  animation: glow-10 0.5s cubic-bezier(1, 0.01, 0.33, 0.4) forwards;
-  animation-delay: calc(10s * 0.5); }
-
-@keyframes glow-10 {
-  0% {
-    background: #413d34; }
-  100% {
-    background: #dad4bb; } }
 
 .nowplaying-info-container .heading {
   font-size: 2rem;
   margin-top: 5px;
   font-family: FOT-Rodin Pro B, sans-serif;
-  text-shadow: 5px 5px 1px rgba(218, 212, 187, 0.25); }
+  text-shadow: 5px 5px 1px rgba(72, 70, 61, 0.25); }
 
 .nowplaying-info-cursor.hidden {
   animation: cursor-exit 1s cubic-bezier(0, 0.86, 0, 1) forwards; }
 
 .nowplaying-info-cursor {
-  background: linear-gradient(180deg, #dad4bb 80%, transparent 80%, transparent 90%, #dad4bb 100%);
+  background: linear-gradient(180deg, #48463d 80%, transparent 80%, transparent 90%, #48463d 100%);
   min-width: 20px;
   animation: cursor-enter 1s cubic-bezier(0, 0.86, 0, 1) forwards; }
 
@@ -880,13 +734,9 @@
   margin-right: 60px;
   margin-bottom: 20px;
   font-size: 2rem;
-  /* Change to your preferred font size */
-  color: #dad4bb;
-  /* Change to your preferred text color */
-  background-color: #413d34;
-  /* Change to your preferred background color */
-  padding: 6px;
-  /* Adjust padding as needed */ }
+  color: #48463d;
+  background-color: #f4f0e1;
+  padding: 6px; }
 
 .app-launcher {
   margin-bottom: 100px; }
@@ -908,10 +758,10 @@
 
 .time {
   font-size: 1.7rem;
-  color: #dad4bb; }
+  color: #48463d; }
 
 .sys-tray {
-  background: #dad4bb; }
+  background: #48463d; }
 
 @keyframes selected {
   0% {
@@ -984,15 +834,15 @@
   transition: margin 0.2s cubic-bezier(0.15, 0.79, 0, 1), opacity 1s ease; }
 
 .nier-settings-2-container {
-  background: rgba(87, 84, 74, 0.9);
+  background: rgba(194, 189, 166, 0.9);
   transition: margin 0.2s cubic-bezier(0.15, 0.79, 0, 1), opacity 1s ease; }
 
 .nier-settings-3-container {
-  background: rgba(87, 84, 74, 0.6);
+  background: rgba(194, 189, 166, 0.6);
   transition: margin 0.2s cubic-bezier(0.15, 0.79, 0, 1), opacity 1s ease; }
 
 .nier-settings-4-container {
-  background: rgba(87, 84, 74, 0.4);
+  background: rgba(194, 189, 166, 0.4);
   transition: margin 0.2s cubic-bezier(0.15, 0.79, 0, 1), opacity 1s ease; }
 
 .nier-settings-1-container.closing {
@@ -1023,7 +873,7 @@
   opacity: 0; }
 
 .notify-card-accent {
-  background: #dad4bb;
+  background: #48463d;
   min-width: 60px; }
 
 .notify-card-accent.critical {
@@ -1043,7 +893,7 @@
   opacity: 0; }
 
 .notify-card-hider {
-  background: linear-gradient(90deg, transparent 0%, transparent 50%, #dad4bb 50%, #dad4bb 100%);
+  background: linear-gradient(90deg, transparent 0%, transparent 50%, #48463d 50%, #48463d 100%);
   background-size: 200% 100%; }
   .notify-card-hider.enter {
     background-position: -100% 0;
@@ -1059,7 +909,7 @@
     transition: background-position 0.3s cubic-bezier(0.48, 0.09, 0.82, -0.12); }
 
 .notify-card-hider.right {
-  background: linear-gradient(90deg, #dad4bb 0%, #dad4bb 50%, transparent 50%, transparent 100%);
+  background: linear-gradient(90deg, #48463d 0%, #48463d 50%, transparent 50%, transparent 100%);
   background-size: 100% 100%; }
   .notify-card-hider.right.enter {
     background-position: -100% 0;
@@ -1079,11 +929,11 @@
   min-width: 500px;
   padding: 20px;
   padding-left: 20px;
-  background: #413d34; }
+  background: #f4f0e1; }
   .notify-card-content .notify-card-title {
     font-size: 1.5rem;
     font-weight: bolder;
-    color: #dad4bb; }
+    color: #48463d; }
   .notify-card-content .notify-card-body {
     font-size: 1.2rem;
-    color: #b3ac92; }
+    color: #45433a; }

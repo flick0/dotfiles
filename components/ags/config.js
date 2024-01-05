@@ -6,7 +6,7 @@ import {
 } from "./imports.js";
 
 
-import { arradd, arrremove, css, scss, assetsDir, dark, themedir} from "./util.js";
+import { arradd, arrremove, css, scss, assetsDir, dark, themedir,SCREEN_WIDTH} from "./util.js";
 import { Workspaces } from "./widgets/workspace.js";
 import { NierBorder } from "./widgets/nier_border.js";
 
