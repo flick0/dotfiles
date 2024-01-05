@@ -2,6 +2,30 @@
     <img src="./assets/title.svg">
 </div>
 
+## Installation
+
+- ### Dependancies
+    #### Arch
+    > ```sh
+    > paru -S hyprland-git foot grim slurp swww-git fish light-git swaylock-effects-git swayidle theme.sh sddm
+    > ```
+
+
+- ### backup previous hypr config
+    > ```sh
+    > cp ~/.config/hypr ~/.config/hypr.bak
+    > ```
+
+- ### clone repo
+    > ```sh
+    > git clone https://github.com/flick0/dotfiles /tmp/flick0-dotfiles
+    > ```
+
+- ### move config
+    > ```sh
+    > cd /tmp/flick0-dotfiles && cp -r ./config/* ~/.config/
+    > ```
+
 <hr>
 
 <div align=center>
