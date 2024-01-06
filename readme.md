@@ -12,7 +12,7 @@
 </div>
 
 
-# YoRHa
+# 👾 YoRHa
 
 A rice inspired by `NieR:Automata` ui
 
@@ -41,7 +41,7 @@ A rice inspired by `NieR:Automata` ui
   - hyprtheme
      > soon
 
-## Features
+## ✨ Features
  - ### Music Widget
    > https://github.com/flick0/dotfiles/assets/77581181/4c10b974-11e1-41c2-89fe-3a1cfb405fd6
 
