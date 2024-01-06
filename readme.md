@@ -22,31 +22,32 @@ A rice inspired by `NieR:Automata` ui
 > [!IMPORTANT]
 > you need to install the base config found in [master branch](https://github.com/flick0/dotfiles) before installing this (unless you are using the install script)
 
-- ### Dependancies
-    #### Arch
-    > ```sh
-    > paru -S hyprland-git foot grim swww-git fish theme.sh aylurs-gtk-shell-git sassc starship cava imagemagick hyprbars-git
-    > ```
-    #### STTT
-    > install from https://github.com/flick0/sttt
-- ### Clone to theme folder
-  ```sh
-  mkdir ~/.config/hypr/themes && git clone -b hyprland-yorha https://github.com/flick0/dotfiles ~/.config/hypr/themes/yorha
-  ```  
+- ## Manual
+    - ### Dependancies
+        #### Arch
+        > ```sh
+        > paru -S hyprland-git foot grim swww-git fish theme.sh aylurs-gtk-shell-git sassc starship cava imagemagick hyprbars-git
+        > ```
+        #### STTT
+        > install from https://github.com/flick0/sttt
+    - ### Clone to theme folder
+      ```sh
+      mkdir ~/.config/hypr/themes && git clone -b hyprland-yorha https://github.com/flick0/dotfiles ~/.config/hypr/themes/yorha
+      ```  
+    
+    - ### Apply theme
+      
+      - manual
+         > change the `$THEME` variable in hyprland conf to `./themes/yorha`
+      
+      - hyprtheme
+         > soon
 
-- ### Apply theme
-  
-  - manual
-     > change the `$THEME` variable in hyprland conf to `./themes/yorha`
-  
-  - hyprtheme
-     > soon
-
-### script
-```sh
-curl -s -L https://raw.githubusercontent.com/flick0/dotfiles/hyprland-yorha/install.sh | bash
-```
-> provided by [@cutieqt1](https://discord.com/channels/@me/1193218215380254740) on discord
+- ## Install Script
+    ```sh
+    curl -s -L https://raw.githubusercontent.com/flick0/dotfiles/hyprland-yorha/install.sh | bash
+    ```
+    > provided by [@cutieqt1](https://discord.com/channels/@me/1193218215380254740) on discord
 
 ## ✨ Features
  - ### Music Widget
