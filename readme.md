@@ -18,6 +18,8 @@ A rice inspired by `NieR:Automata` ui
 
 
 ## 📥 Installation
+> [!IMPORTANT]
+> you need to install the base config found in [master branch](https://github.com/flick0/dotfiles) before installing this
 
 - ### Dependancies
     #### Arch
