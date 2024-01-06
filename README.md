@@ -104,6 +104,8 @@
 > [!WARNING]
 > - archived rices are not maintained and may not work
 
+> tho I do plan on making an ags rewrite of dreamy and aurora
+
 <hr>
 <!--###################################################################################################################-->
 
