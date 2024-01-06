@@ -11,6 +11,8 @@
         </a>
 </div>
 
+A rice inspired by `NieR:Automata` ui
+
 ## 📥 Installation
 
 - ### Dependancies
