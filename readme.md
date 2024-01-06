@@ -11,6 +11,9 @@
         </a>
 </div>
 
+
+# YoRHa
+
 A rice inspired by `NieR:Automata` ui
 
 ## 📥 Installation
