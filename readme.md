@@ -26,7 +26,7 @@
 - ### Apply theme
   
   - manual
-     > change the `$THEME` variable in hyprland conf to `./themes/nier`
+     > change the `$THEME` variable in hyprland conf to `./themes/yorha`
   
   - hyprtheme
      > soon
