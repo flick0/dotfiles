@@ -3,7 +3,7 @@
 </div>
 <img src="https://github.com/flick0/dotfiles/assets/77581181/4b94622c-69f4-4f2d-82c4-7032d6e66ca4">
 <div align="right">
-        <p>do check out the full showcase vid here ~></p>
+        do check out the full showcase vid here ~>
         <a href="https://www.youtube.com/watch?v=YRDbhWHF8bY">
             <img alt="Youtube" src="https://img.shields.io/badge/YouTube-%23c2bda6.svg?style=for-the-badge&logo=YouTube&logoColor=48463d">
         </a>
