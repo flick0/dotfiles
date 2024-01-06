@@ -16,6 +16,15 @@
 
 A rice inspired by `NieR:Automata` ui
 
+## Features
+ - ### Music Widget
+   > https://github.com/flick0/dotfiles/assets/77581181/4c10b974-11e1-41c2-89fe-3a1cfb405fd6
+
+ - ### Slurp clone made in ags
+   > https://github.com/flick0/dotfiles/assets/77581181/efd9363e-47f4-4768-bdd9-3d8d15e5a9c4
+
+
+
 ## 📥 Installation
 
 - ### Dependancies
