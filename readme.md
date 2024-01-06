@@ -20,8 +20,16 @@
     > ```
 - ### Clone to theme folder
   ```sh
-  mkdir ~/.config/hypr/themes && git clone -b hyprland-yorha https://github.com/flick0/dotfiles ~/.config/hypr/themes/YoRHa
+  mkdir ~/.config/hypr/themes && git clone -b hyprland-yorha https://github.com/flick0/dotfiles ~/.config/hypr/themes/yorha
   ```  
+
+- ### Apply theme
+  
+  - manual
+     > change the `$THEME` variable in hyprland conf to `./themes/nier`
+  
+  - hyprtheme
+     > soon
 
 
 ## Thanks to
