@@ -33,7 +33,11 @@ A rice inspired by `NieR:Automata` ui
     - ### Clone to theme folder
       ```sh
       mkdir ~/.config/hypr/themes && git clone -b hyprland-yorha https://github.com/flick0/dotfiles ~/.config/hypr/themes/yorha
-      ```  
+      ```
+- ## NixOS
+   - ### Flake
+  ```
+   
     
     - ### Apply theme
       
