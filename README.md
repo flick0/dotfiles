@@ -25,7 +25,7 @@
     ```sh
     cd /tmp/flick0-dotfiles && cp -r ./config/* ~/.config/
     ```
-- ### install any theme from below
+- ### install any theme from below (click the img to go to the theme's branch)
 
 <hr>
 
