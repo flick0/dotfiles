@@ -114,7 +114,16 @@
 
 <div align=center>
     <img align="center" src="./assets/stars.svg">
-    <img src="https://starchart.cc/flick0/dotfiles.svg?background=%23101010&axis=%23ffc78c&line=%23ffe97d" alt="starchart">
+
+<a href="https://star-history.com/#flick0/dotfiles&Date">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=flick0/dotfiles&type=Date&theme=dark" />
+    <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=flick0/dotfiles&type=Date" />
+    <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=flick0/dotfiles&type=Date" />
+  </picture>
+</a>
+
+    
 </div>
 
                     
