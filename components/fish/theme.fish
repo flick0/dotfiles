@@ -5,5 +5,5 @@ end
 if status is-interactive
 	starship init fish | source &
 	theme
-    sttt
+    sttt scanline --scanline-reverse true -d 0.5
 end

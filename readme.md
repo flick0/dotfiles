@@ -16,7 +16,7 @@
 - ### Dependancies
     #### Arch
     > ```sh
-    > paru -S hyprland-git foot grim swww-git fish theme.sh aylurs-gtk-shell-git sassc starship cava imagemagick hyprbars-git
+    > paru -S hyprland-git foot grim swww-git fish theme.sh aylurs-gtk-shell-git sassc starship cava imagemagick hyprland-plugin-hyprbars-git
     > ```
 - ### Clone to theme folder
   ```sh
