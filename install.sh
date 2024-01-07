@@ -1,8 +1,10 @@
 ##############################################################################################################
-# thanks to @cutieqt1 from discord for sending me this
+# thanks to @cutie_230 from discord for sending me this
 ##############################################################################################################
 
-echo "Installing Rice...."
+clear
+
+
 sleep 1
 echo "initzializing install script...."
 sleep 1
@@ -11,7 +13,7 @@ sleep 1
 
 echo "master branch time"
 sleep 1
-echo "installing programs"
+echo "installing programs the 1st"
 paru -S hyprland-git foot grim slurp swww-git fish light-git swaylock-effects-git swayidle theme.sh sddm
 sleep 1
 echo "Git Cloning from github...."
@@ -21,6 +23,8 @@ sleep 2
 cd /tmp/flick0-dotfiles && cp -r ./config/* ~/.config/ && cd
 sleep 1
 echo "YorHa time!!!"
+sleep 1
+echo "installing programs the 2nd"
 sleep 1
 paru -S aylurs-gtk-shell-git sassc starship cava imagemagick hyprland-plugin-hyprbars-git
 sleep 1
