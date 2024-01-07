@@ -34,9 +34,6 @@ A rice inspired by `NieR:Automata` ui
       ```sh
       mkdir ~/.config/hypr/themes && git clone -b hyprland-yorha https://github.com/flick0/dotfiles ~/.config/hypr/themes/yorha
       ```
-- ## NixOS
-   - ### Flake
-  ```
    
     
     - ### Apply theme
@@ -51,7 +48,7 @@ A rice inspired by `NieR:Automata` ui
     ```sh
     curl -s -L https://raw.githubusercontent.com/flick0/dotfiles/hyprland-yorha/install.sh | bash
     ```
-    > provided by [@cutieqt1](https://discord.com/channels/@me/1193218215380254740) on discord
+    > provided by [@cutie_230](https://discord.com/channels/@me/1193218215380254740) on discord
 
 ## ✨ Features
  - ### Music Widget
