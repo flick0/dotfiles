@@ -1,7 +1,10 @@
 import { SCREEN_WIDTH } from "./util.js";
 
 export const scale = 1;
-;
+
+export const settings_title_top = 120*scale;
+export const settings_title_bottom = 50*scale;
+
 export const workspace_workspaces = 10;
 
 export const top_spacing = 20*scale;

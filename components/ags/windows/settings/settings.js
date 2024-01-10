@@ -1,5 +1,6 @@
 import { Widget, App, Utils } from "../../imports.js";
 import { NierButtonGroup, NierButton } from "../../nier/buttons.js";
+import { settings_title_bottom, settings_title_top } from "../../scaling.js";
 import { SCREEN_WIDTH, SCREEN_HEIGHT, arradd, arrremove, get_cursor, css} from "../../util.js";
 import { BluetoothGroup } from "../../widgets/bluetooth_group.js";
 import { Info } from "../../widgets/info.js";
@@ -229,6 +230,7 @@ const NierSettingPane = (
             Label({
               hpack: "start",
               label: "SYSTEM",
+              css:`margin-top: ${settings_title_top}px;margin-bottom: ${settings_title_bottom}px;`,
               classNames: ["heading"],
             }),
             NierButton({
@@ -265,6 +267,7 @@ const NierSettingPane = (
               },
             }),
             Label({
+              css:`margin-top: ${settings_title_top}px;margin-bottom: ${settings_title_bottom}px;`,
               hpack: "start",
               label: "APPS",
               classNames: ["heading"],

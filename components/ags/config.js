@@ -6,7 +6,7 @@ import {
 } from "./imports.js";
 
 
-import { arradd, arrremove, css, scss, assetsDir, dark, themedir,SCREEN_WIDTH} from "./util.js";
+import { arradd, arrremove, css, scss, assetsDir, dark, themedir,SCREEN_WIDTH, SCREEN_HEIGHT} from "./util.js";
 import { Workspaces } from "./widgets/workspace.js";
 import { NierBorder } from "./widgets/nier_border.js";
 import { button_pointer_size, top_icon_size, top_spacing, workspace_height, workspace_width } from "./scaling.js";
@@ -14,8 +14,11 @@ import { button_pointer_size, top_icon_size, top_spacing, workspace_height, work
 const { exec, execAsync } = Utils;
 const { Box, Window, Button, Icon, Scrollable } = Widget;
 
-exec(`sassc ${scss} ${css}`);
 
+Utils.writeFile(`$screen_width:${SCREEN_WIDTH}px;$screen_height:${SCREEN_HEIGHT}px;`,`${App.configDir}/style/data.scss`).then(() => {
+  print("wrote ",`${App.configDir}/style/data.scss`,`$screen_width:${SCREEN_WIDTH}px;$screen_height:${SCREEN_HEIGHT}px;`)
+  exec(`sassc ${scss} ${css}`);
+}).catch(print);
 
 const WHICH = "nier";
 globalThis.WHICH = WHICH;
