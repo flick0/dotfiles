@@ -135,7 +135,7 @@ export default {
   style: css,
   windows: [
     Bar(),
-    Bar({ monitor: 1}),
+    // Bar({ monitor: 1}),
     BottomBar(),
   ],
 };
