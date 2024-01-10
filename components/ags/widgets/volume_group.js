@@ -1,7 +1,7 @@
 import { Widget,Audio,Variable } from "../imports.js";
 import {  NierButton } from "../nier/buttons.js";
 import { NierSliderButton } from "../nier/slider.js";
-import { button_label_2, button_slider_width } from "../scaling.js";
+import { button_label_2, button_slider_width, settings_title_bottom, settings_title_top } from "../scaling.js";
 import { assetsDir } from "../util.js";
 
 const {Label} = Widget;
@@ -50,7 +50,7 @@ export const VolumeGroup = ({
   passAssetsDir = assetsDir
 }) => {
   return [
-    Label({ hpack: "start", label: "VOLUME", classNames: ["heading"] }),
+    Label({ hpack: "start", label: "VOLUME", classNames: ["heading"] ,css:`margin-top: ${settings_title_top}px;margin-bottom: ${settings_title_bottom}px;`}),
     volume_slider({useAssetsDir: passAssetsDir, type: "speaker", volume_ratio: volume_ratio }),
     volume_slider({useAssetsDir: passAssetsDir, type: "microphone", volume_ratio: mic_volume_ratio }),
     NierButton({
@@ -62,7 +62,7 @@ export const VolumeGroup = ({
       handleClick: async (self, event) => {
         await go_to(
           [
-            Label({ hpack: "start", label: "APPS", classNames: ["heading"] }),
+            Label({ hpack: "start", label: "APPS", classNames: ["heading"]  ,css:`margin-top: ${settings_title_top}px;margin-bottom: ${settings_title_bottom}px;` }),
             ...Array.from(Audio.apps).map((stream) => {
               console.log(stream);
               return volume_slider({
@@ -77,7 +77,7 @@ export const VolumeGroup = ({
         );
       },
     }),
-    Label({ hpack: "start", label: "OUTPUT", classNames: ["heading"] }),
+    Label({ hpack: "start", label: "OUTPUT", classNames: ["heading"], css:`margin-top: ${settings_title_top}px;margin-bottom: ${settings_title_bottom}px;` }),
     ...Array.from(Audio.speakers).map((stream) => {
       console.log(stream);
       return volume_slider({
@@ -87,7 +87,7 @@ export const VolumeGroup = ({
       });
     }),
 
-    Label({ hpack: "start", label: "INPUT", classNames: ["heading"] }),
+    Label({ hpack: "start", label: "INPUT", classNames: ["heading"], css:`margin-top: ${settings_title_top}px;margin-bottom: ${settings_title_bottom}px;` }),
     ...Array.from(Audio.microphones).map((stream) => {
       console.log(stream);
       return volume_slider({

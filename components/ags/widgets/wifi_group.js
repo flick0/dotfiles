@@ -1,6 +1,6 @@
 import { Widget, Network, Variable } from "../imports.js";
 import { NierDropDownButton } from "../nier/dropdown.js";
-import { button_label_2 } from "../scaling.js";
+import { button_label_2, settings_title_bottom, settings_title_top } from "../scaling.js";
 import { SCREEN_WIDTH,assetsDir } from "../util.js";
 
 const { Label } = Widget;
@@ -13,7 +13,7 @@ export const WifiGroup = ({
   passAssetsDir = assetsDir
 }) => {
   return [
-    Label({ hpack: "start", label: "WIFI", classNames: ["heading"] }),
+    Label({ hpack: "start", label: "WIFI", classNames: ["heading"], css:`margin-top: ${settings_title_top}px;margin-bottom: ${settings_title_bottom}px;`}),
     NierDropDownButton({
       useAssetsDir: passAssetsDir,
       font_size: button_label_2,

@@ -401,7 +401,7 @@ const NierSettingPane = (
           CLICK_TIMEOUT = false;
         });
         let [x, _] = await get_cursor();
-
+        print("cursor press", x, current_page);
         if (x <= (SCREEN_WIDTH / 4) * (current_page + 1)) {
           return;
         }
@@ -409,8 +409,8 @@ const NierSettingPane = (
           if (current_page == 0) {
             App.toggleWindow("settings");
           } else {
-            let next_page = panes_container.children[current_page].child;
-            let now_page = panes_container.children[current_page - 1].child;
+            let next_page = panes_container.pages[current_page].child;
+            let now_page = panes_container.pages[current_page - 1].child;
 
             let now_buttons = now_page.children[1].children;
             next_page.classNames = arradd(next_page.classNames, "closing");
