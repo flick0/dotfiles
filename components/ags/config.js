@@ -9,6 +9,7 @@ import {
 import { arradd, arrremove, css, scss, assetsDir, dark, themedir,SCREEN_WIDTH} from "./util.js";
 import { Workspaces } from "./widgets/workspace.js";
 import { NierBorder } from "./widgets/nier_border.js";
+import { top_icon_size, top_spacing } from "./scaling.js";
 
 const { exec, execAsync } = Utils;
 const { Box, Window, Button, Icon } = Widget;
@@ -26,7 +27,7 @@ const top = () =>
     classNames: ["top"],
     children: [
       Box({
-        spacing: 20,
+        spacing: top_spacing,
         hpack: "fill",
         css: `min-width: ${SCREEN_WIDTH}px;`,
         children: [
@@ -36,7 +37,7 @@ const top = () =>
             hexpand: true,
             classNames: ["settings-button"],
             child: Icon({
-              size: 40,
+              size: top_icon_size,
               icon: assetsDir() + "/yorha.png",
             }),
             setup: (button) => {
@@ -116,9 +117,10 @@ dark.connect("changed", () => {
 
 execAsync(["bash","-c",`pkill dunst;ags -b notify -c ${App.configDir}/windows/notifications/notifications.js`])
 
-const BottomBar = () =>
+const BottomBar = ({ monitor } = {}) =>
   Window({
     name: "bottombar",
+    monitor,
     margin: [0, 0],
     anchor: ["bottom", "left", "right"],
     exclusivity: "ignore",
@@ -133,6 +135,8 @@ export default {
   style: css,
   windows: [
     Bar(),
+    Bar({ monitor: 1}),
     BottomBar(),
   ],
 };
+
