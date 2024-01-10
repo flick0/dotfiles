@@ -26,19 +26,20 @@ A rice inspired by `NieR:Automata` ui
     - ### Dependancies
         #### Arch
         > ```sh
-        > paru -S hyprland-git foot grim swww-git fish theme.sh aylurs-gtk-shell-git sassc starship cava imagemagick hyprland-plugin-hyprbars-git
+        > paru -S hyprland-git foot grim swww-git fish theme.sh aylurs-gtk-shell-git sassc starship cava imagemagick hyprland-plugin-hyprbars-git gnome-bluetooth
         > ```
         #### STTT
         > install from https://github.com/flick0/sttt
     - ### Clone to theme folder
       ```sh
       mkdir ~/.config/hypr/themes && git clone -b hyprland-yorha https://github.com/flick0/dotfiles ~/.config/hypr/themes/yorha
-      ```  
+      ```
+   
     
     - ### Apply theme
       
       - manual
-         > change the `$THEME` variable in hyprland conf to `./themes/yorha`
+         > change the `$THEME` variable in hyprland conf to `$HERE/themes/yorha`
       
       - hyprtheme
          > soon
@@ -47,7 +48,7 @@ A rice inspired by `NieR:Automata` ui
     ```sh
     curl -s -L https://raw.githubusercontent.com/flick0/dotfiles/hyprland-yorha/install.sh | bash
     ```
-    > provided by [@cutieqt1](https://discord.com/channels/@me/1193218215380254740) on discord
+    > provided by [@cutie_230](https://discord.com/channels/@me/1193218215380254740) on discord
 
 ## ✨ Features
  - ### Music Widget
