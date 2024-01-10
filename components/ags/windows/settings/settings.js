@@ -9,7 +9,7 @@ import { WifiGroup } from "../../widgets/wifi_group.js";
 import { AppLauncher } from "./applauncher.js";
 
 
-const { Window, Label, EventBox, Box, Overlay } = Widget;
+const { Window, Label, EventBox, Box, Overlay, Scrollable } = Widget;
 const { execAsync } = Utils;
 
 const { Gdk } = imports.gi;
@@ -273,7 +273,25 @@ const NierSettingPane = (
             Info({useAssetsDir:parentAssetsDir,parentDir:parentConfigDir}),
           ],
         });
-        self.children = [page1, page2, page3, page4];
+        self.pages = [page1, page2, page3, page4];
+        self.children = [
+          Scrollable({
+            css: `min-width: ${SCREEN_WIDTH / 4}px;min-height: ${SCREEN_HEIGHT}px;`,
+            child:page1
+          }),
+          Scrollable({
+            css: `min-width: ${SCREEN_WIDTH / 4}px;min-height: ${SCREEN_HEIGHT}px;`,
+            child:page2
+          }),
+          Scrollable({
+            css: `min-width: ${SCREEN_WIDTH / 4}px;min-height: ${SCREEN_HEIGHT}px;`,
+            child:page3
+          }),
+          Scrollable({
+            css: `min-width: ${SCREEN_WIDTH / 4}px;min-height: ${SCREEN_HEIGHT}px;`,
+            child:page4
+          }),
+        ];
       }),
     connections: [
       [
@@ -281,7 +299,8 @@ const NierSettingPane = (
         (self, windowName, visible) => {
           if (windowName ==  "settings") {
             print("visibility",visible)
-            let containers = Array.from(self.children).map((child) => {
+            let containers = Array.from(self.pages).map((child) => {
+              print(child.child)
               return child.child;
             });
 
@@ -336,8 +355,8 @@ const NierSettingPane = (
               if (current_page == 0) {
                 App.toggleWindow("settings");
               } else {
-                let next_page = panes_container.children[current_page].child;
-                let now_page = panes_container.children[current_page - 1].child;
+                let next_page = panes_container.pages[current_page].child;
+                let now_page = panes_container.pages[current_page - 1].child;
                 let now_buttons = now_page.children[1].children;
                 next_page.classNames = arradd(next_page.classNames, "closing");
                 switch (current_page) {

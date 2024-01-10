@@ -1,4 +1,5 @@
 import { Widget, Variable, Utils } from "../imports.js";
+import { button_label_2 } from "../scaling.js";
 import { arradd, arrremove, assetsDir } from "../util.js";
 import { NierButton } from "./buttons.js";
 const { Gdk } = imports.gi;
@@ -16,7 +17,7 @@ export const NierDropDownButton = ({
     return true;
   },
   options = Variable([], {}),
-  size = 35,
+  size = button_label_2,
   current = Variable("", {}),
   popup_window = null,
   in_focus = false,
@@ -80,7 +81,7 @@ export const NierDropDownButton = ({
 export const NierSelectMenu = ({
   coord_x = 0,
   coord_y = 0,
-  size = 35,
+  size = button_label_2,
   spacing = 20,
   button = null,
   current,
@@ -167,7 +168,7 @@ export const NierSelectMenu = ({
 
 export const NierOptionItem = ({
   label = "",
-  size = 35,
+  size = button_label_2,
   spacing = 20,
   button,
   current,

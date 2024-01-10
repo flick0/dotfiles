@@ -1,6 +1,7 @@
 import { Widget, Bluetooth, Variable } from "../imports.js";
 import { NierButton } from "../nier/buttons.js";
 import { NierDropDownButton } from "../nier/dropdown.js";
+import { button_label_2 } from "../scaling.js";
 import { SCREEN_WIDTH } from "../util.js";
 
 const { Label } = Widget;
@@ -14,7 +15,7 @@ export const BluetoothGroup = ({
     Label({ hpack: "start", label: "BLUETOOTH", classNames: ["heading"] }),
     NierDropDownButton({
       useAssetsDir: passAssetsDir,
-      font_size: 30,
+      font_size: button_label_2,
       label: "enabled",
       current: enabled,
       options: Variable(["YES", "NO"], {}),
@@ -30,7 +31,7 @@ export const BluetoothGroup = ({
     }),
     NierButton({
       useAssetsDir: passAssetsDir,
-      font_size: 30,
+      font_size: button_label_2,
       label: "devices",
       handleClick: async (self, event) => {
         go_to(

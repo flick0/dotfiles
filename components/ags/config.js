@@ -9,10 +9,10 @@ import {
 import { arradd, arrremove, css, scss, assetsDir, dark, themedir,SCREEN_WIDTH} from "./util.js";
 import { Workspaces } from "./widgets/workspace.js";
 import { NierBorder } from "./widgets/nier_border.js";
-import { top_icon_size, top_spacing } from "./scaling.js";
+import { button_pointer_size, top_icon_size, top_spacing, workspace_height, workspace_width } from "./scaling.js";
 
 const { exec, execAsync } = Utils;
-const { Box, Window, Button, Icon } = Widget;
+const { Box, Window, Button, Icon, Scrollable } = Widget;
 
 exec(`sassc ${scss} ${css}`);
 
@@ -24,14 +24,19 @@ globalThis.WHICH = WHICH;
 const top = () =>
   Box({
     vertical: true,
+    hexpand: false,
     classNames: ["top"],
+    css: `min-width: ${SCREEN_WIDTH}px;`,
     children: [
       Box({
         spacing: top_spacing,
         hpack: "fill",
-        css: `min-width: ${SCREEN_WIDTH}px;`,
+        // css: `min-width: ${SCREEN_WIDTH/2}px;`,
         children: [
-          Workspaces({}),
+          Scrollable({
+            css: `min-width: ${workspace_width}px;min-height: ${workspace_height}px;`,
+            child:Workspaces({}),
+          }),
           Button({
             hpack: "end",
             hexpand: true,

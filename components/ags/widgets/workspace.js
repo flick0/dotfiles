@@ -31,6 +31,8 @@ const int_to_string = ({ i, jap = true }) => {
       return jap ? "きゅう" : "NINE";
     case 10:
       return jap ? "じゅう" : "TEN";
+    default:
+      return `${i}`;
   }
 };
 

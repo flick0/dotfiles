@@ -1,4 +1,5 @@
 import { Widget } from "../imports.js"
+import { button_pointer_size, nier_border_size } from "../scaling.js";
 
 import { SCREEN_WIDTH, get_cursor, assetsDir, SCREEN_HEIGHT } from "../util.js"
 
@@ -7,13 +8,15 @@ const { Box, Icon,Scrollable } = Widget
 const { round,abs } = Math
 
 export const NierBorder = ({
-    icon_width = 110,
+    icon_width = nier_border_size,
     ratio = 0.5,
     y_axis = false,
     ...props
 }) => Scrollable({
     ...props,
-    css: `min-width: ${SCREEN_WIDTH}px;min-height: ${round(icon_width/3)}px;`,
+    // hexpand: false,
+    css: `min-width: ${100}px;min-height: ${round(icon_width/3)}px;`,
+    // hscroll: "always",
     child:Box({
         children: Array.from({length: SCREEN_WIDTH/icon_width + 1},(_,i) => Icon({
             icon: assetsDir() + "/nier-border-full.svg",
