@@ -22,10 +22,4 @@ sudo chmod a+rx /usr/local/bin/sttt
 echo "git blah blah"
 mkdir ~/.config/hypr/themes && git clone -b hyprland-yorha https://github.com/flick0/dotfiles ~/.config/hypr/themes/yorha
 
-echo " - ### Apply theme
-  
-  - manual
-     > change the `$THEME` variable in hyprland conf to `./themes/yorha`
-  
-  - hyprtheme
-     > soon "
+echo "change the \$THEME variable in hyprland conf to \$HERE/themes/yorha"
