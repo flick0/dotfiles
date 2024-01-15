@@ -63,7 +63,11 @@ export const Info = ({
         useAssetsDir,
         label:dark.value?"dark":"light",
         handleClick: async (self,event) => {
-          execAsync(`ags -b settings -t settings`)
+          execAsync(`ags -b settings -r App.closeWindow("settings")`)
+          execAsync(`ags -b bg_settings -r App.closeWindow("bg_settings")`).catch(print).then(print)
+          Utils.timeout(1100, () => {
+            execAsync(`ags -b bg_settings -q`).catch(print).then(print)
+          })      
           await new Promise((r) => {setTimeout(r,1000)})
           execAsync(`ags -b banner -c ${parentDir + "/windows/banner/banner.js"}`)
         }

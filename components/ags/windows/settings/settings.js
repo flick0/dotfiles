@@ -118,7 +118,11 @@ const NierSettingPane = (
           self.css = `min-width: ${SCREEN_WIDTH}px;min-height: ${SCREEN_HEIGHT}px;background-position: ${SCREEN_WIDTH*.5-960/2}px ${SCREEN_HEIGHT/2-720/2}px;background: url("${parentAssetsDir()}/glory-ghost.png") no-repeat center;`; // 960x720 is the image(glory-brown-ghost.png) res
         });
 
-        execAsync(`ags -b bg_settings -c ${parentConfigDir}/windows/settingsbg/settingsbg.js`)
+        execAsync(`ags -b bg_settings -q`).then(() => {
+          Utils.timeout(10, () => {
+            execAsync(`ags -b bg_settings -c ${parentConfigDir}/windows/settingsbg/settingsbg.js`)   
+          })
+        })   
 
         let page4 = NierButtonGroup({
           hexpand: false,
@@ -303,7 +307,7 @@ const NierSettingPane = (
           if (windowName ==  "settings") {
             print("visibility",visible)
             let containers = Array.from(self.pages).map((child) => {
-              print(child.child)
+              // print(child.child)
               return child.child;
             });
 
@@ -314,15 +318,21 @@ const NierSettingPane = (
                   "closing"
                 );
               });
+              print("closingbg")
               execAsync(`ags -b bg_settings -r App.closeWindow("bg_settings")`).catch(print).then(print)
               Utils.timeout(1100, () => {
-                execAsync(`ags -b bg_settings -r App.quit()`).catch(print).then(print)
+                execAsync(`ags -b bg_settings -q`).catch(print).then(print)
               })              
               self.classNames = arrremove(self.classNames, "opening");
               self.classNames = arradd(self.classNames, "closing");
             } else {
-              execAsync(`ags -b bg_settings -c ${parentConfigDir}/windows/settingsbg/settingsbg.js`)
-
+              print("openingbg")
+              execAsync(`ags -b bg_settings -q`).then(() => {
+                Utils.timeout(100, () => {
+                  execAsync(`ags -b bg_settings -c ${parentConfigDir}/windows/settingsbg/settingsbg.js`)   
+                })
+              })   
+              
               self.classNames = arradd(self.classNames, "closing");
                 Utils.timeout(500, () => {
                   self.classNames = arradd(self.classNames, "opening");
