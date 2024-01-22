@@ -48,7 +48,7 @@ A rice inspired by `NieR:Automata` ui
       - hyprtheme
          > soon
 
-- ## Install Script
+- ## ~~Install Script~~ (outdated, will fix soon)
     ```sh
     curl -s -L https://raw.githubusercontent.com/flick0/dotfiles/hyprland-yorha/install.sh | bash
     ```
