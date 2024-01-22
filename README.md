@@ -7,7 +7,7 @@
 - ### Dependancies
     #### Arch
     > ```sh
-    > paru -S hyprland-git foot grim slurp swww-git fish light-git swaylock-effects-git swayidle theme.sh sddm
+    > paru -S hyprland-git foot grim slurp swww-git fish light-git swaylock-effects-git swayidle theme.sh sddm xdg-desktop-portal-hyprland
     > ```
 
 
@@ -25,12 +25,18 @@
     ```sh
     cd /tmp/flick0-dotfiles && cp -r ./config/* ~/.config/
     ```
+- ### install any theme from below (click the img to go to the theme's branch)
 
 <hr>
 
 <div align=center>
     <img align="center" src="./assets/themes.svg">
 </div>
+
+> themes are sourcable hyprland configs that change the look of the base config ( which only contains the binds and other "non decorative" config ) 
+
+> more themes are available at the [theme-repo](https://github.com/hyprland-community/theme-repo) ( do note that the theme-repo, including hyprtheme is currently a WIP )
+
 <div>
 <details open>
     <summary>🎨</summary>
@@ -41,13 +47,14 @@
         <img src="https://github.com/flick0/dotfiles/assets/77581181/4b94622c-69f4-4f2d-82c4-7032d6e66ca4">
     </a>
     <div align="right">
-        <a href="https://www.youtube.com/watch?v=zi2Nm5-0PYY">
+        do check out the full showcase vid here ~>
+        <a href="https://www.youtube.com/watch?v=YRDbhWHF8bY">
             <img alt="Youtube" src="https://img.shields.io/badge/YouTube-%23c2bda6.svg?style=for-the-badge&logo=YouTube&logoColor=48463d">
         </a>
-        <a href="https://www.reddit.com/r/unixporn/comments/z6s20y/hyprland_aurora_modified_my_previous_rice_to_fit/">
+        <a href="https://www.reddit.com/r/unixporn/comments/18zwfhj/hyprland_yorha/">
             <img alt="Reddit" src="https://img.shields.io/badge/Reddit-%23c2bda6.svg?style=for-the-badge&logo=Reddit&logoColor=48463d">
         </a>
-    </div>
+</div>
 </details>
 </div>
 
@@ -99,13 +106,24 @@
 > [!WARNING]
 > - archived rices are not maintained and may not work
 
+> tho I do plan on making an ags rewrite of dreamy and aurora
+
 <hr>
 <!--###################################################################################################################-->
 
 
 <div align=center>
     <img align="center" src="./assets/stars.svg">
-    <img src="https://starchart.cc/flick0/dotfiles.svg?background=%23101010&axis=%23ffc78c&line=%23ffe97d" alt="starchart">
+
+<a href="https://star-history.com/#flick0/dotfiles&Date">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=flick0/dotfiles&type=Date&theme=dark" />
+    <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=flick0/dotfiles&type=Date" />
+    <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=flick0/dotfiles&type=Date" />
+  </picture>
+</a>
+
+    
 </div>
 
                     
