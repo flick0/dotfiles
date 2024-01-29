@@ -27,6 +27,8 @@
     ```
 - ### install any theme from below (click the img to go to the theme's branch)
 
+- make sure to uncomment the specific source file line in `hyprland.conf` after installing a theme
+
 <hr>
 
 <div align=center>
