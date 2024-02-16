@@ -1,6 +1,6 @@
 import { Widget, Variable } from "../imports.js";
 import { NierButton } from "../nier/buttons.js";
-import { settings_title_bottom, settings_title_top } from "../scaling.js";
+import { button_label_2 ,settings_title_bottom, settings_title_top } from "../scaling.js";
 import { assetsDir } from "../util.js";
 
 const {Label} = Widget;
@@ -16,7 +16,7 @@ export const PowerGroup = ({
     NierButton({
       useAssetsDir: passAssetsDir,
       label: "Shutdown", 
-      font_size: 30,
+      font_size: button_label_2,
     //   handleClick: async (self,event)  => {
     //     go_to(
     //       [
@@ -55,7 +55,7 @@ export const PowerGroup = ({
     NierButton({
         useAssetsDir: passAssetsDir,
         label: "Reboot",
-        font_size: 30,
+        font_size: button_label_2,
         vpack: "end",
         handleClick: () => {
           exec(
