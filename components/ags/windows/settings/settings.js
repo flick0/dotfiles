@@ -372,8 +372,8 @@ const NierSettingPane = (
     anchor: ["top", "left", "bottom"],
     exclusivity: "ignore",
     layer: "overlay",
-    focusable: true,
     visible: true,
+    keymode: "exclusive",
     
     setup: (self) =>
       Utils.timeout(1, () => {
