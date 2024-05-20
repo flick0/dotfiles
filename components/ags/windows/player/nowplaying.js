@@ -438,8 +438,9 @@ Box({
                 dark,
                 (self) => {
                   Utils.timeout(500,async () => {
+                    preparing_cover = true;
                     await image_to_matrix("/tmp/bg.png", imagedat, rows).catch((e) => {
-                      preparing_cover = true;
+                      preparing_cover = false;
                       console.log(e);
                     })
                     preparing_cover = false;
