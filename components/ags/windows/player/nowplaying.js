@@ -190,9 +190,11 @@ Box({
               onClicked: async (self) => {
                 const player = Mpris.players[0];
                 player.previous();
+                preparing_cover = true;
                 self.classNames = arradd(self.classNames, "pressed");
                 await new Promise((r) => setTimeout(r, 100));
                 self.classNames = arrremove(self.classNames, "pressed");
+                preparing_cover = false;
               },
             }),
             Button({
@@ -297,13 +299,21 @@ Box({
               onClicked: async (self) => {
                 const player = Mpris.players[0];
                 player.next();
+                preparing_cover = true;
                 self.classNames = arradd(self.classNames, "pressed");
                 await new Promise((r) => setTimeout(r, 100));
                 self.classNames = arrremove(self.classNames, "pressed");
+                preparing_cover = false;
               },
             }),
           ],
         }),
+
+        if (player.track_title != current_info) {
+            preparing_cover = true;
+            preparing_cover = false;
+        }
+
         EventBox({
           setup: (self) => Utils.timeout(1, () => {
             self.connect("motion-notify-event", (widget, event) => {
@@ -428,9 +438,8 @@ Box({
                 dark,
                 (self) => {
                   Utils.timeout(500,async () => {
-                    preparing_cover = true;
                     await image_to_matrix("/tmp/bg.png", imagedat, rows).catch((e) => {
-                      preparing_cover = false;
+                      preparing_cover = true;
                       console.log(e);
                     })
                     preparing_cover = false;
