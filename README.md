@@ -62,7 +62,7 @@
 
 <!--###################################################################################################################-->
 <hr>
-<details>
+<details open>
     <summary><h3>Archive</h3></summary>
 
 [aurora](https://github.com/flick0/dotfiles/tree/aurora)
