@@ -7,7 +7,7 @@
 - ### Dependancies
     #### Arch
     > ```sh
-    > paru -S hyprland-git foot grim slurp swww-git fish light-git swaylock-effects-git swayidle theme.sh sddm xdg-desktop-portal-hyprland
+    > paru -S hyprland-git foot grim slurp swww-git fish light swaylock-effects-git swayidle theme.sh sddm xdg-desktop-portal-hyprland
     > ```
 
 
