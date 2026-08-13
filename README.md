@@ -136,11 +136,11 @@ though I do plan on making an ags rewrite of dreamy and aurora
 <div align=center>
     <img align="center" src="./assets/stars.svg">
 
-<a href="https://star-history.com/#flickowoa/dotfiles&Date">
+<a href="https://star-history.dera.page/#flickowoa/dotfiles&Date">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=flickowoa/dotfiles&type=Date&theme=dark" />
-    <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=flickowoa/dotfiles&type=Date" />
-    <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=flickowoa/dotfiles&type=Date" />
+    <source media="(prefers-color-scheme: dark)" srcset="https://star-history.dera.page/svg?repos=flickowoa/dotfiles&type=Date&theme=dark" />
+    <source media="(prefers-color-scheme: light)" srcset="https://star-history.dera.page/svg?repos=flickowoa/dotfiles&type=Date" />
+    <img alt="Star History Chart" src="https://star-history.dera.page/svg?repos=flickowoa/dotfiles&type=Date" />
   </picture>
 </a>
 
